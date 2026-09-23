@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>WebRanker — Global Office Network Globe</title>
+  
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script>
+    if (new URLSearchParams(window.location.search).get('embed') === '1' || window.self !== window.top) {
+      document.documentElement.classList.add('is-embed');
+    }
+  </script>
+
+  <style>
+    :root {
+      --primary-accent: #00d2ff;
+      --primary-gradient: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+      --marker-active: #00d2ff;
+      --marker-inactive: #ff3b30;
+      --bg-dark: #020617;
+      --panel-bg: rgba(11, 19, 38, 0.85);
+      --panel-border: rgba(255, 255, 255, 0.12);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: var(--bg-dark);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text-main);
+    }
+
+    html.is-embed .header-bar,
+    html.is-embed .office-card,
+    html.is-embed .bottom-wrapper,
+    html.is-embed .attribution-bar,
+    html.is-embed .ui-layer {
+      display: none !important;
+    }
+
+    html.is-embed,
+    html.is-embed body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    #cesiumContainer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      background: #020617;
+    }
+
+    html.is-embed #cesiumContainer {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .cesium-widget-credits {
+      display: none !important;
+    }
+
+    /* UI Overlay Layer */
+    .ui-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px 32px;
+    }
+
+    /* Top Header Bar */
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      pointer-events: auto;
+    }
+
+    .brand-container {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .brand-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo-gem {
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      background: var(--primary-gradient);
+      transform: rotate(45deg);
+      box-shadow: 0 0 16px var(--primary-accent), 0 0 30px var(--primary-accent);
+      animation: pulse-gem 2.5s infinite ease-in-out;
+    }
+
+    @keyframes pulse-gem {
+      0%, 100% { transform: rotate(45deg) scale(1); opacity: 0.9; }
+      50% { transform: rotate(45deg) scale(1.25); opacity: 1; }
+    }
+
+    .brand-title {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #ffffff 40%, #bae6fd 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.1;
+    }
+
+    .brand-subtitle {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-left: 24px;
+    }
+
+    /* Tour Status Live Badge */
+    .tour-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 18px;
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
+      border-radius: 30px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #e2e8f0;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+      transition: all 0.3s ease;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 10px #10b981;
+    }
+
+    .status-dot.paused {
+      background: #f59e0b;
+      box-shadow: 0 0 10px #f59e0b;
+    }
+
+    /* Active Office Glassmorphism Card */
+    .office-card {
+      position: absolute;
+      top: 98px;
+      left: 32px;
+      width: 360px;
+      padding: 22px 24px;
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
+      border-radius: 20px;
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.08);
+      opacity: 0;
+      transform: translateY(-14px) scale(0.95);
+      pointer-events: auto;
+      transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .office-card.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .card-top-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--primary-accent);
+      margin-bottom: 6px;
+    }
+
+    .card-office-title {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: #ffffff;
+      margin-bottom: 2px;
+    }
+
+    .card-company-name {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .card-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 12px;
+      font-size: 13px;
+      line-height: 1.45;
+      color: #cbd5e1;
+    }
+
+    .card-row-icon {
+      font-size: 14px;
+      opacity: 0.8;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .card-coords-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 6px 12px;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #7dd3fc;
+      margin-top: 4px;
+    }
+
+    .card-accuracy-tag {
+      font-size: 11px;
+      color: #64748b;
+      margin-top: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Bottom Unified Controller */
+    .bottom-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      pointer-events: auto;
+      width: 100%;
+    }
+
+    /* Office Selector Chips */
+    .location-chips-grid {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 980px;
+      width: 100%;
+    }
+
+    .location-chip {
+      padding: 9px 18px;
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
+      border-radius: 24px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+    }
+
+    .location-chip:hover {
+      background: rgba(22, 38, 70, 0.95);
+      border-color: rgba(0, 210, 255, 0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 210, 255, 0.25);
+    }
+
+    .location-chip.active {
+      background: linear-gradient(135deg, rgba(0, 210, 255, 0.35), rgba(58, 123, 213, 0.45));
+      border-color: var(--primary-accent);
+      color: #ffffff;
+      box-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
+      transform: translateY(-1px);
+    }
+
+    .chip-indicator-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #ff3b30;
+      box-shadow: 0 0 8px #ff3b30;
+    }
+
+    .location-chip.active .chip-indicator-dot {
+      background: #00d2ff;
+      box-shadow: 0 0 8px #00d2ff;
+    }
+
+    /* Bottom Control Bar */
+    .bottom-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      gap: 16px;
+    }
+
+    .navigation-hints {
+      font-size: 11.5px;
+      color: rgba(255, 255, 255, 0.5);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hint-badge {
+      padding: 2px 7px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 4px;
+      font-size: 10.5px;
+      color: #f8fafc;
+      font-weight: 500;
+    }
+
+    .controls-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 9px 18px;
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
+      border-radius: 14px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+    }
+
+    .btn:hover {
+      background: rgba(22, 38, 70, 0.95);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-accent {
+      background: linear-gradient(135deg, rgba(0, 210, 255, 0.2), rgba(58, 123, 213, 0.3));
+      border-color: rgba(0, 210, 255, 0.45);
+      color: #ffffff;
+    }
+
+    .btn-accent:hover {
+      background: var(--primary-gradient);
+      border-color: transparent;
+      box-shadow: 0 0 24px rgba(0, 210, 255, 0.5);
+    }
+
+    .attribution-bar {
+      position: absolute;
+      bottom: 6px;
+      right: 12px;
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.35);
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    @media (max-width: 900px) {
+      .ui-layer {
+        padding: 16px;
+      }
+      .office-card {
+        top: 72px;
+        left: 16px;
+        right: 16px;
+        width: auto;
+      }
+      .navigation-hints {
+        display: none;
+      }
+      .bottom-bar {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <script>
+    if (new URLSearchParams(window.location.search).get('embed') === '1') {
+      document.documentElement.classList.add('is-embed');
+    }
+  </script>
+
+  <!-- Cesium 3D Satellite Globe Container -->
+  <div id="cesiumContainer"></div>
+
+  <!-- UI Overlay -->
+  <div class="ui-layer">
+    <!-- Top Header -->
+    <header class="header-bar">
+      <div class="brand-container">
+        <div class="brand-title-wrap">
+          <div class="brand-logo-gem"></div>
+          <h1 class="brand-title">WEBRANKER</h1>
+        </div>
+        <div class="brand-subtitle">Worldwide Office Network</div>
+      </div>
+
+      <div class="tour-status-pill" id="tour-badge">
+        <div class="status-dot" id="status-dot"></div>
+        <span id="status-text">Tour: India HQ</span>
+      </div>
+    </header>
+
+    <!-- Floating Office Details Glassmorphism Card -->
+    <div class="office-card" id="office-card">
+      <div class="card-top-tag">Office location</div>
+      <div class="card-office-title" id="card-office-title">WR, JAIPUR HQ</div>
+      <div class="card-company-name" id="card-company-name">WebRanker Technologies HQ</div>
+      
+      <div class="card-row">
+        <span class="card-row-icon">📍</span>
+        <span id="card-address">Plot no. 51, Shaheed Amit Bhardwaj Marg, opp. 8/1, Sector 8, Malviya Nagar, Jaipur, Rajasthan 302017</span>
+      </div>
+
+      <div class="card-row">
+        <span class="card-row-icon">📞</span>
+        <span id="card-phone">+91 97185 70218</span>
+      </div>
+
+      <div class="card-coords-pill">
+        <span id="card-lat">LAT: 26.844394° N</span>
+        <span id="card-lng">LNG: 75.805302° E</span>
+      </div>
+
+      <div class="card-accuracy-tag">
+        <span>✓</span>
+        <span id="card-accuracy">Verified Building Geocode (Sector 8, Malviya Nagar)</span>
+      </div>
+    </div>
+
+    <!-- Bottom Unified Controller -->
+    <div class="bottom-wrapper">
+      <!-- Office Selector Chips -->
+      <nav class="location-chips-grid" id="location-chips-container" aria-label="WebRanker offices">
+        <!-- Rendered dynamically -->
+      </nav>
+
+      <!-- Bottom Controls Bar -->
+      <footer class="bottom-bar">
+        <div class="navigation-hints">
+          <span><span class="hint-badge">Left Drag</span> Rotate</span>
+          <span>•</span>
+          <span><span class="hint-badge">Right Drag / Wheel</span> Zoom</span>
+          <span>•</span>
+          <span><span class="hint-badge">Middle Drag</span> 3D Tilt</span>
+        </div>
+
+        <div class="controls-actions">
+          <button class="btn" id="btn-toggle-tour" title="Pause or resume automatic cinematic tour">
+            <span id="icon-tour">⏸</span>
+            <span id="text-tour">Pause Tour</span>
+          </button>
+
+          <button class="btn" id="btn-toggle-rotate" title="Toggle background globe orbit">
+            <span id="icon-rotate">🔄</span>
+            <span id="text-rotate">Auto-Orbit: On</span>
+          </button>
+
+          <button class="btn btn-accent" id="btn-reset-view" title="Reset camera to global Earth overview">
+            <span>🌐</span>
+            <span>Reset Globe</span>
+          </button>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Legal Imagery Attribution -->
+  <div class="attribution-bar">
+    Satellite Imagery © Esri, Maxar, Earthstar Geographics
+  </div>
+
+  <!-- Load Cesium from local vendor -->
+  <script>
+    (function loadCesiumAssets() {
+      var base = new URL('vendor/cesium/', window.location.href).href;
+      if (!base.endsWith('/')) base += '/';
+      window.CESIUM_BASE_URL = base;
+
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = base + 'Widgets/widgets.css';
+      document.head.appendChild(link);
+
+      var script = document.createElement('script');
+      script.src = base + 'Cesium.js';
+      script.onload = function () {
+        if (window.Cesium && Cesium.Resource && Cesium.Resource.setDefaultCrossOrigin) {
+          Cesium.Resource.setDefaultCrossOrigin('anonymous');
+        }
+        window.dispatchEvent(new Event('cesium-ready'));
+      };
+      script.onerror = function () {
+        console.error('Failed to load Cesium library');
+      };
+      document.head.appendChild(script);
+    })();
+  </script>
+
+  <script>
+    /* ==========================================================================
+       1. GLOBAL CONFIGURATION & DATA (Matching G:\wamp\www\newaifront)
+       ========================================================================== */
+    const IS_EMBED = new URLSearchParams(window.location.search).get('embed') === '1';
+
+    const CONFIG = {
+      cesiumIonToken: "",
+      autoTour: !IS_EMBED,
+      holdDuration: 4500,
+      userIdleResumeDelay: 5000,
+      initialRevealDelay: 1800,
+      attribution: "Satellite Imagery © Esri, Maxar, Earthstar Geographics, CNES/Airbus DS, USGS, AeroGRID, IGN, and GIS User Community"
+    };
+
+    const CAMERA_HEIGHTS = {
+      earth: 20000000,
+      regional: 5000000,
+      office: 650,
+    };
+
+    const TOUR_STATES = {
+      IDLE: "IDLE",
+      ZOOMING_IN: "ZOOMING_IN",
+      OFFICE_HOLD: "OFFICE_HOLD",
+      ZOOMING_OUT: "ZOOMING_OUT",
+      USER_CONTROL: "USER_CONTROL",
+    };
+
+    const OFFICE_LOCATIONS = [
+      {
+        id: "jaipur",
+        name: "WR, JAIPUR",
+        company: "WebRanker Technologies HQ",
+        address: "Plot no. 51, Shaheed Amit Bhardwaj Marg, opp. 8/1, Sector 8, Malviya Nagar, Jaipur, Rajasthan 302017",
+        phone: "+91 97185 70218",
+        latitude: 26.844394,
+        longitude: 75.805302,
+        coordinateSource: "Verified Malviya Nagar Sector 8 Geocode",
+        coordinateAccuracy: "exact-building (Plot no. 51, Shaheed Amit Bhardwaj Marg, Sector 8, 302017)",
+        cameraHeight: 650,
+        pitch: -48
+      }
+    ];
+
+    let viewer;
+    let markerEntities = [];
+    let currentTourState = TOUR_STATES.IDLE;
+    let tourIndex = 0;
+    let tourTimer = null;
+    let isAutoRotating = !IS_EMBED;
+    let isTourActive = CONFIG.autoTour;
+    let isUserInteracting = false;
+    let userInteractionTimeout = null;
+
+    /* ==========================================================================
+       2. CUSTOM MARKER PIN SVG (WebRanker WR Monogram Icon)
+       ========================================================================== */
+    function createMarkerPinSvg(isActive = false) {
+      const primaryColor = isActive ? "#00d2ff" : "#f48120";
+      const bgColor = isActive ? "rgba(7, 24, 48, 0.96)" : "rgba(11, 19, 38, 0.94)";
+      const ringColor = isActive ? "#00d2ff" : "rgba(244, 129, 32, 0.6)";
+      const svg = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="56" height="68" viewBox="0 0 56 68">
+          <defs>
+            <filter id="glow-ds-${isActive ? "act" : "inact"}" x="-40%" y="-40%" width="180%" height="180%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="${isActive ? "4" : "2.5"}" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <ellipse cx="28" cy="63" rx="12" ry="4" fill="rgba(0,0,0,0.6)"/>
+          <path d="M 28 2 C 14 2 3 13 3 27 C 3 41 28 62 28 62 C 28 62 53 41 53 27 C 53 13 42 2 28 2 Z"
+            fill="${bgColor}" stroke="${primaryColor}" stroke-width="${isActive ? "2.8" : "2.2"}"
+            filter="url(#glow-ds-${isActive ? "act" : "inact"})"/>
+          <circle cx="28" cy="27" r="16.5" fill="${isActive ? "rgba(0, 210, 255, 0.22)" : "rgba(244, 129, 32, 0.18)"}"
+            stroke="${ringColor}" stroke-width="1.2"/>
+          <text x="28" y="27.5" text-anchor="middle" dominant-baseline="central"
+            font-family="'Urbanist', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif"
+            font-weight="900" font-size="13.5" fill="#ffffff" letter-spacing="-0.3">WR</text>
+        </svg>
+      `;
+      return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+    }
+
+    /* ==========================================================================
+       3. CESIUM GLOBE INITIALIZATION (Real ArcGIS World Imagery)
+       ========================================================================== */
+    function initializeGlobe() {
+      const container = document.getElementById('cesiumContainer');
+      if (!container || !window.Cesium) return;
+
+      Cesium.Ion.defaultAccessToken = CONFIG.cesiumIonToken || '';
+
+      const satelliteImageryProvider = new Cesium.UrlTemplateImageryProvider({
+        url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+        maximumLevel: 19,
+        credit: new Cesium.Credit(CONFIG.attribution),
+      });
+
+      viewer = new Cesium.Viewer(container, {
+        baseLayer: new Cesium.ImageryLayer(satelliteImageryProvider),
+        baseLayerPicker: false,
+        geocoder: false,
+        homeButton: false,
+        infoBox: false,
+        selectionIndicator: false,
+        timeline: false,
+        animation: false,
+        sceneModePicker: false,
+        navigationHelpButton: false,
+        fullscreenButton: false,
+        vrButton: false,
+        requestRenderMode: false,
+        maximumScreenSpaceError: 1.5,
+        contextOptions: {
+          webgl: {
+            alpha: false,
+            antialias: true,
+            powerPreference: "high-performance",
+          },
+        },
+      });
+
+      try {
+        const roadsLayer = viewer.imageryLayers.addImageryProvider(
+          new Cesium.UrlTemplateImageryProvider({
+            url: "https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}",
+            maximumLevel: 19,
+          })
+        );
+        roadsLayer.alpha = 0.85;
+      } catch (e) {
+        // optional overlay
+      }
+
+      const scene = viewer.scene;
+      scene.globe.baseColor = Cesium.Color.fromCssColorString("#020617");
+      scene.globe.enableLighting = false;
+      scene.globe.showGroundAtmosphere = true;
+      scene.skyAtmosphere.show = true;
+      scene.fog.enabled = true;
+      scene.fog.density = 0.0001;
+
+      const ssc = viewer.scene.screenSpaceCameraController;
+      ssc.enableZoom = true;
+      ssc.enableRotate = true;
+      ssc.enableTranslate = true;
+      ssc.enableTilt = true;
+      ssc.minimumZoomDistance = 30; // user can zoom right down to building rooftop
+      ssc.maximumZoomDistance = 25000000;
+      ssc.inertiaZoom = 0.7;
+      ssc.zoomEventTypes = [
+        Cesium.CameraEventType.WHEEL,
+        Cesium.CameraEventType.PINCH
+      ];
+
+      loadOfficeMarkers();
+      setupInteractions();
+
+      viewer.camera.setView({
+        destination: Cesium.Cartesian3.fromDegrees(10, 25, CAMERA_HEIGHTS.earth),
+        orientation: {
+          heading: 0,
+          pitch: Cesium.Math.toRadians(-90),
+          roll: 0,
+        },
+      });
+
+      bindControls();
+
+      // Initial smooth zoom down into India Jaipur office
+      setTimeout(() => {
+        if (CONFIG.autoTour && isTourActive) {
+          startTour();
+        } else {
+          flyToOffice(OFFICE_LOCATIONS[0], 4.5);
+        }
+      }, CONFIG.initialRevealDelay);
+
+      startAutoRotateLoop();
+
+      if (window.parent !== window) {
+        window.parent.postMessage({ source: 'ds-offices-map', type: 'ready' }, '*');
+      }
+    }
+
+    /* ==========================================================================
+       4. MARKERS & LABELS
+       ========================================================================== */
+    function loadOfficeMarkers() {
+      const chipsContainer = document.getElementById('location-chips-container');
+      if (chipsContainer) chipsContainer.innerHTML = '';
+
+      OFFICE_LOCATIONS.forEach((loc, idx) => {
+        const entity = viewer.entities.add({
+          name: loc.name,
+          position: Cesium.Cartesian3.fromDegrees(loc.longitude, loc.latitude, 0),
+          billboard: {
+            image: createMarkerPinSvg(idx === 0),
+            verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+            horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
+            scale: 0.85,
+            scaleByDistance: new Cesium.NearFarScalar(500, 1.05, 18000000, 0.6),
+            translucencyByDistance: new Cesium.NearFarScalar(500, 1, 25000000, 0.85),
+            disableDepthTestDistance: 1000000,
+          },
+          label: {
+            text: loc.name,
+            font: '600 13px "Plus Jakarta Sans", sans-serif',
+            style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+            fillColor: Cesium.Color.WHITE,
+            outlineColor: Cesium.Color.BLACK,
+            outlineWidth: 4,
+            verticalOrigin: Cesium.VerticalOrigin.TOP,
+            horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
+            pixelOffset: new Cesium.Cartesian2(0, 6),
+            scaleByDistance: new Cesium.NearFarScalar(800, 1, 15000000, 0.6),
+            distanceDisplayCondition: new Cesium.DistanceDisplayCondition(0, 16000000),
+            disableDepthTestDistance: 1000000,
+          },
+        });
+        entity.officeIndex = idx;
+        entity.userData = { locationIndex: idx, locationData: loc };
+        markerEntities.push(entity);
+
+        if (chipsContainer) {
+          const chip = document.createElement('button');
+          chip.type = 'button';
+          chip.className = `location-chip ${idx === 0 ? 'active' : ''}`;
+          chip.innerHTML = `<span class="chip-indicator-dot"></span><span>${loc.name}</span>`;
+          chip.addEventListener('click', () => userSelectLocation(idx));
+          chipsContainer.appendChild(chip);
+        }
+      });
+    }
+
+    function updateMarkerHighlight(activeIndex) {
+      markerEntities.forEach((entity, idx) => {
+        const isActive = (idx === activeIndex);
+        if (entity.billboard) {
+          entity.billboard.image = createMarkerPinSvg(isActive);
+          entity.billboard.scale = isActive ? 1.05 : 0.85;
+        }
+      });
+    }
+
+    /* ==========================================================================
+       5. GEODESIC CAMERA APPROACH & MULTI-STAGE FLIGHT (Exact G:\wamp\www\newaifront)
+       ========================================================================== */
+    function calculateShortestApproachHeading(startCartographic, targetLng, targetLat) {
+      const currentLng = Cesium.Math.toDegrees(startCartographic.longitude);
+      const currentLat = Cesium.Math.toDegrees(startCartographic.latitude);
+      const dLng = ((targetLng - currentLng + 540) % 360) - 180;
+      const dLat = targetLat - currentLat;
+      const radTargetLat = Cesium.Math.toRadians(targetLat);
+      const headingRad = Math.atan2(
+        Cesium.Math.toRadians(dLng) * Math.cos(radTargetLat),
+        Cesium.Math.toRadians(dLat)
+      );
+      let headingDeg = Cesium.Math.toDegrees(headingRad);
+      if (Number.isNaN(headingDeg)) headingDeg = 0;
+      return (headingDeg + 360) % 360;
+    }
+
+    function descendToOffice(location, duration, onComplete) {
+      const currentCarto = viewer.camera.positionCartographic;
+      const dynamicHeading = calculateShortestApproachHeading(
+        currentCarto,
+        location.longitude,
+        location.latitude
+      );
+      const targetPitch = location.pitch || -48;
+      const targetHeight = location.cameraHeight || CAMERA_HEIGHTS.office;
+      const targetCenter = Cesium.Cartesian3.fromDegrees(
+        location.longitude,
+        location.latitude,
+        0
+      );
+      const headingRad = Cesium.Math.toRadians(dynamicHeading);
+      const pitchRad = Cesium.Math.toRadians(targetPitch);
+      const range = targetHeight / Math.sin(Math.abs(pitchRad));
+      const localOffset = new Cesium.Cartesian3(
+        -range * Math.cos(pitchRad) * Math.sin(headingRad),
+        -range * Math.cos(pitchRad) * Math.cos(headingRad),
+        targetHeight
+      );
+      const enuToWorld = Cesium.Transforms.eastNorthUpToFixedFrame(targetCenter);
+      const finalCameraPos = Cesium.Matrix4.multiplyByPoint(
+        enuToWorld,
+        localOffset,
+        new Cesium.Cartesian3()
+      );
+
+      viewer.camera.flyTo({
+        destination: finalCameraPos,
+        orientation: { heading: headingRad, pitch: pitchRad, roll: 0 },
+        duration,
+        easingFunction: Cesium.EasingFunction.CUBIC_IN_OUT,
+        complete: () => {
+          currentTourState = TOUR_STATES.OFFICE_HOLD;
+          if (onComplete) onComplete();
+        },
+      });
+    }
+
+    function flyToOffice(location, duration = 3.6, onComplete = null) {
+      if (!viewer) return;
+      viewer.camera.cancelFlight();
+      const index = OFFICE_LOCATIONS.findIndex((item) => item.id === location.id);
+      updateActiveUI(index, location);
+      updateMarkerHighlight(index);
+      currentTourState = TOUR_STATES.ZOOMING_IN;
+      updateTourStatus(true, `Zooming to ${location.name}`);
+
+      const height = viewer.camera.positionCartographic.height;
+
+      if (height > 1500000) {
+        viewer.camera.flyTo({
+          destination: Cesium.Cartesian3.fromDegrees(
+            location.longitude,
+            location.latitude,
+            CAMERA_HEIGHTS.regional
+          ),
+          orientation: {
+            heading: 0,
+            pitch: Cesium.Math.toRadians(-75),
+            roll: 0,
+          },
+          duration: Math.max(2.2, duration * 0.55),
+          easingFunction: Cesium.EasingFunction.CUBIC_IN_OUT,
+          complete: () => {
+            if (isUserInteracting) return;
+            descendToOffice(location, Math.max(2.4, duration * 0.7), onComplete);
+          },
+        });
+        return;
+      }
+
+      descendToOffice(location, duration, onComplete);
+    }
+
+    function resetGlobe(duration = 2.8) {
+      if (!viewer) return;
+      viewer.camera.cancelFlight();
+      hideOfficeCard();
+      document.querySelectorAll('.location-chip').forEach((chip) => chip.classList.remove('active'));
+      updateMarkerHighlight(-1);
+      currentTourState = TOUR_STATES.IDLE;
+      const currentCartographic = viewer.camera.positionCartographic;
+      const currentLng = Cesium.Math.toDegrees(currentCartographic.longitude);
+      const currentLat = Cesium.Math.toDegrees(currentCartographic.latitude);
+      viewer.camera.flyTo({
+        destination: Cesium.Cartesian3.fromDegrees(
+          currentLng,
+          Math.max(-25, Math.min(45, currentLat)),
+          CAMERA_HEIGHTS.earth
+        ),
+        orientation: {
+          heading: 0,
+          pitch: Cesium.Math.toRadians(-90),
+          roll: 0,
+        },
+        duration,
+        easingFunction: Cesium.EasingFunction.CUBIC_IN_OUT,
+      });
+    }
+
+    function zoomFromEarthToOffice(index) {
+      const location = OFFICE_LOCATIONS[index];
+      if (!location || !viewer) return;
+
+      tourIndex = index;
+      pauseTour();
+      viewer.camera.cancelFlight();
+      currentTourState = TOUR_STATES.IDLE;
+
+      flyToOffice(location, 4.2);
+    }
+
+    /* ==========================================================================
+       6. AUTOMATIC CINEMATIC TOUR
+       ========================================================================== */
+    function runTourStep() {
+      if (!isTourActive || isUserInteracting || !viewer) return;
+      const targetLoc = OFFICE_LOCATIONS[tourIndex] || OFFICE_LOCATIONS[0];
+      updateTourStatus(true, `Focusing: ${targetLoc.name}`);
+
+      flyToOffice(targetLoc, 3.6, () => {
+        if (!isTourActive || isUserInteracting) return;
+        updateTourStatus(true, `Inspecting: ${targetLoc.name}`);
+        if (OFFICE_LOCATIONS.length <= 1) {
+          updateTourStatus(true, `WebRanker HQ: ${targetLoc.name}`);
+          return;
+        }
+        tourTimer = setTimeout(() => {
+          if (!isTourActive || isUserInteracting) return;
+          currentTourState = TOUR_STATES.ZOOMING_OUT;
+          updateTourStatus(true, "Transitioning...");
+          tourIndex = (tourIndex + 1) % OFFICE_LOCATIONS.length;
+          const nextLoc = OFFICE_LOCATIONS[tourIndex];
+          const currentCarto = viewer.camera.positionCartographic;
+          const shortestHeading = calculateShortestApproachHeading(
+            currentCarto,
+            nextLoc.longitude,
+            nextLoc.latitude
+          );
+          const midLng = (Cesium.Math.toDegrees(currentCarto.longitude) + nextLoc.longitude) / 2;
+          const midLat = (Cesium.Math.toDegrees(currentCarto.latitude) + nextLoc.latitude) / 2;
+          viewer.camera.flyTo({
+            destination: Cesium.Cartesian3.fromDegrees(
+              midLng,
+              midLat,
+              CAMERA_HEIGHTS.regional
+            ),
+            orientation: {
+              heading: Cesium.Math.toRadians(shortestHeading),
+              pitch: Cesium.Math.toRadians(-75),
+              roll: 0,
+            },
+            duration: 2.2,
+            easingFunction: Cesium.EasingFunction.CUBIC_OUT,
+            complete: () => {
+              if (!isTourActive || isUserInteracting) return;
+              flyToOffice(nextLoc, 3.2, () => {
+                if (isTourActive && !isUserInteracting) runTourStep();
+              });
+            },
+          });
+        }, CONFIG.holdDuration);
+      });
+    }
+
+    function startTour() {
+      isTourActive = true;
+      if (tourTimer) clearTimeout(tourTimer);
+      updateTourControlsUI();
+      runTourStep();
+    }
+
+    function pauseTour() {
+      isTourActive = false;
+      if (tourTimer) clearTimeout(tourTimer);
+      updateTourStatus(false, "Tour Paused");
+      updateTourControlsUI();
+    }
+
+    function toggleTour() {
+      if (isTourActive) pauseTour();
+      else startTour();
+    }
+
+    function userSelectLocation(index) {
+      tourIndex = index;
+      const loc = OFFICE_LOCATIONS[index];
+      pauseTour();
+      flyToOffice(loc, 3.4);
+      if (window.parent !== window) {
+        window.parent.postMessage({ source: 'ds-offices-map', type: 'officeSelected', id: loc.id }, '*');
+      }
+    }
+
+    /* ==========================================================================
+       7. USER INTERACTIONS & EVENT LISTENERS
+       ========================================================================== */
+    function getPickedOfficeIndex(position) {
+      if (!position || !viewer) return -1;
+      const pickedList = viewer.scene.drillPick(position, 20, 16, 16);
+      for (let i = 0; i < pickedList.length; i += 1) {
+        const entity = pickedList[i]?.id;
+        if (!entity) continue;
+        const listIndex = markerEntities.indexOf(entity);
+        if (listIndex >= 0) return listIndex;
+        const idx = entity.officeIndex ?? entity.userData?.locationIndex;
+        if (typeof idx === "number") return idx;
+      }
+      return -1;
+    }
+
+    function setupInteractions() {
+      const handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
+
+      handler.setInputAction((movement) => {
+        const idx = getPickedOfficeIndex(movement.position);
+        if (idx >= 0) {
+          userSelectLocation(idx);
+        }
+      }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
+      handler.setInputAction((movement) => {
+        viewer.scene.canvas.style.cursor =
+          getPickedOfficeIndex(movement.endPosition) >= 0 ? "pointer" : "";
+      }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+
+      const onUserActive = () => {
+        isUserInteracting = true;
+        currentTourState = TOUR_STATES.USER_CONTROL;
+        viewer.camera.cancelFlight();
+        if (userInteractionTimeout) clearTimeout(userInteractionTimeout);
+        if (tourTimer) clearTimeout(tourTimer);
+        userInteractionTimeout = setTimeout(() => {
+          isUserInteracting = false;
+          if (isTourActive) runTourStep();
+        }, CONFIG.userIdleResumeDelay);
+      };
+
+      handler.setInputAction((movement) => {
+        if (getPickedOfficeIndex(movement.position) >= 0) return;
+        onUserActive();
+      }, Cesium.ScreenSpaceEventType.LEFT_DOWN);
+      handler.setInputAction(onUserActive, Cesium.ScreenSpaceEventType.RIGHT_DOWN);
+      handler.setInputAction(onUserActive, Cesium.ScreenSpaceEventType.MIDDLE_DOWN);
+      handler.setInputAction(onUserActive, Cesium.ScreenSpaceEventType.WHEEL);
+      handler.setInputAction(onUserActive, Cesium.ScreenSpaceEventType.PINCH_START);
+    }
+
+    function startAutoRotateLoop() {
+      viewer.clock.onTick.addEventListener(() => {
+        if (isAutoRotating && !isUserInteracting && currentTourState === TOUR_STATES.IDLE) {
+          const height = viewer.camera.positionCartographic.height;
+          if (height > 6000000) viewer.camera.rotateRight(0.0008);
+        }
+      });
+    }
+
+    /* ==========================================================================
+       8. UI UPDATERS
+       ========================================================================== */
+    function updateActiveUI(index, loc) {
+      document.querySelectorAll('.location-chip').forEach((chip, i) => {
+        chip.classList.toggle('active', i === index);
+      });
+
+      const card = document.getElementById('office-card');
+      if (!card) return;
+
+      const titleEl = document.getElementById('card-office-title');
+      const companyEl = document.getElementById('card-company-name');
+      const addressEl = document.getElementById('card-address');
+      const phoneEl = document.getElementById('card-phone');
+      const latEl = document.getElementById('card-lat');
+      const lngEl = document.getElementById('card-lng');
+      const accEl = document.getElementById('card-accuracy');
+
+      if (titleEl) titleEl.textContent = loc.name;
+      if (companyEl) companyEl.textContent = loc.company || "WebRanker";
+      if (addressEl) addressEl.textContent = loc.address;
+      if (phoneEl) phoneEl.textContent = loc.phone;
+
+      const latDir = loc.latitude >= 0 ? 'N' : 'S';
+      const lngDir = loc.longitude >= 0 ? 'E' : 'W';
+      if (latEl) latEl.textContent = `LAT: ${Math.abs(loc.latitude).toFixed(6)}° ${latDir}`;
+      if (lngEl) lngEl.textContent = `LNG: ${Math.abs(loc.longitude).toFixed(6)}° ${lngDir}`;
+      if (accEl) accEl.textContent = loc.coordinateAccuracy || "Verified Address Geocode";
+
+      card.classList.add('visible');
+
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({
+          source: 'ds-offices-map',
+          type: 'officeSelected',
+          id: loc.id,
+          name: loc.name,
+          company: loc.company,
+          address: loc.address,
+          phone: loc.phone
+        }, '*');
+      }
+    }
+
+    function hideOfficeCard() {
+      document.getElementById('office-card')?.classList.remove('visible');
+    }
+
+    function updateTourStatus(active, message) {
+      const dot = document.getElementById('status-dot');
+      const text = document.getElementById('status-text');
+      if (dot) dot.classList.toggle('paused', !active);
+      if (text) text.textContent = message || (active ? "Tour Active" : "Tour Paused");
+
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({
+          source: 'ds-offices-map',
+          type: 'tourStatusChanged',
+          active: active,
+          message: message || (active ? "Tour Active" : "Tour Paused")
+        }, '*');
+      }
+    }
+
+    function updateTourControlsUI() {
+      const icon = document.getElementById('icon-tour');
+      const text = document.getElementById('text-tour');
+      const btn = document.getElementById('btn-toggle-tour');
+      if (icon) icon.textContent = isTourActive ? '⏸' : '▶';
+      if (text) text.textContent = isTourActive ? 'Pause Tour' : 'Resume Tour';
+      if (btn) btn.classList.toggle('btn-accent', !isTourActive);
+    }
+
+    function bindControls() {
+      document.getElementById('btn-toggle-tour')?.addEventListener('click', toggleTour);
+      document.getElementById('btn-toggle-rotate')?.addEventListener('click', () => {
+        isAutoRotating = !isAutoRotating;
+        const text = document.getElementById('text-rotate');
+        const icon = document.getElementById('icon-rotate');
+        if (text) text.textContent = isAutoRotating ? 'Auto-Orbit: On' : 'Auto-Orbit: Off';
+        if (icon) icon.textContent = isAutoRotating ? '🔄' : '⏸';
+      });
+      document.getElementById('btn-reset-view')?.addEventListener('click', () => {
+        pauseTour();
+        resetGlobe(2.5);
+      });
+    }
+
+    /* ==========================================================================
+       9. POSTMESSAGE API (From parent home.blade.php)
+       ========================================================================== */
+    window.addEventListener('message', (event) => {
+      const data = event.data;
+      if (!data || data.source !== 'ds-offices-parent') return;
+
+      if (data.type === 'selectOffice') {
+        const id = String(data.id || '').toLowerCase();
+        let idx = OFFICE_LOCATIONS.findIndex((l) => l.id.toLowerCase() === id);
+        if (idx === -1 && (id === 'jaipur' || id === 'india')) {
+          idx = 0;
+        }
+        if (idx >= 0) {
+          zoomFromEarthToOffice(idx);
+        }
+        return;
+      }
+      if (data.type === 'toggleTour') {
+        toggleTour();
+        return;
+      }
+      if (data.type === 'resetGlobe') {
+        pauseTour();
+        resetGlobe(2.5);
+        return;
+      }
+      if (data.type === 'toggleRotate') {
+        isAutoRotating = !isAutoRotating;
+        const text = document.getElementById('text-rotate');
+        const icon = document.getElementById('icon-rotate');
+        if (text) text.textContent = isAutoRotating ? 'Auto-Orbit: On' : 'Auto-Orbit: Off';
+        if (icon) icon.textContent = isAutoRotating ? '🔄' : '⏸';
+        return;
+      }
+      if (data.type === 'forceResize') {
+        if (viewer) viewer.resize();
+      }
+    });
+
+    window.addEventListener('cesium-ready', initializeGlobe);
+    if (typeof Cesium !== 'undefined') initializeGlobe();
+  </script>
+</body>
+</html>
