@@ -15,6 +15,9 @@ class InquiryController extends Controller
     {
         // Anti-spam honeypot check (hidden field in form)
         if ($request->filled('website_hp')) {
+            if ($request->header('X-Inertia')) {
+                return redirect()->back()->with('success', 'Your inquiry has been received! Our senior architect will contact you within 24 hours.');
+            }
             return response()->json([
                 'success' => true,
                 'message' => 'Your inquiry has been received! Our senior architect will contact you within 24 hours.',
@@ -32,6 +35,12 @@ class InquiryController extends Controller
         ]);
 
         if ($validator->fails()) {
+            if ($request->header('X-Inertia')) {
+                return redirect()->back()
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+
             if ($request->expectsJson() || $request->ajax()) {
                 return response()->json([
                     'success' => false,
@@ -62,6 +71,10 @@ class InquiryController extends Controller
             'user_agent' => $request->userAgent(),
             'status' => 'new',
         ]);
+
+        if ($request->header('X-Inertia')) {
+            return redirect()->back()->with('success', 'Thank you! Your growth consultation request has been received. Our senior architect will review your domain and respond within 24 hours.');
+        }
 
         if ($request->expectsJson() || $request->ajax()) {
             return response()->json([

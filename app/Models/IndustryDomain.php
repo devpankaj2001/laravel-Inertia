@@ -45,6 +45,10 @@ class IndustryDomain extends Model
         'sort_order' => 'integer',
     ];
 
+    protected $appends = [
+        'icon_class',
+    ];
+
     public function scopeActive($query)
     {
         return $query->where('is_active', true)->orderBy('sort_order', 'asc')->orderBy('name', 'asc');

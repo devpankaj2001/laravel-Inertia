@@ -650,6 +650,16 @@ h6 {
   font-size: 14px;
 }
 
+.nav-mega-ico i {
+  font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", "FontAwesome", sans-serif;
+  font-weight: 900;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+}
+
 .nav-mega-copy {
   min-width: 0;
   display: flex;
@@ -3105,6 +3115,119 @@ section#consultation {
   font-weight: 700;
   text-align: center;
 }
+
+/* Consultation Popup Modal (Get in Touch) */
+.consult-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1.25rem 3.5rem 1.25rem 1.25rem;
+  background: rgba(15, 21, 47, 0.70);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  overflow-y: auto;
+}
+
+.consult-modal-card {
+  --ds-cut: 24px;
+  --ds-bw: 1px;
+  --ds-stroke: #e6dfd3;
+  --ds-fill: #ffffff;
+  position: relative;
+  isolation: isolate;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: var(--ds-stroke) !important;
+  clip-path: polygon(0 0, calc(100% - var(--ds-cut)) 0, 100% var(--ds-cut), 100% 100%, var(--ds-cut) 100%, 0 calc(100% - var(--ds-cut)));
+  width: 100%;
+  max-width: 520px;
+  padding: 2.25rem 2.2rem 2.1rem;
+  box-shadow: -12px 25px 60px -15px rgba(0, 0, 0, 0.45);
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: 0;
+  animation: consultSlideFromRight 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes consultSlideFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(45px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.consult-modal-card::after {
+  content: '';
+  position: absolute;
+  inset: var(--ds-bw);
+  background: var(--ds-fill);
+  z-index: -1;
+  clip-path: polygon(
+    0 0,
+    calc(100% - calc(var(--ds-cut) - var(--ds-bw))) 0,
+    100% calc(var(--ds-cut) - var(--ds-bw)),
+    100% 100%,
+    calc(var(--ds-cut) - var(--ds-bw)) 100%,
+    0 calc(100% - calc(var(--ds-cut) - var(--ds-bw)))
+  );
+}
+
+.consult-modal-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: transparent;
+  border: 0;
+  color: #9c958c;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.consult-modal-close:hover {
+  background: #f4eee5;
+  color: #161514;
+}
+
+@media (max-width: 640px) {
+  .consult-modal-backdrop {
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .consult-modal-card {
+    margin: auto;
+    padding: 1.75rem 1.25rem 1.5rem;
+    --ds-cut: 18px;
+    animation: consultSlideFromBottom 0.25s ease-out forwards;
+  }
+
+  @keyframes consultSlideFromBottom {
+    from {
+      opacity: 0;
+      transform: translateY(25px) scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+}
+
 
 @media (max-width: 980px) {
   .consult-shell-inner {

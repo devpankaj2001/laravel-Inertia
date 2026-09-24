@@ -473,6 +473,8 @@
                 <div id="formSuccessMsg" class="consult-success hidden">
                   Thank you! A WebRanker strategist will contact you shortly.
                 </div>
+
+                <div id="formErrorMsg" class="consult-error hidden p-3 rounded-lg bg-red-50 border border-red-200 text-red-600 text-xs font-bold text-center mt-3"></div>
               </form>
             </div>
           </div>
@@ -517,8 +519,8 @@
                 <i class="fas fa-globe"></i>
               </div>
               <div class="min-w-0">
-                <h4 class="text-sm sm:text-base font-extrabold text-[#161514] truncate">Trusted across 4 markets</h4>
-                <p class="text-xs text-[#6e675f] font-medium truncate">USA · Canada · India · Dubai</p>
+                <h4 class="text-sm sm:text-base font-extrabold text-[#161514] truncate">Trusted Worldwide &amp; Global Reach</h4>
+                <p class="text-xs text-[#6e675f] font-medium truncate">Serving Clients Globally · USA · UK · UAE · Canada · Worldwide</p>
               </div>
             </div>
             <i class="fas fa-chevron-right text-xs text-[#6e675f] group-hover:translate-x-1 transition-transform shrink-0 ml-2"></i>
@@ -570,23 +572,31 @@
 
           <div id="tab-pane-3" class="ai-feature-pane hidden bg-white border border-[#e6dfd3] ds-clip p-8 sm:p-12 shadow-xl space-y-8 animate-fade-in">
             <div class="flex items-center justify-between flex-wrap gap-4 border-b border-[#e6dfd3] pb-6">
-              <span class="text-xs font-extrabold text-[#9c958c] uppercase tracking-wider">CLIENT TRUST</span>
-              <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-3.5 py-1 rounded-full border border-emerald-200">Verified delivery</span>
+              <span class="text-xs font-extrabold text-[#9c958c] uppercase tracking-wider">GLOBAL CLIENT TRUST</span>
+              <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-3.5 py-1 rounded-full border border-emerald-200">Verified Worldwide Delivery</span>
             </div>
             <div class="space-y-3">
-              <h3 class="text-2xl sm:text-3xl font-extrabold text-[#161514]">Helping brands get found — and chosen</h3>
+              <h3 class="text-2xl sm:text-3xl font-extrabold text-[#161514]">Helping brands get found — and chosen across the world</h3>
               <p class="text-[#6e675f] text-base leading-relaxed font-normal">
-                From eCommerce catalogs to healthcare and fintech sites, we improve visibility, lead quality, and on-site conversion with strategies matched to each market.
+                Serving high-growth companies across the US, UK, Canada, Europe, UAE, APAC, and global markets worldwide. From eCommerce catalogs to healthcare and fintech platforms, we engineer search velocity and conversion architectures matched to international standards.
               </p>
             </div>
-            <div id="counterSection" class="grid grid-cols-2 gap-6 p-6 ds-clip bg-[#faf7f2] border border-[#e6dfd3] text-center">
+            <div id="counterSection" class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-6 ds-clip bg-[#faf7f2] border border-[#e6dfd3] text-center">
               <div>
-                <p class="text-4xl sm:text-5xl font-black text-[#161514]"><span class="counter-val" data-target="25">0</span>+</p>
-                <p class="text-xs sm:text-sm font-bold text-[#6e675f] mt-2">Industries served</p>
+                <p class="text-3xl sm:text-4xl font-black text-[#161514]"><span class="counter-val" data-target="25">25</span>+</p>
+                <p class="text-xs font-bold text-[#6e675f] mt-1">Industries served</p>
               </div>
               <div>
-                <p class="text-4xl sm:text-5xl font-black text-[#e65c00]"><span class="counter-val" data-target="99">0</span>%</p>
-                <p class="text-xs sm:text-sm font-bold text-[#6e675f] mt-2">Client satisfaction</p>
+                <p class="text-3xl sm:text-4xl font-black text-[#e65c00]"><span class="counter-val" data-target="99">99</span>%</p>
+                <p class="text-xs font-bold text-[#6e675f] mt-1">Client satisfaction</p>
+              </div>
+              <div>
+                <p class="text-3xl sm:text-4xl font-black text-[#161514]"><span class="counter-val" data-target="50">50</span>+</p>
+                <p class="text-xs font-bold text-[#6e675f] mt-1">Global Countries</p>
+              </div>
+              <div>
+                <p class="text-3xl sm:text-4xl font-black text-[#e65c00]">24/7</p>
+                <p class="text-xs font-bold text-[#6e675f] mt-1">Worldwide Support</p>
               </div>
             </div>
             <div class="pt-4 border-t border-[#e6dfd3] flex items-start gap-4">
@@ -594,8 +604,8 @@
                 <i class="fas fa-quote-left"></i>
               </div>
               <div>
-                <p class="text-sm text-[#6e675f] italic leading-relaxed">"Working with WebRanker has been a game-changer. Their SEO strategies improved our rankings and increased website traffic."</p>
-                <p class="text-xs font-extrabold text-[#161514] mt-1.5">Growth client · Local services</p>
+                <p class="text-sm text-[#6e675f] italic leading-relaxed">"Working with WebRanker has been a game-changer for our international presence. Their global SEO and technical expertise increased our organic acquisition across North America and Europe."</p>
+                <p class="text-xs font-extrabold text-[#161514] mt-1.5">Enterprise Client · Global SaaS &amp; eCommerce</p>
               </div>
             </div>
           </div>
@@ -718,9 +728,13 @@
                   <span id="stageImgBadge" class="px-3 py-1 rounded-full text-[11px] font-bold bg-[#161514]/90 text-white border border-white/10 backdrop-blur-md">
                     {{ $firstSvc->title ?? 'Web Development Services' }}
                   </span>
-                  <span class="w-8 h-8 rounded-full bg-white/10 backdrop-blur-md text-white flex items-center justify-center text-xs border border-white/20">
-                    <i class="fas fa-arrow-up-right-from-square"></i>
-                  </span>
+                  <a id="stageGraphicLink"
+                     href="{{ $firstSvc ? route('services.show', $firstSvc->slug) : '/services/web-development' }}"
+                     class="w-9 h-9 rounded-full bg-[#161514]/80 hover:bg-[#ff3b30] backdrop-blur-md text-white flex items-center justify-center text-xs border border-white/20 transition-all duration-300 hover:scale-110 shadow-lg pointer-events-auto cursor-pointer group/icon"
+                     title="View Service Details"
+                     aria-label="View Service Details">
+                    <i class="fas fa-arrow-up-right-from-square transition-transform group-hover/icon:translate-x-0.5 group-hover/icon:-translate-y-0.5"></i>
+                  </a>
                 </div>
               </div>
             </div>
@@ -743,6 +757,7 @@
       const activeLink = document.getElementById('activeSvcLink');
       const stageGraphicImg = document.getElementById('stageGraphicImg');
       const stageImgBadge = document.getElementById('stageImgBadge');
+      const stageGraphicLink = document.getElementById('stageGraphicLink');
 
       cards.forEach((card) => {
         card.addEventListener('click', function() {
@@ -761,8 +776,9 @@
           if (card.dataset.svcCategory && activeCategory) {
             activeCategory.textContent = card.dataset.svcCategory;
           }
-          if (card.dataset.svcLink && activeLink) {
-            activeLink.href = card.dataset.svcLink;
+          if (card.dataset.svcLink) {
+            if (activeLink) activeLink.href = card.dataset.svcLink;
+            if (stageGraphicLink) stageGraphicLink.href = card.dataset.svcLink;
           }
           if (card.dataset.svcImg && stageGraphicImg) {
             stageGraphicImg.style.opacity = '0.3';

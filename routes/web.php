@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\LinkRequestAdminController;
 use App\Http\Controllers\Admin\SchemaController;
 use App\Http\Controllers\Admin\ServiceAdminController;
 use App\Http\Controllers\BlogPageController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndustryPageController;
 use App\Http\Controllers\InquiryController;
@@ -26,6 +27,15 @@ use Illuminate\Support\Facades\Route;
 
 // Frontend Home Page
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Frontend Contact Page & Growth Inquiries
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::get('/contact-us', function () {
+    return redirect()->route('contact', [], 301);
+});
+Route::get('/contact.html', function () {
+    return redirect()->route('contact', [], 301);
+});
 
 // Dedicated Frontend Service Pages & Directory
 Route::get('/services', [ServicePageController::class, 'index'])->name('services.index');
@@ -53,6 +63,12 @@ Route::get('/blogs.html', function () {
     return $category ? redirect()->route('blogs.index', ['category' => $category], 301) : redirect()->route('blogs.index', [], 301);
 });
 Route::get('/blogs', [BlogPageController::class, 'index'])->name('blogs.index');
+Route::get('/blogs/{slug}.html', function ($slug) {
+    return redirect()->route('blogs.show', $slug, 301);
+});
+Route::get('/blogs/{slug}', function ($slug) {
+    return redirect()->route('blogs.show', $slug, 301);
+});
 Route::get('/blog/{slug}.html', function ($slug) {
     return redirect()->route('blogs.show', $slug, 301);
 });

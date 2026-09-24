@@ -6,6 +6,7 @@ use App\Models\IndustryDomain;
 use App\Models\Service;
 use App\Models\SiteSetting;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class IndustryPageController extends Controller
 {
@@ -80,7 +81,7 @@ class IndustryPageController extends Controller
             ],
         ];
 
-        return view('industries.index', compact(
+        $contentHtml = view('industries.index_content', compact(
             'industries',
             'categoryGroups',
             'selectedGroup',
@@ -91,7 +92,23 @@ class IndustryPageController extends Controller
             'canonicalUrl',
             'ogImage',
             'schemas'
-        ));
+        ))->render();
+
+        return Inertia::render('Industries/Index', [
+            'contentHtml' => $contentHtml,
+            'industries' => $industries,
+            'categoryGroups' => $categoryGroups,
+            'selectedGroup' => $selectedGroup,
+            'searchQuery' => $searchQuery,
+            'totalIndustriesCount' => $totalIndustriesCount,
+            'seo' => [
+                'metaTitle' => $metaTitle,
+                'metaDescription' => $metaDescription,
+                'canonicalUrl' => $canonicalUrl,
+                'ogImage' => $ogImage,
+                'schemas' => $schemas,
+            ],
+        ]);
     }
 
     /**
@@ -201,7 +218,7 @@ class IndustryPageController extends Controller
             }
         }
 
-        return view('industries.show', compact(
+        $contentHtml = view('industries.show_content', compact(
             'industry',
             'relatedIndustries',
             'featuredServices',
@@ -210,6 +227,20 @@ class IndustryPageController extends Controller
             'canonicalUrl',
             'ogImage',
             'schemas'
-        ));
+        ))->render();
+
+        return Inertia::render('Industries/Show', [
+            'contentHtml' => $contentHtml,
+            'industry' => $industry,
+            'relatedIndustries' => $relatedIndustries,
+            'featuredServices' => $featuredServices,
+            'seo' => [
+                'metaTitle' => $metaTitle,
+                'metaDescription' => $metaDescription,
+                'canonicalUrl' => $canonicalUrl,
+                'ogImage' => $ogImage,
+                'schemas' => $schemas,
+            ],
+        ]);
     }
 }

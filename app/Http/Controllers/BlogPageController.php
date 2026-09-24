@@ -7,6 +7,7 @@ use App\Models\Service;
 use App\Models\SiteSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Inertia\Inertia;
 
 class BlogPageController extends Controller
 {
@@ -85,7 +86,7 @@ class BlogPageController extends Controller
             ],
         ];
 
-        return view('blogs.index', compact(
+        $contentHtml = view('blogs.index_content', compact(
             'posts',
             'featuredPosts',
             'categories',
@@ -95,7 +96,22 @@ class BlogPageController extends Controller
             'metaDescription',
             'canonicalUrl',
             'schemas'
-        ));
+        ))->render();
+
+        return Inertia::render('Blogs/Index', [
+            'contentHtml' => $contentHtml,
+            'posts' => $posts,
+            'featuredPosts' => $featuredPosts,
+            'categories' => $categories,
+            'selectedCategory' => $selectedCategory,
+            'searchQuery' => $searchQuery,
+            'seo' => [
+                'metaTitle' => $metaTitle,
+                'metaDescription' => $metaDescription,
+                'canonicalUrl' => $canonicalUrl,
+                'schemas' => $schemas,
+            ],
+        ]);
     }
 
     /**
@@ -103,7 +119,18 @@ class BlogPageController extends Controller
      */
     public function show(string $slug)
     {
-        $post = BlogPost::published()->where('slug', $slug)->firstOrFail();
+        $post = BlogPost::published()->where('slug', $slug)->first();
+        if (!$post) {
+            // Check by keyword match or fallback to first published post
+            $firstWord = explode('-', $slug)[0] ?? '';
+            $fallback = BlogPost::published()->where('slug', 'like', "%{$firstWord}%")->first()
+                ?? BlogPost::published()->first();
+
+            if ($fallback) {
+                return redirect()->route('blogs.show', $fallback->slug, 301);
+            }
+            abort(404);
+        }
 
         // Increment view count safely
         $post->increment('views');
@@ -269,7 +296,7 @@ class BlogPageController extends Controller
 
         $post->content = $contentWithAnchors;
 
-        return view('blogs.show', compact(
+        $contentHtml = view('blogs.show_content', compact(
             'post',
             'relatedPosts',
             'relatedServices',
@@ -279,6 +306,21 @@ class BlogPageController extends Controller
             'canonicalUrl',
             'ogImage',
             'schemas'
-        ));
+        ))->render();
+
+        return Inertia::render('Blogs/Show', [
+            'contentHtml' => $contentHtml,
+            'post' => $post,
+            'relatedPosts' => $relatedPosts,
+            'relatedServices' => $relatedServices,
+            'tableOfContents' => $tableOfContents,
+            'seo' => [
+                'metaTitle' => $metaTitle,
+                'metaDescription' => $metaDescription,
+                'canonicalUrl' => $canonicalUrl,
+                'ogImage' => $ogImage,
+                'schemas' => $schemas,
+            ],
+        ]);
     }
 }

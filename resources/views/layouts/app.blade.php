@@ -227,8 +227,8 @@
         <!-- Blogs -->
         <a href="{{ route('blogs.index') }}" class="nav-link-item hover:text-[#111827] transition-colors {{ request()->routeIs('blogs.*') ? 'text-[#ff3b30] font-bold' : '' }}">Blogs</a>
 
-        <!-- Case Studies -->
-        <a href="#testimonials" class="nav-link-item hover:text-[#111827] transition-colors">Case Studies</a>
+        <!-- Contact -->
+        <a href="{{ route('contact') }}" class="nav-link-item hover:text-[#111827] transition-colors {{ request()->routeIs('contact') ? 'text-[#ff3b30] font-bold' : '' }}">Contact</a>
       </nav>
 
       <!-- CTA Action Button (Chamfered FREE AUDIT with dot matrix icon) -->
@@ -473,11 +473,11 @@
               <p class="text-[11px] mt-0.5 text-[#857d74]">Financial District, SF, CA 94104</p>
             </div>
             <div class="pt-2 border-t border-[#e6dfd3] space-y-1 text-[11px]">
-              <a href="mailto:growth@webranker.com" class="font-bold text-[#161514] hover:text-[#ff3b30] flex items-center gap-1.5">
-                <i class="fas fa-envelope text-slate-400"></i> growth@webranker.com
+              <a href="mailto:{{ config('site.email') }}" class="font-bold text-[#161514] hover:text-[#ff3b30] flex items-center gap-1.5">
+                <i class="fas fa-envelope text-slate-400"></i> {{ config('site.email') }}
               </a>
-              <a href="tel:+919718570218" class="font-bold text-[#161514] hover:text-[#ff3b30] flex items-center gap-1.5">
-                <i class="fas fa-phone text-slate-400"></i> +91 97185 70218
+              <a href="tel:{{ preg_replace('/[^0-9+]/', '', config('site.phone')) }}" class="font-bold text-[#161514] hover:text-[#ff3b30] flex items-center gap-1.5">
+                <i class="fas fa-phone text-slate-400"></i> {{ config('site.phone') }}
               </a>
             </div>
           </div>
@@ -592,6 +592,19 @@
               </select>
             </label>
           </div>
+
+          <label class="consult-field">
+            <span>Estimated Budget (Optional / Flexible)</span>
+            <select name="budget" class="w-full px-3 py-2 border rounded-lg bg-white text-sm">
+              <option value="Not Decided / Flexible" selected>Not Decided / Flexible</option>
+              <option value="< $100">&lt; $100</option>
+              <option value="$100 - $500">$100 - $500</option>
+              <option value="$500 - $1,000">$500 - $1,000</option>
+              <option value="$1,000 - $1,500">$1,000 - $1,500</option>
+              <option value="> $2,000">&gt; $2,000</option>
+              <option value="Custom Budget Range">Custom / Manual Range</option>
+            </select>
+          </label>
 
           <label class="consult-field">
             <span>Project Details &amp; Target Keywords</span>

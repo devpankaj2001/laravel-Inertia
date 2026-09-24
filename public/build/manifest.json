@@ -1,0 +1,108 @@
+{
+  "_AppLayout-mbgfYomY.js": {
+    "file": "assets/AppLayout-mbgfYomY.js",
+    "name": "AppLayout",
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "resources/js/Pages/Blogs/Index.jsx": {
+    "file": "assets/Index-C7JY9OzO.js",
+    "name": "Index",
+    "src": "resources/js/Pages/Blogs/Index.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_AppLayout-mbgfYomY.js"
+    ]
+  },
+  "resources/js/Pages/Blogs/Show.jsx": {
+    "file": "assets/Show-W6BHP0xt.js",
+    "name": "Show",
+    "src": "resources/js/Pages/Blogs/Show.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_AppLayout-mbgfYomY.js"
+    ]
+  },
+  "resources/js/Pages/Contact.jsx": {
+    "file": "assets/Contact-C0p0s9Yp.js",
+    "name": "Contact",
+    "src": "resources/js/Pages/Contact.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_AppLayout-mbgfYomY.js"
+    ]
+  },
+  "resources/js/Pages/Home.jsx": {
+    "file": "assets/Home-Dn-8olcv.js",
+    "name": "Home",
+    "src": "resources/js/Pages/Home.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_AppLayout-mbgfYomY.js"
+    ]
+  },
+  "resources/js/Pages/Industries/Index.jsx": {
+    "file": "assets/Index-CGMw21Qc.js",
+    "name": "Index",
+    "src": "resources/js/Pages/Industries/Index.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_AppLayout-mbgfYomY.js"
+    ]
+  },
+  "resources/js/Pages/Industries/Show.jsx": {
+    "file": "assets/Show-D-lP8-Ng.js",
+    "name": "Show",
+    "src": "resources/js/Pages/Industries/Show.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_AppLayout-mbgfYomY.js"
+    ]
+  },
+  "resources/js/Pages/Services/Index.jsx": {
+    "file": "assets/Index-Bas-jOej.js",
+    "name": "Index",
+    "src": "resources/js/Pages/Services/Index.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_AppLayout-mbgfYomY.js"
+    ]
+  },
+  "resources/js/Pages/Services/Show.jsx": {
+    "file": "assets/Show-BpkaAXtB.js",
+    "name": "Show",
+    "src": "resources/js/Pages/Services/Show.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_AppLayout-mbgfYomY.js"
+    ]
+  },
+  "resources/js/app.jsx": {
+    "file": "assets/app-D0Zaffyi.js",
+    "name": "app",
+    "src": "resources/js/app.jsx",
+    "isEntry": true,
+    "dynamicImports": [
+      "resources/js/Pages/Blogs/Index.jsx",
+      "resources/js/Pages/Blogs/Show.jsx",
+      "resources/js/Pages/Contact.jsx",
+      "resources/js/Pages/Home.jsx",
+      "resources/js/Pages/Industries/Index.jsx",
+      "resources/js/Pages/Industries/Show.jsx",
+      "resources/js/Pages/Services/Index.jsx",
+      "resources/js/Pages/Services/Show.jsx"
+    ],
+    "css": [
+      "assets/app-tn0RQdqM.css"
+    ]
+  }
+}

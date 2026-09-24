@@ -26,7 +26,7 @@
       <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-b from-red-200/40 via-amber-100/30 to-transparent blur-3xl rounded-full"></div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="max-w-7xl xl:max-w-[1380px] 2xl:max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
       <!-- Semantic Breadcrumbs -->
       <nav aria-label="Breadcrumb" class="mb-6">
@@ -53,9 +53,9 @@
         </ol>
       </nav>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
         <!-- Left Hero Copy -->
-        <div class="lg:col-span-7 space-y-6">
+        <div class="lg:col-span-7 xl:col-span-7 space-y-6">
           <div class="flex flex-wrap items-center gap-3">
             <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-extrabold bg-[#161514] text-[#cfa86e] shadow-sm">
               <i class="{{ $service->icon }} text-[11px]"></i>
@@ -79,7 +79,7 @@
             </p>
           @endif
 
-          <p class="text-base sm:text-lg text-[#6e675f] leading-relaxed max-w-2xl">
+          <p class="text-base sm:text-lg text-[#6e675f] leading-relaxed max-w-3xl">
             {{ $service->short_description ?? "Architecting ultra-fast, server-rendered web portals engineered for high conversion rates and sub-second Core Web Vitals." }}
           </p>
 
@@ -119,7 +119,7 @@
         </div>
 
         <!-- Right Hero Interactive Matrix Card -->
-        <div class="lg:col-span-5">
+        <div class="lg:col-span-5 xl:col-span-5">
           <div class="p-7 rounded-3xl bg-white border border-[#e6dfd3] shadow-2xl shadow-slate-200/60 relative overflow-hidden space-y-6">
             <!-- Card Eyebrow -->
             <div class="flex items-center justify-between pb-4 border-b border-[#e6dfd3]">
@@ -200,7 +200,7 @@
 
   <!-- ======= 2. DETAILED ARCHITECTURE & STRATEGY SECTION ======= -->
   <section class="py-20 bg-white border-b border-[#e6dfd3]">
-    <div class="max-w-7xl mx-auto px-6">
+    <div class="max-w-7xl xl:max-w-[1380px] 2xl:max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
         <!-- Left Sticky Sidebar (Prevents empty space when content is long) -->
         <div class="lg:col-span-4 xl:col-span-4">
@@ -304,7 +304,7 @@
 
   <!-- ======= 3. SCOPE OF DELIVERABLES & FEATURES ======= -->
   <section id="deliverables" class="py-24 bg-[#faf7f2] border-b border-[#e6dfd3]">
-    <div class="max-w-7xl mx-auto px-6">
+    <div class="max-w-7xl xl:max-w-[1380px] 2xl:max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
         <span class="text-xs font-extrabold tracking-widest text-[#ff3b30] uppercase">COMPREHENSIVE SCOPE</span>
         <h2 class="text-3xl sm:text-5xl font-black text-[#161514] tracking-tight">
@@ -358,7 +358,7 @@
 
   <!-- ======= 4. PROVEN 4-STEP DELIVERY ROADMAP ======= -->
   <section class="py-24 bg-white border-b border-[#e6dfd3]">
-    <div class="max-w-7xl mx-auto px-6">
+    <div class="max-w-7xl xl:max-w-[1380px] 2xl:max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
         <span class="text-xs font-extrabold tracking-widest text-[#ff3b30] uppercase">AGILE METHODOLOGY</span>
         <h2 class="text-3xl sm:text-5xl font-black text-[#161514] tracking-tight">
@@ -411,7 +411,7 @@
 
   <!-- ======= 5. SERVICE FAQS WITH FAQPAGE SCHEMA ======= -->
   <section class="py-24 bg-[#faf7f2] border-b border-[#e6dfd3]">
-    <div class="max-w-4xl mx-auto px-6 space-y-12">
+    <div class="max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
       <div class="text-center space-y-3">
         <span class="text-xs font-extrabold tracking-widest text-[#ff3b30] uppercase">ANSWERS &amp; DETAILS</span>
         <h2 class="text-3xl sm:text-5xl font-black text-[#161514] tracking-tight">
@@ -443,7 +443,7 @@
 
   <!-- ======= 6. LEAD GENERATION & PROPOSAL INQUIRY FORM ======= -->
   <section id="inquiryForm" class="py-24 bg-white border-b border-[#e6dfd3] relative overflow-hidden">
-    <div class="max-w-5xl mx-auto px-6 relative z-10">
+    <div class="max-w-5xl xl:max-w-6xl 2xl:max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="bg-[#161514] text-white rounded-3xl p-8 sm:p-12 lg:p-16 shadow-2xl space-y-8 relative overflow-hidden">
         <!-- Accent Glow -->
         <div class="absolute top-0 right-0 w-96 h-96 bg-red-600/20 blur-3xl rounded-full pointer-events-none"></div>
@@ -517,7 +517,7 @@
   <!-- ======= 7. RELATED SERVICES IN THIS CATEGORY ======= -->
   @if($relatedServices->count() > 0)
     <section class="py-20 bg-[#faf7f2]">
-      <div class="max-w-7xl mx-auto px-6 space-y-10">
+      <div class="max-w-7xl xl:max-w-[1380px] 2xl:max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
             <span class="text-xs font-extrabold tracking-widest text-[#ff3b30] uppercase">EXPLORE COMPLEMENTARY CAPABILITIES</span>
@@ -560,7 +560,7 @@
   <!-- ======= 7.5 STRATEGIC INSIGHTS & RELATED ARTICLES ======= -->
   @if(isset($relatedBlogs) && $relatedBlogs->count() > 0)
     <section class="py-20 bg-white border-t border-[#e6dfd3]">
-      <div class="max-w-7xl mx-auto px-6 space-y-10">
+      <div class="max-w-7xl xl:max-w-[1380px] 2xl:max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
             <span class="text-xs font-extrabold tracking-widest text-[#ff3b30] uppercase">AUTHORITY RESEARCH &amp; GUIDES</span>
@@ -607,7 +607,7 @@
 
   <!-- ======= 8. CO-MARKETING / STRATEGIC LINK PLACEMENT BANNER ======= -->
   <section class="py-12 bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent border-t border-amber-500/20">
-    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row md:items-center justify-between gap-6">
+    <div class="max-w-7xl xl:max-w-[1380px] 2xl:max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
       <div class="space-y-1">
         <span class="px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-amber-500 text-slate-950">
           PARTNER NETWORK

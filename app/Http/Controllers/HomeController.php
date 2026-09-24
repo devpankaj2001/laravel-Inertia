@@ -9,6 +9,7 @@ use App\Models\Service;
 use App\Models\SiteSetting;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class HomeController extends Controller
 {
@@ -224,7 +225,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('home', compact(
+        $contentHtml = view('home_content', compact(
             'services',
             'servicesByCategory',
             'industryDomains',
@@ -241,6 +242,28 @@ class HomeController extends Controller
             'schemas',
             'customJsonLd',
             'homeContent'
-        ));
+        ))->render();
+
+        return Inertia::render('Home', [
+            'contentHtml' => $contentHtml,
+            'services' => $services,
+            'servicesByCategory' => $servicesByCategory,
+            'industryDomains' => $industryDomains,
+            'testimonials' => $testimonials,
+            'faqs' => $faqs,
+            'blogs' => $blogs,
+            'homeContent' => $homeContent,
+            'seo' => [
+                'metaTitle' => $metaTitle,
+                'metaDescription' => $metaDescription,
+                'metaKeywords' => $metaKeywords,
+                'canonicalUrl' => $canonicalUrl,
+                'ogImage' => $ogImage,
+                'googleVerification' => $googleVerification,
+                'bingVerification' => $bingVerification,
+                'schemas' => $schemas,
+                'customJsonLd' => $customJsonLd,
+            ],
+        ]);
     }
 }

@@ -6,6 +6,7 @@ use App\Models\BlogPost;
 use App\Models\Service;
 use App\Models\SiteSetting;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ServicePageController extends Controller
 {
@@ -52,7 +53,7 @@ class ServicePageController extends Controller
             ],
         ];
 
-        return view('services.index', compact(
+        $contentHtml = view('services.index_content', compact(
             'allServices',
             'categories',
             'categoryFilter',
@@ -62,7 +63,22 @@ class ServicePageController extends Controller
             'canonicalUrl',
             'ogImage',
             'schemas'
-        ));
+        ))->render();
+
+        return Inertia::render('Services/Index', [
+            'contentHtml' => $contentHtml,
+            'allServices' => $allServices,
+            'categories' => $categories,
+            'categoryFilter' => $categoryFilter,
+            'seo' => [
+                'metaTitle' => $metaTitle,
+                'metaDescription' => $metaDescription,
+                'metaKeywords' => $metaKeywords,
+                'canonicalUrl' => $canonicalUrl,
+                'ogImage' => $ogImage,
+                'schemas' => $schemas,
+            ],
+        ]);
     }
 
     /**
@@ -303,7 +319,7 @@ class ServicePageController extends Controller
             $relatedBlogs = $relatedBlogs->merge($fallback);
         }
 
-        return view('services.show', compact(
+        $contentHtml = view('services.show_content', compact(
             'service',
             'relatedServices',
             'relatedBlogs',
@@ -314,6 +330,22 @@ class ServicePageController extends Controller
             'canonicalUrl',
             'ogImage',
             'schemas'
-        ));
+        ))->render();
+
+        return Inertia::render('Services/Show', [
+            'contentHtml' => $contentHtml,
+            'service' => $service,
+            'relatedServices' => $relatedServices,
+            'relatedBlogs' => $relatedBlogs,
+            'faqsList' => $faqsList,
+            'seo' => [
+                'metaTitle' => $metaTitle,
+                'metaDescription' => $metaDescription,
+                'metaKeywords' => $metaKeywords,
+                'canonicalUrl' => $canonicalUrl,
+                'ogImage' => $ogImage,
+                'schemas' => $schemas,
+            ],
+        ]);
     }
 }
