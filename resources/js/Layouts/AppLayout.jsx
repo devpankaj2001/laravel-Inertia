@@ -4,6 +4,7 @@ import FloatingHeader from '@/Components/FloatingHeader';
 import Footer from '@/Components/Footer';
 import InquiryDrawer from '@/Components/InquiryDrawer';
 import LinkRequestModal from '@/Components/LinkRequestModal';
+import FreeAuditModal from '@/Components/FreeAuditModal';
 import AIChatbot from '@/Components/AIChatbot';
 import SeoHead from '@/Components/SeoHead';
 
@@ -12,6 +13,7 @@ export default function AppLayout({
   seo = {},
 }) {
   const [inquiryOpen, setInquiryOpen] = useState(false);
+  const [auditOpen, setAuditOpen] = useState(false);
   const [linkModalData, setLinkModalData] = useState({
     isOpen: false,
     targetPageUrl: '',
@@ -20,6 +22,10 @@ export default function AppLayout({
 
   const handleOpenInquiry = () => {
     setInquiryOpen(true);
+  };
+
+  const handleOpenAudit = () => {
+    setAuditOpen(true);
   };
 
   const handleOpenLinkModal = (url = '', title = '') => {
@@ -110,6 +116,13 @@ export default function AppLayout({
         return;
       }
 
+      // Explicit modal popup triggers (Free Audit)
+      if (rawHash === '#freeAudit' || rawHash === '#auditModal' || rawHash === '#audit') {
+        e.preventDefault();
+        setAuditOpen(true);
+        return;
+      }
+
       // Intercept and route via Inertia SPA router
       e.preventDefault();
       router.visit(urlObj.pathname + urlObj.search + urlObj.hash, {
@@ -118,6 +131,13 @@ export default function AppLayout({
     };
 
     const handleGlobalInquiryClick = (e) => {
+      const auditTrigger = e.target.closest('[data-open-audit], a[href="#freeAudit"], a[href="#auditModal"]');
+      if (auditTrigger) {
+        e.preventDefault();
+        setAuditOpen(true);
+        return;
+      }
+
       const trigger = e.target.closest('[data-open-inquiry], a[href="#inquiryDrawer"], a[href="#getInTouch"]');
       if (trigger) {
         if (trigger.id === 'dsGitTabBtn') return;
@@ -150,16 +170,17 @@ export default function AppLayout({
       />
 
       {/* Floating Curved Pill Header with Mega Menus */}
-      <FloatingHeader onOpenInquiry={handleOpenInquiry} />
+      <FloatingHeader onOpenInquiry={handleOpenInquiry} onOpenAudit={handleOpenAudit} />
 
       {/* Main Page Body */}
       <main id="main-content" className="flex-1">
         {typeof children === 'function'
-          ? children({ openInquiry: handleOpenInquiry, openLinkModal: handleOpenLinkModal })
+          ? children({ openInquiry: handleOpenInquiry, openAudit: handleOpenAudit, openLinkModal: handleOpenLinkModal })
           : React.Children.map(children, (child) => {
               if (React.isValidElement(child)) {
                 return React.cloneElement(child, {
                   openInquiry: handleOpenInquiry,
+                  openAudit: handleOpenAudit,
                   openLinkModal: handleOpenLinkModal,
                 });
               }
@@ -168,7 +189,7 @@ export default function AppLayout({
       </main>
 
       {/* Persistent Footer */}
-      <Footer onOpenInquiry={handleOpenInquiry} />
+      <Footer onOpenInquiry={handleOpenInquiry} onOpenAudit={handleOpenAudit} />
 
       {/* Slide-out Inquiry Drawer */}
       <InquiryDrawer
@@ -186,8 +207,15 @@ export default function AppLayout({
         targetPageTitle={linkModalData.targetPageTitle}
       />
 
+      {/* Free Instant SEO & Performance Auditor Modal (Feature 2) */}
+      <FreeAuditModal
+        isOpen={auditOpen}
+        onClose={() => setAuditOpen(false)}
+        onOpenInquiry={handleOpenInquiry}
+      />
+
       {/* Floating AI Chat Assistant */}
-      <AIChatbot onOpenInquiry={handleOpenInquiry} />
+      <AIChatbot onOpenInquiry={handleOpenInquiry} onOpenAudit={handleOpenAudit} />
     </div>
   );
 }

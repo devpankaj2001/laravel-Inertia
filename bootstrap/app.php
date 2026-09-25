@@ -11,6 +11,12 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->validateCsrfTokens(except: [
+            'api/ai/*',
+            'api/ai-chat',
+            'api/audit/*',
+        ]);
+
         $middleware->web(append: [
             \App\Http\Middleware\NoCacheHeaders::class,
             \App\Http\Middleware\HandleInertiaRequests::class,

@@ -19,7 +19,7 @@ const normalizeIconClass = (iconStr, fallback = 'fa-solid fa-layer-group') => {
   return `fa-solid fa-${trimmed}`;
 };
 
-export default function FloatingHeader({ onOpenInquiry }) {
+export default function FloatingHeader({ onOpenInquiry, onOpenAudit }) {
   const { url } = usePage();
   const { navServicesByCategory = {}, navIndustries = [] } = usePage().props;
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -44,12 +44,17 @@ export default function FloatingHeader({ onOpenInquiry }) {
     setIndustriesOpen(false);
   }, [url]);
 
-  // Handle Free Audit button click -> Scroll to on-page form section
+  // Handle Free Audit button click -> Open interactive auditor modal
   const handleFreeAuditClick = (e) => {
     if (e) e.preventDefault();
     setMobileMenuOpen(false);
 
-    // Look for form section on current page
+    if (typeof onOpenAudit === 'function') {
+      onOpenAudit();
+      return;
+    }
+
+    // Fallback: look for form section on current page
     const targetSection =
       document.getElementById('consultation') ||
       document.getElementById('inquiryForm') ||

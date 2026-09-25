@@ -515,6 +515,22 @@
               <span class="px-2 py-0.5 rounded-full text-xs bg-purple-500/20 text-purple-300 font-bold border border-purple-500/30">{{ $pendingLinksCount }}</span>
             @endif
           </a>
+
+          <!-- Free AI SEO & Speed Audits (Feature 2) -->
+          @php
+            $isAuditActive = request()->routeIs('admin.audits.*');
+            $totalAuditsCount = \App\Models\AiAudit::count();
+          @endphp
+          <a href="{{ route('admin.audits.index') }}"
+             class="flex items-center justify-between px-3.5 py-2.5 rounded-xl transition-colors {{ $isAuditActive ? 'bg-[#ff3b30] text-white shadow-lg shadow-red-500/20' : 'text-slate-400 hover:text-white hover:bg-slate-800/60' }}">
+            <div class="flex items-center gap-3">
+              <i class="fas fa-gauge-high w-4 text-center text-emerald-400"></i>
+              <span>SEO &amp; Speed Audits</span>
+            </div>
+            @if($totalAuditsCount > 0)
+              <span class="px-2 py-0.5 rounded-full text-xs bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30">{{ $totalAuditsCount }}</span>
+            @endif
+          </a>
         </nav>
       </div>
 

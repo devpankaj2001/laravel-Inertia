@@ -58,6 +58,9 @@ class InquiryController extends Controller
             $clientName = ucfirst(explode('@', $request->email)[0] ?? 'Growth Lead');
         }
 
+        $clientIp = \App\Services\GeoIPService::getClientIp($request);
+        $country = \App\Services\GeoIPService::getCountry($clientIp, $request);
+
         $inquiry = Inquiry::create([
             'name' => $clientName,
             'email' => $request->email,
@@ -67,7 +70,8 @@ class InquiryController extends Controller
             'budget' => $request->budget,
             'message' => $request->message ?? 'Submitted via website growth form.',
             'source_url' => $request->header('referer', url()->current()),
-            'ip_address' => $request->ip(),
+            'ip_address' => $clientIp,
+            'country' => $country,
             'user_agent' => $request->userAgent(),
             'status' => 'new',
         ]);

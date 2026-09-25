@@ -1,93 +1,93 @@
 {
-  "_AppLayout-mbgfYomY.js": {
-    "file": "assets/AppLayout-mbgfYomY.js",
+  "_AppLayout--PscdE6B.js": {
+    "file": "assets/AppLayout--PscdE6B.js",
     "name": "AppLayout",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
   "resources/js/Pages/Blogs/Index.jsx": {
-    "file": "assets/Index-C7JY9OzO.js",
+    "file": "assets/Index-CyjM-yo6.js",
     "name": "Index",
     "src": "resources/js/Pages/Blogs/Index.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AppLayout-mbgfYomY.js"
+      "_AppLayout--PscdE6B.js"
     ]
   },
   "resources/js/Pages/Blogs/Show.jsx": {
-    "file": "assets/Show-W6BHP0xt.js",
+    "file": "assets/Show-CUMo7e8B.js",
     "name": "Show",
     "src": "resources/js/Pages/Blogs/Show.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AppLayout-mbgfYomY.js"
+      "_AppLayout--PscdE6B.js"
     ]
   },
   "resources/js/Pages/Contact.jsx": {
-    "file": "assets/Contact-C0p0s9Yp.js",
+    "file": "assets/Contact-ii6ppKO7.js",
     "name": "Contact",
     "src": "resources/js/Pages/Contact.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AppLayout-mbgfYomY.js"
+      "_AppLayout--PscdE6B.js"
     ]
   },
   "resources/js/Pages/Home.jsx": {
-    "file": "assets/Home-Dn-8olcv.js",
+    "file": "assets/Home-CpVt9p7-.js",
     "name": "Home",
     "src": "resources/js/Pages/Home.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AppLayout-mbgfYomY.js"
+      "_AppLayout--PscdE6B.js"
     ]
   },
   "resources/js/Pages/Industries/Index.jsx": {
-    "file": "assets/Index-CGMw21Qc.js",
+    "file": "assets/Index-BSCqOKo9.js",
     "name": "Index",
     "src": "resources/js/Pages/Industries/Index.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AppLayout-mbgfYomY.js"
+      "_AppLayout--PscdE6B.js"
     ]
   },
   "resources/js/Pages/Industries/Show.jsx": {
-    "file": "assets/Show-D-lP8-Ng.js",
+    "file": "assets/Show-D636wrdY.js",
     "name": "Show",
     "src": "resources/js/Pages/Industries/Show.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AppLayout-mbgfYomY.js"
+      "_AppLayout--PscdE6B.js"
     ]
   },
   "resources/js/Pages/Services/Index.jsx": {
-    "file": "assets/Index-Bas-jOej.js",
+    "file": "assets/Index-fTolDMgd.js",
     "name": "Index",
     "src": "resources/js/Pages/Services/Index.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AppLayout-mbgfYomY.js"
+      "_AppLayout--PscdE6B.js"
     ]
   },
   "resources/js/Pages/Services/Show.jsx": {
-    "file": "assets/Show-BpkaAXtB.js",
+    "file": "assets/Show-CtzkXG1h.js",
     "name": "Show",
     "src": "resources/js/Pages/Services/Show.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AppLayout-mbgfYomY.js"
+      "_AppLayout--PscdE6B.js"
     ]
   },
   "resources/js/app.jsx": {
-    "file": "assets/app-D0Zaffyi.js",
+    "file": "assets/app-Bitu1o-t.js",
     "name": "app",
     "src": "resources/js/app.jsx",
     "isEntry": true,

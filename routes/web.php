@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AIChatController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\BlogAdminController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\Admin\IndustryAdminController;
 use App\Http\Controllers\Admin\LinkRequestAdminController;
 use App\Http\Controllers\Admin\SchemaController;
 use App\Http\Controllers\Admin\ServiceAdminController;
+use App\Http\Controllers\AuditController;
 use App\Http\Controllers\BlogPageController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
@@ -78,6 +80,17 @@ Route::get('/blog/{slug}', [BlogPageController::class, 'show'])->name('blogs.sho
 Route::post('/inquiry', [InquiryController::class, 'store'])->name('inquiry.store');
 Route::post('/link-request', [LinkRequestController::class, 'store'])->name('link_request.store');
 
+// Free AI Assistant Routes (Phase 1)
+Route::post('/api/ai-chat', [AIChatController::class, 'chat'])->name('ai.chat.legacy');
+Route::post('/api/ai/chat', [AIChatController::class, 'chat'])->name('ai.chat');
+Route::get('/api/ai/chat/stream', [AIChatController::class, 'stream'])->name('ai.chat.stream');
+Route::post('/api/ai/lead', [AIChatController::class, 'captureLead'])->name('ai.lead');
+Route::get('/api/ai/history/{sessionId}', [AIChatController::class, 'history'])->name('ai.history');
+
+// Free Instant SEO & Website Performance Auditor (Feature 2)
+Route::post('/api/audit/run', [AuditController::class, 'runAudit'])->name('api.audit.run');
+Route::get('/api/audit/{id}', [AuditController::class, 'show'])->name('api.audit.show');
+
 // SEO Sitemaps & Search Engine Directives
 Route::get('/sitemap.xml', [SeoController::class, 'sitemap'])->name('seo.sitemap');
 Route::get('/robots.txt', [SeoController::class, 'robots'])->name('seo.robots');
@@ -110,6 +123,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     // Leads & Inquiries Management
     Route::get('/inquiries', [InquiryAdminController::class, 'index'])->name('inquiries.index');
     Route::post('/inquiries/{inquiry}/status', [InquiryAdminController::class, 'updateStatus'])->name('inquiries.status');
+    Route::get('/inquiries/{inquiry}/chat', [InquiryAdminController::class, 'chatHistory'])->name('inquiries.chat');
 
     // Client Link Insertion & Sponsored Requests Management
     Route::get('/link-requests', [LinkRequestAdminController::class, 'index'])->name('link_requests.index');
@@ -118,6 +132,10 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::post('/link-requests/{linkRequest}/status', [LinkRequestAdminController::class, 'updateStatus'])->name('link_requests.status');
     Route::delete('/link-requests/{linkRequest}', [LinkRequestAdminController::class, 'destroy'])->name('link_requests.destroy');
     Route::post('/link-requests/{id}/restore', [LinkRequestAdminController::class, 'restore'])->name('link_requests.restore');
+
+    // Free AI SEO & Performance Audits Management
+    Route::get('/audits', [AuditController::class, 'adminIndex'])->name('audits.index');
+    Route::delete('/audits/{audit}', [AuditController::class, 'adminDestroy'])->name('audits.destroy');
 
     // Services & Dynamic Categories Management
     Route::get('/services', [ServiceAdminController::class, 'index'])->name('services.index');

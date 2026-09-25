@@ -6,30 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Inquiry extends Model
+class AIMessage extends Model
 {
     use HasFactory;
 
+    protected $table = 'ai_messages';
+
     protected $fillable = [
-        'name',
-        'email',
-        'phone',
-        'company',
-        'service_interest',
-        'budget',
-        'message',
-        'source_url',
-        'ip_address',
-        'country',
-        'user_agent',
-        'status',
         'conversation_id',
-        'session_id',
+        'role',
+        'content',
     ];
 
-    /**
-     * Associated AI Chat Conversation (if captured via AI bot)
-     */
     public function conversation(): BelongsTo
     {
         return $this->belongsTo(AIConversation::class, 'conversation_id');

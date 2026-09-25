@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, usePage } from '@inertiajs/react';
 
-export default function Footer({ onOpenInquiry }) {
+export default function Footer({ onOpenInquiry, onOpenAudit }) {
   const { siteConfig = {}, navServicesByCategory = {} } = usePage().props;
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterSubmitted, setNewsletterSubmitted] = useState(false);
@@ -217,15 +217,25 @@ export default function Footer({ onOpenInquiry }) {
                   <span>{siteConfig.timing}</span>
                 </p>
               )}
-              <div className="pt-2">
+              <div className="pt-2 flex flex-wrap items-center gap-2">
                 <button
                   type="button"
                   onClick={onOpenInquiry}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#161514] hover:bg-[#ff3b30] text-white text-xs font-bold transition-all shadow-sm"
+                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#161514] hover:bg-[#ff3b30] text-white text-xs font-bold transition-all shadow-sm"
                 >
                   <i className="fas fa-calendar-check text-[11px]"></i>
                   <span>Schedule Consultation</span>
                 </button>
+                {onOpenAudit && (
+                  <button
+                    type="button"
+                    onClick={onOpenAudit}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#ff3b30]/10 hover:bg-[#ff3b30] text-[#ff3b30] hover:text-white border border-[#ff3b30]/30 text-xs font-bold transition-all shadow-sm"
+                  >
+                    <i className="fas fa-bolt text-[10px]"></i>
+                    <span>Free Audit</span>
+                  </button>
+                )}
               </div>
             </div>
           </div>
