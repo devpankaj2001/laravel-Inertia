@@ -76,6 +76,9 @@ class InquiryController extends Controller
             'status' => 'new',
         ]);
 
+        // Feature 3: Dispatch Free AI Lead Scoring & Intent Evaluation in background
+        \App\Jobs\ScoreLeadJob::dispatchAfterResponse($inquiry->id);
+
         if ($request->header('X-Inertia')) {
             return redirect()->back()->with('success', 'Thank you! Your growth consultation request has been received. Our senior architect will review your domain and respond within 24 hours.');
         }

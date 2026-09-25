@@ -124,6 +124,8 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::get('/inquiries', [InquiryAdminController::class, 'index'])->name('inquiries.index');
     Route::post('/inquiries/{inquiry}/status', [InquiryAdminController::class, 'updateStatus'])->name('inquiries.status');
     Route::get('/inquiries/{inquiry}/chat', [InquiryAdminController::class, 'chatHistory'])->name('inquiries.chat');
+    Route::post('/inquiries/{inquiry}/reanalyze', [InquiryAdminController::class, 'reanalyze'])->name('inquiries.reanalyze');
+    Route::get('/inquiries/{inquiry}/ai-insight', [InquiryAdminController::class, 'aiInsight'])->name('inquiries.insight');
 
     // Client Link Insertion & Sponsored Requests Management
     Route::get('/link-requests', [LinkRequestAdminController::class, 'index'])->name('link_requests.index');

@@ -214,6 +214,9 @@ class AIChatController extends Controller
                 'session_id' => $validated['session_id'] ?? null,
             ]);
 
+            // Feature 3: Score inbound AI Chat lead in background
+            \App\Jobs\ScoreLeadJob::dispatchAfterResponse($inquiry->id);
+
             return response()->json([
                 'success' => true,
                 'message' => 'Thank you! Your consultation request has been received. Our senior architect will review your project and connect within 24 hours.',

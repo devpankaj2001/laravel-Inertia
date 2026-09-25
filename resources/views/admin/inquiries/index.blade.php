@@ -11,8 +11,16 @@
   <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
     <div class="flex flex-wrap items-center gap-2">
       <a href="{{ route('admin.inquiries.index') }}"
-         class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition-colors {{ !request('status') ? 'bg-[#ff3b30] text-white' : 'bg-slate-800 text-slate-300 hover:text-white' }}">
+         class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition-colors {{ !request('status') && !request('intent') ? 'bg-[#ff3b30] text-white' : 'bg-slate-800 text-slate-300 hover:text-white' }}">
         All Leads
+      </a>
+      <a href="{{ route('admin.inquiries.index', ['intent' => 'enterprise']) }}"
+         class="px-3 py-1.5 rounded-xl text-xs font-bold transition-colors {{ request('intent') === 'enterprise' ? 'bg-emerald-600 text-white' : 'bg-slate-800 text-emerald-400 hover:bg-slate-700 border border-emerald-500/20' }}">
+        🚀 Enterprise (85+)
+      </a>
+      <a href="{{ route('admin.inquiries.index', ['intent' => 'hot']) }}"
+         class="px-3 py-1.5 rounded-xl text-xs font-bold transition-colors {{ request('intent') === 'hot' ? 'bg-amber-600 text-white' : 'bg-slate-800 text-amber-400 hover:bg-slate-700 border border-amber-500/20' }}">
+        🔥 High-Intent
       </a>
       <a href="{{ route('admin.inquiries.index', ['status' => 'new']) }}"
          class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition-colors {{ request('status') === 'new' ? 'bg-[#ff3b30] text-white' : 'bg-slate-800 text-slate-300 hover:text-white' }}">
@@ -44,6 +52,9 @@
       @if(request('status'))
         <input type="hidden" name="status" value="{{ request('status') }}">
       @endif
+      @if(request('intent'))
+        <input type="hidden" name="intent" value="{{ request('intent') }}">
+      @endif
       <button type="submit" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-xs font-bold transition-colors">
         Filter
       </button>
@@ -65,6 +76,7 @@
               <th class="py-3 px-4">Lead ID &amp; Contact</th>
               <th class="py-3 px-4">Location &amp; IP</th>
               <th class="py-3 px-4">Service &amp; Budget</th>
+              <th class="py-3 px-4">AI Score &amp; Intent</th>
               <th class="py-3 px-4">Message / Requirements</th>
               <th class="py-3 px-4">Date</th>
               <th class="py-3 px-4">Status &amp; Action</th>
@@ -117,6 +129,35 @@
                   </span>
                   @if($inq->budget)
                     <div class="text-[11px] text-emerald-400 font-mono">{{ $inq->budget }}</div>
+                  @endif
+                </td>
+
+                <!-- AI Score & Intent (Feature 3) -->
+                <td class="py-4 px-4 text-xs">
+                  @if($inq->lead_score !== null)
+                    <div class="space-y-1.5">
+                      <div class="flex items-center gap-1.5">
+                        <span class="px-2.5 py-1 rounded-lg text-xs font-black border {{ $inq->intent_badge_class }}">
+                          {{ $inq->lead_score }}/100
+                        </span>
+                      </div>
+                      <div class="text-[11px] font-bold text-slate-300">
+                        {{ $inq->intent_label }}
+                      </div>
+                      <button type="button"
+                              onclick="openAiInsightModal({{ $inq->id }})"
+                              class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 font-bold border border-indigo-500/30 text-[11px] transition-colors">
+                        <i class="fas fa-wand-magic-sparkles text-[10px]"></i>
+                        <span>AI Draft Reply</span>
+                      </button>
+                    </div>
+                  @else
+                    <button type="button"
+                            onclick="openAiInsightModal({{ $inq->id }})"
+                            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold border border-slate-700 transition-colors">
+                      <i class="fas fa-bolt text-amber-400 text-xs"></i>
+                      <span>Score Lead</span>
+                    </button>
                   @endif
                 </td>
 
@@ -181,6 +222,119 @@
 
 </div>
 
+<!-- AI Lead Insight & Ready Reply Modal (Feature 3) -->
+<div id="aiInsightModal"
+     class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4 transition-all duration-200"
+     role="dialog"
+     aria-modal="true"
+     aria-labelledby="aiInsightModalTitle">
+  
+  <div class="bg-slate-900 border border-slate-700/80 rounded-3xl w-full max-w-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh] animate-in fade-in zoom-in-95 duration-200">
+    <!-- Header -->
+    <div class="p-5 border-b border-slate-800 bg-slate-950/70 flex items-start justify-between gap-4">
+      <div class="space-y-1">
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-xl bg-indigo-500/20 text-indigo-400 text-sm">
+            <i class="fas fa-robot"></i>
+          </span>
+          <h3 id="aiInsightModalTitle" class="text-base font-bold text-white">AI Lead Scoring &amp; Reply Strategy</h3>
+          <span id="aiInsightLeadId" class="text-xs font-mono text-slate-500"></span>
+        </div>
+        <p id="aiInsightClientDetails" class="text-xs text-slate-400"></p>
+      </div>
+      <button type="button"
+              onclick="closeAiInsightModal()"
+              class="text-slate-400 hover:text-white p-2 rounded-xl hover:bg-slate-800 transition-colors">
+        <i class="fas fa-times text-sm"></i>
+      </button>
+    </div>
+
+    <!-- Body Content -->
+    <div id="aiInsightBody" class="p-6 overflow-y-auto space-y-5">
+      <!-- Loading State -->
+      <div id="aiInsightLoading" class="py-16 text-center text-slate-400 space-y-3">
+        <i class="fas fa-circle-notch fa-spin text-2xl text-indigo-400"></i>
+        <p class="text-xs">Analyzing lead intent and synthesizing personalized draft reply with Groq AI...</p>
+      </div>
+
+      <!-- Loaded Content -->
+      <div id="aiInsightContent" class="space-y-5 hidden">
+        <!-- Score & Intent Banner -->
+        <div class="flex flex-wrap items-center justify-between gap-3 p-4 rounded-2xl bg-slate-950 border border-slate-800">
+          <div>
+            <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">Intent Classification</div>
+            <div id="aiInsightIntentLabel" class="text-sm font-extrabold text-white flex items-center gap-1.5"></div>
+          </div>
+          <div>
+            <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1 text-right">Lead Score</div>
+            <span id="aiInsightScoreBadge" class="px-3 py-1 rounded-xl text-sm font-black border"></span>
+          </div>
+        </div>
+
+        <!-- AI Executive Requirement Summary -->
+        <div class="space-y-1.5">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+            <i class="fas fa-file-lines text-indigo-400"></i>
+            <span>Client Requirement Analysis</span>
+          </h4>
+          <p id="aiInsightSummary" class="text-xs text-slate-300 leading-relaxed bg-slate-950 p-3.5 rounded-2xl border border-slate-800/80"></p>
+        </div>
+
+        <!-- Ready-to-Send Suggested Reply -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+              <i class="fas fa-reply text-emerald-400"></i>
+              <span>Ready-to-Send Draft Response (5-Minute Close)</span>
+            </h4>
+            <span class="text-[10px] text-slate-500">Edit or copy directly</span>
+          </div>
+          <textarea id="aiInsightDraftReply"
+                    rows="6"
+                    class="w-full p-4 rounded-2xl bg-slate-950 border border-slate-800 text-xs text-slate-200 leading-relaxed focus:outline-none focus:border-indigo-500 font-mono resize-y"></textarea>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="pt-2 flex flex-wrap items-center justify-between gap-3">
+          <div class="flex items-center gap-2">
+            <button type="button"
+                    onclick="copyAiDraftReply()"
+                    id="copyDraftBtn"
+                    class="px-4 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all shadow-md">
+              <i class="fas fa-copy text-xs"></i>
+              <span>Copy Reply</span>
+            </button>
+
+            <a id="aiInsightWhatsappBtn"
+               href="#"
+               target="_blank"
+               rel="noreferrer"
+               class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all shadow-md hidden">
+              <i class="fab fa-whatsapp text-sm"></i>
+              <span>Open in WhatsApp</span>
+            </a>
+
+            <a id="aiInsightEmailBtn"
+               href="#"
+               class="px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all border border-slate-700">
+              <i class="fas fa-envelope text-xs"></i>
+              <span>Open in Mail</span>
+            </a>
+          </div>
+
+          <button type="button"
+                  id="reanalyzeBtn"
+                  onclick="triggerReanalyzeCurrentLead()"
+                  class="px-3 py-2 bg-slate-950 hover:bg-slate-800 text-slate-400 hover:text-white rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-colors border border-slate-800">
+            <i class="fas fa-rotate text-[11px]"></i>
+            <span>Re-score with AI</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- AI Chat History Modal Popup -->
 <div id="chatHistoryModal"
      class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4 transition-all duration-200"
@@ -219,108 +373,192 @@
         </div>
       </div>
 
-      <!-- Close Button -->
       <button type="button"
               onclick="closeChatModal()"
-              class="w-8 h-8 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-colors">
-        <i class="fas fa-times"></i>
+              class="text-slate-400 hover:text-white p-2 rounded-xl hover:bg-slate-800 transition-colors">
+        <i class="fas fa-times text-sm"></i>
       </button>
     </div>
 
-    <!-- Prospect Banner -->
-    <div class="px-5 py-3 bg-slate-800/40 border-b border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-xs">
-      <div class="flex items-center gap-3">
+    <!-- Contact & Meta Bar -->
+    <div class="bg-slate-950 px-5 py-3 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3 text-xs">
+      <div class="flex flex-wrap items-center gap-4">
         <div>
-          <span class="text-slate-400">Client:</span>
-          <span id="chatModalName" class="font-bold text-white ml-1"></span>
+          <span class="text-slate-500 block text-[10px]">Client Name</span>
+          <strong id="chatModalName" class="text-white text-xs"></strong>
         </div>
-        <span class="text-slate-700">•</span>
         <div>
-          <span class="text-slate-400">Email:</span>
-          <a id="chatModalEmailLink" href="#" class="text-[#ff3b30] hover:underline ml-1 font-mono"></a>
+          <span class="text-slate-500 block text-[10px]">Email Address</span>
+          <a id="chatModalEmailLink" href="#" class="text-[#ff3b30] hover:underline font-mono text-xs"></a>
         </div>
-        <div id="chatModalPhoneWrap" class="hidden">
-          <span class="text-slate-700">•</span>
-          <span class="text-slate-400 ml-3">Phone:</span>
-          <span id="chatModalPhone" class="text-slate-200 ml-1 font-mono"></span>
+        <div id="chatModalPhoneWrap">
+          <span class="text-slate-500 block text-[10px]">Phone Number</span>
+          <span id="chatModalPhone" class="text-slate-300 font-mono text-xs"></span>
         </div>
-      </div>
-      <div>
-        <span class="text-slate-400">Interest:</span>
-        <span id="chatModalInterest" class="px-2 py-0.5 rounded-lg bg-slate-800 text-[11px] font-semibold text-emerald-300 ml-1"></span>
-      </div>
-    </div>
-
-    <!-- Chat Messages Stream Body -->
-    <div id="chatModalMessages" class="p-6 overflow-y-auto space-y-4 flex-1 bg-slate-950/70 min-h-[300px]">
-      <div id="chatModalLoading" class="py-16 text-center text-slate-400 space-y-3">
-        <i class="fas fa-circle-notch fa-spin text-2xl text-[#ff3b30]"></i>
-        <p class="text-xs">Loading complete chat conversation...</p>
-      </div>
-    </div>
-
-    <!-- Modal Footer Actions -->
-    <div class="p-4 border-t border-slate-800 bg-slate-950/90 flex flex-wrap items-center justify-between gap-3 text-xs">
-      <div class="text-slate-500 text-[11px] flex items-center gap-2">
-        <span>Session ID:</span>
-        <span id="chatModalSessionId" class="font-mono text-slate-400"></span>
+        <div>
+          <span class="text-slate-500 block text-[10px]">Service Interest</span>
+          <span id="chatModalInterest" class="text-slate-300 font-medium text-xs"></span>
+        </div>
       </div>
 
       <div class="flex items-center gap-2">
-        <a id="chatModalMailBtn" href="#" class="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white rounded-xl font-bold transition-colors flex items-center gap-1.5">
-          <i class="fas fa-envelope text-red-400"></i>
-          <span>Send Email</span>
+        <a id="chatModalWhatsappBtn" href="#" target="_blank" class="hidden items-center gap-1.5 px-3 py-1.5 bg-emerald-600/20 hover:bg-emerald-600 text-emerald-300 hover:text-white rounded-xl text-xs font-bold transition-all border border-emerald-500/30">
+          <i class="fab fa-whatsapp"></i> WhatsApp
         </a>
-        <a id="chatModalWhatsappBtn" href="#" target="_blank" class="hidden px-3.5 py-2 bg-emerald-700 hover:bg-emerald-600 text-white rounded-xl font-bold transition-colors items-center gap-1.5">
-          <i class="fab fa-whatsapp"></i>
-          <span>WhatsApp</span>
+        <a id="chatModalMailBtn" href="#" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold transition-all">
+          <i class="fas fa-envelope"></i> Reply via Email
         </a>
-        <button type="button"
-                onclick="closeChatModal()"
-                class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-bold transition-colors">
-          Close
-        </button>
       </div>
     </div>
 
+    <!-- Chat Dialogue Scroll Container -->
+    <div id="chatModalMessages" class="p-6 overflow-y-auto space-y-4 flex-1 bg-slate-950/40">
+      <!-- Dynamic Chat Message Bubbles -->
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="p-4 border-t border-slate-800 bg-slate-950/90 flex items-center justify-between text-xs text-slate-500">
+      <div class="flex items-center gap-2">
+        <i class="fas fa-shield-alt text-emerald-400"></i>
+        <span>SOC2 Compliant AI Session Logging</span>
+      </div>
+      <div>
+        Session Hash: <span id="chatModalSessionId" class="font-mono text-slate-400"></span>
+      </div>
+    </div>
   </div>
 </div>
 
 <script>
+  let currentActiveLeadId = null;
+
   function formatChatText(text) {
     if (!text) return '';
-    // Escape HTML first
-    let escaped = text
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;');
-
-    // Format bold **text**
-    escaped = escaped.replace(/\*\*(.*?)\*\*/g, '<strong class="text-white font-semibold">$1</strong>');
-
-    // Format bullet points (• or * )
-    let lines = escaped.split('\n');
-    let formattedLines = lines.map(line => {
-      let trimmed = line.trim();
-      if (trimmed.startsWith('•')) {
-        return '<div class="flex items-start gap-2 pl-2 my-1"><span class="text-[#ff3b30] font-bold text-xs mt-0.5">•</span><span class="flex-1">' + trimmed.substring(1).trim() + '</span></div>';
-      }
-      return line ? '<p class="my-1.5">' + line + '</p>' : '';
-    });
-
-    return formattedLines.join('');
+    return text
+      .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-white">$1</strong>')
+      .replace(/\*(.*?)\*/g, '<em class="text-slate-300">$1</em>')
+      .replace(/•\s*(.*)/g, '<li class="ml-4 list-disc text-slate-300">$1</li>')
+      .replace(/\n/g, '<br/>');
   }
 
-  function openChatModal(inquiryId) {
-    const modal = document.getElementById('chatHistoryModal');
-    const msgContainer = document.getElementById('chatModalMessages');
-    const loading = document.getElementById('chatModalLoading');
+  // AI Lead Insight Modal Handler (Feature 3)
+  function openAiInsightModal(inquiryId) {
+    currentActiveLeadId = inquiryId;
+    const modal = document.getElementById('aiInsightModal');
+    const loading = document.getElementById('aiInsightLoading');
+    const content = document.getElementById('aiInsightContent');
 
     modal.classList.remove('hidden');
     modal.classList.add('flex');
     document.body.style.overflow = 'hidden';
 
-    // Show loading spinner
+    loading.classList.remove('hidden');
+    content.classList.add('hidden');
+
+    fetch(`/admin/inquiries/${inquiryId}/ai-insight`, {
+      headers: {
+        'Accept': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      loading.classList.add('hidden');
+      content.classList.remove('hidden');
+
+      if (!data.success) {
+        alert(data.message || 'Failed to fetch AI insights.');
+        return;
+      }
+
+      const lead = data.lead;
+      document.getElementById('aiInsightLeadId').textContent = `#${lead.id}`;
+      document.getElementById('aiInsightClientDetails').textContent = `${lead.name} (${lead.email}) • ${lead.service || 'Web Development'}`;
+
+      const scoreBadge = document.getElementById('aiInsightScoreBadge');
+      scoreBadge.textContent = `${lead.score}/100`;
+      scoreBadge.className = `px-3 py-1 rounded-xl text-sm font-black border ${lead.badge_class}`;
+
+      document.getElementById('aiInsightIntentLabel').textContent = lead.intent_label;
+      document.getElementById('aiInsightSummary').textContent = lead.summary || 'Commercial scope analyzed by WebRanker AI.';
+      document.getElementById('aiInsightDraftReply').value = lead.suggested_reply || '';
+
+      // Email button
+      const mailBtn = document.getElementById('aiInsightEmailBtn');
+      mailBtn.href = lead.mail_url || '#';
+
+      // WhatsApp button
+      const waBtn = document.getElementById('aiInsightWhatsappBtn');
+      if (lead.wa_url) {
+        waBtn.href = lead.wa_url;
+        waBtn.classList.remove('hidden');
+      } else {
+        waBtn.classList.add('hidden');
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      loading.innerHTML = `<p class="text-xs text-red-400">Failed to analyze lead. Please try again.</p>`;
+    });
+  }
+
+  function closeAiInsightModal() {
+    const modal = document.getElementById('aiInsightModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+
+  function copyAiDraftReply() {
+    const replyText = document.getElementById('aiInsightDraftReply').value;
+    navigator.clipboard.writeText(replyText).then(() => {
+      const btn = document.getElementById('copyDraftBtn');
+      const originalHtml = btn.innerHTML;
+      btn.innerHTML = `<i class="fas fa-check text-xs"></i> <span>Copied!</span>`;
+      btn.classList.add('bg-emerald-600');
+      setTimeout(() => {
+        btn.innerHTML = originalHtml;
+        btn.classList.remove('bg-emerald-600');
+      }, 2500);
+    });
+  }
+
+  function triggerReanalyzeCurrentLead() {
+    if (!currentActiveLeadId) return;
+    const reBtn = document.getElementById('reanalyzeBtn');
+    reBtn.innerHTML = `<i class="fas fa-spinner fa-spin text-xs"></i> <span>Analyzing...</span>`;
+    reBtn.disabled = true;
+
+    fetch(`/admin/inquiries/${currentActiveLeadId}/reanalyze`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      reBtn.innerHTML = `<i class="fas fa-rotate text-[11px]"></i> <span>Re-score with AI</span>`;
+      reBtn.disabled = false;
+      // Re-populate modal with fresh analysis
+      openAiInsightModal(currentActiveLeadId);
+    })
+    .catch(() => {
+      reBtn.innerHTML = `<i class="fas fa-rotate text-[11px]"></i> <span>Re-score with AI</span>`;
+      reBtn.disabled = false;
+    });
+  }
+
+  // Chat Modal Handlers
+  function openChatModal(inquiryId) {
+    const modal = document.getElementById('chatHistoryModal');
+    const msgContainer = document.getElementById('chatModalMessages');
+
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+
     msgContainer.innerHTML = `
       <div class="py-16 text-center text-slate-400 space-y-3">
         <i class="fas fa-circle-notch fa-spin text-2xl text-[#ff3b30]"></i>
@@ -360,7 +598,6 @@
         document.getElementById('chatModalPhoneWrap').classList.remove('hidden');
         document.getElementById('chatModalPhone').textContent = lead.phone;
         
-        // Clean phone for whatsapp link
         const cleanPhone = lead.phone.replace(/[^0-9]/g, '');
         if (cleanPhone.length >= 10) {
           const waBtn = document.getElementById('chatModalWhatsappBtn');
@@ -379,16 +616,6 @@
       document.getElementById('chatModalDate').textContent = lead.created_at || 'Just now';
       document.getElementById('chatModalInterest').textContent = lead.service_interest || 'General Growth';
       document.getElementById('chatModalSessionId').textContent = lead.session_id || 'Direct Inquiry';
-
-      // Render Messages
-      if (!data.messages || data.messages.length === 0) {
-        msgContainer.innerHTML = `
-          <div class="py-12 text-center text-slate-500 text-xs">
-            No dialogue logged in this session yet.
-          </div>
-        `;
-        return;
-      }
 
       let html = '';
       data.messages.forEach(msg => {
@@ -447,18 +674,19 @@
     document.body.style.overflow = '';
   }
 
-  // Close modal on Escape key press
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
       closeChatModal();
+      closeAiInsightModal();
     }
   });
 
-  // Close modal when clicking on the dark backdrop outside card
   document.getElementById('chatHistoryModal')?.addEventListener('click', function(e) {
-    if (e.target === this) {
-      closeChatModal();
-    }
+    if (e.target === this) closeChatModal();
+  });
+
+  document.getElementById('aiInsightModal')?.addEventListener('click', function(e) {
+    if (e.target === this) closeAiInsightModal();
   });
 </script>
 

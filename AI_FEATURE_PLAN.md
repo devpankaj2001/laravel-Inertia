@@ -189,14 +189,16 @@ CREATE TABLE `ai_audits` (
 - [x] `AIChatbot.jsx` ko connect karna taaki user ke sawalon ka turant free AI reply, smart chips, aur direct lead capture mile.
 - [x] MySQL schema `ai_conversations` & `ai_messages` migrated with models `AIConversation` & `AIMessage`.
 
-### Phase 2: Free SEO & Speed Audit Feature (Target: 2 Days)
-- [ ] Google PageSpeed free API connect karna.
-- [ ] "FREE AUDIT" click hone par interactive audit modal khulna.
-- [ ] Gemini Free se 48-Hour SEO roadmap generate karke display karna.
+### Phase 2: Free SEO & Speed Audit Feature (Target: 2 Days) — ✅ COMPLETED
+- [x] Google PageSpeed free API + Core Web Vitals diagnostic engine connect karna.
+- [x] "FREE AUDIT" click hone par interactive audit modal khulna.
+- [x] AI (Groq/Gemini) se 48-Hour Growth & SEO roadmap generate karke display karna.
+- [x] Dedicated `ai_audits` table & Admin Audit center ([/admin/audits]).
 
-### Phase 3: Free Lead Auto-Scoring & Notification (Target: 1 Day)
-- [ ] Inquiry aate hi free Llama 3.1 8B se project scope analyze karna.
-- [ ] Admin panel ya email me "Lead Score: 95/100 (Hot Lead)" aur AI reply draft show karna.
+### Phase 3: Free Lead Auto-Scoring & Notification (Target: 1 Day) — ✅ COMPLETED
+- [x] Inquiry aate hi free AI (Groq Llama 3.1 / Qwen) se project scope aur commercial intent analyze karna.
+- [x] Admin panel me "Lead Score: 95/100 (Hot Enterprise Lead)" aur AI reply draft show karna.
+- [x] 1-Click Copy Draft Reply, WhatsApp direct opener, aur Email mailto shortcuts.
 
 ---
 
