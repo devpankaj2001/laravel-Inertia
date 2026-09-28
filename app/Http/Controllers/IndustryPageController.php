@@ -47,8 +47,8 @@ class IndustryPageController extends Controller
         $totalIndustriesCount = IndustryDomain::where('is_active', true)->count();
 
         // SEO meta
-        $metaTitle = "Industry Vertical Solutions | Enterprise Digital Engineering & SEO | WebRanker";
-        $metaDescription = "Explore WebRanker's 25+ industry domain solutions: tailor-made full-stack architectures, compliance-ready platforms (HIPAA, PCI-DSS, SOC2), and search domination.";
+        $metaTitle = "Industry Vertical Solutions | Enterprise Digital Engineering & SEO | Rankexa.in";
+        $metaDescription = "Explore Rankexa's 25+ industry domain solutions: tailor-made full-stack architectures, compliance-ready platforms (HIPAA, PCI-DSS, SOC2), and search domination.";
         $canonicalUrl = route('industries.index');
         $ogImage = asset('asset/logo.svg');
 
@@ -160,7 +160,7 @@ class IndustryPageController extends Controller
             'image' => $ogImage,
             'provider' => [
                 '@type' => 'Organization',
-                'name' => 'WebRanker Technologies',
+                'name' => 'Rankexa Technologies',
                 'url' => url('/'),
                 'logo' => asset('asset/logo.svg'),
             ],

@@ -5,8 +5,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <!-- Site Title Favicon (WR Monogram) -->
-  <link rel="icon" type="image/svg+xml" href="{{ asset('asset/wr-favicon.svg') }}">
+  <!-- Dynamic Server-Rendered SEO Tags for Google & Social Crawlers -->
+  <title>{{ $metaTitle ?? 'Rankexa.in | Web & App Development, SEO, Content & Performance Optimization' }}</title>
+  <meta name="title" content="{{ $metaTitle ?? 'Rankexa.in | Web & App Development, SEO, Content & Performance Optimization' }}">
+  <meta name="description" content="{{ $metaDescription ?? 'Rankexa is an elite engineering and organic search agency specializing in Web Development, Mobile Apps, Technical SEO, Topical Content, and Site Speed Optimization.' }}">
+  <meta name="keywords" content="{{ $metaKeywords ?? 'web development, mobile app development, technical SEO, core web vitals, ecommerce development, AI automation' }}">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="{{ $canonicalUrl ?? url()->current() }}">
+  @if(!empty($googleVerification))
+  <meta name="google-site-verification" content="{{ $googleVerification }}">
+  @endif
+  @if(!empty($bingVerification))
+  <meta name="msvalidate.01" content="{{ $bingVerification }}">
+  @endif
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ $canonicalUrl ?? url()->current() }}">
+  <meta property="og:title" content="{{ $metaTitle ?? 'Rankexa.in | Web & App Development, SEO & Performance' }}">
+  <meta property="og:description" content="{{ $metaDescription ?? 'Elite engineering and search optimization agency.' }}">
+  <meta property="og:image" content="{{ $ogImage ?? asset('asset/logo.svg') }}">
+  <meta property="og:site_name" content="Rankexa">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="{{ $canonicalUrl ?? url()->current() }}">
+  <meta name="twitter:title" content="{{ $metaTitle ?? 'Rankexa.in | Web & App Development, SEO & Performance' }}">
+  <meta name="twitter:description" content="{{ $metaDescription ?? 'Elite engineering and search optimization agency.' }}">
+  <meta name="twitter:image" content="{{ $ogImage ?? asset('asset/logo.svg') }}">
+  <meta name="twitter:site" content="@rankexa">
+  <meta name="twitter:creator" content="@rankexa">
+
+  <!-- Schema.org JSON-LD Structured Data for High Search Ranking -->
+  @if(isset($schemas) && is_array($schemas))
+    @foreach($schemas as $schema)
+      <script type="application/ld+json">
+        {!! json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
+      </script>
+    @endforeach
+  @endif
+
+  <!-- Custom Admin Injected JSON-LD Schema -->
+  @if(isset($customJsonLd) && !empty($customJsonLd))
+    <script type="application/ld+json">
+      {!! json_encode($customJsonLd, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
+    </script>
+  @endif
+
+  <!-- Site Title Favicon (RX Monogram) -->
+  <link rel="icon" type="image/svg+xml" href="{{ asset('asset/rx-favicon.svg') }}">
   <link rel="alternate icon" type="image/png" href="{{ asset('asset/wr-favicon.png') }}">
   <link rel="apple-touch-icon" href="{{ asset('asset/wr-favicon.png') }}">
 

@@ -163,7 +163,7 @@
               </div>
               <div class="flex items-center justify-between py-2">
                 <span class="font-bold text-[#6e675f]">Global Provider</span>
-                <span class="font-mono text-slate-700">WebRanker Technologies HQ</span>
+                <span class="font-mono text-slate-700">Rankexa Technologies HQ</span>
               </div>
             </div>
 
@@ -191,7 +191,7 @@
                 Why Ambition Demands Next-Generation {{ $service->title }}
               </h2>
               <p class="text-sm sm:text-base text-[#6e675f] leading-relaxed">
-                Legacy agencies build static templates that choke under load and flounder in organic SERPs. WebRanker takes an engineering-first stance: every line of code, component architecture, and server response is audited for maximum conversion speed and search engine crawlability.
+                Legacy agencies build static templates that choke under load and flounder in organic SERPs. Rankexa takes an engineering-first stance: every line of code, component architecture, and server response is audited for maximum conversion speed and search engine crawlability.
               </p>
             </div>
 
@@ -573,7 +573,7 @@
               </div>
 
               <div class="pt-4 mt-4 border-t border-[#e6dfd3] flex items-center justify-between text-xs">
-                <span class="font-extrabold text-[#161514]">{{ $bPost->author_name ?? 'WebRanker' }}</span>
+                <span class="font-extrabold text-[#161514]">{{ $bPost->author_name ?? 'Rankexa' }}</span>
                 <a href="{{ route('blogs.show', $bPost->slug) }}" class="text-xs font-black text-[#ff3b30] group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
                   <span>Read Guide</span> →
                 </a>

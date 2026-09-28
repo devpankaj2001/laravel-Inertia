@@ -53,8 +53,8 @@ class BlogPageController extends Controller
             ->get();
 
         // Meta tags
-        $metaTitle = "AI & Technology Blogs | Insights from Engineering Leaders | WebRanker";
-        $metaDescription = "AI insights, engineering guides, and trends from the WebRanker team — practical reads for CTOs, product leaders, and ML engineers.";
+        $metaTitle = "AI & Technology Blogs | Insights from Engineering Leaders | Rankexa.in";
+        $metaDescription = "AI insights, engineering guides, and trends from the Rankexa team — practical reads for CTOs, product leaders, and ML engineers.";
         $canonicalUrl = route('blogs.index');
 
         // Schema.org CollectionPage & BreadcrumbList
@@ -174,12 +174,12 @@ class BlogPageController extends Controller
             'dateModified' => $post->updated_at->toIso8601String(),
             'author' => [
                 '@type' => 'Person',
-                'name' => $post->author_name ?? 'WebRanker Team',
+                'name' => $post->author_name ?? 'Rankexa Team',
                 'jobTitle' => $post->author_role ?? 'AI Engineer',
             ],
             'publisher' => [
                 '@type' => 'Organization',
-                'name' => 'WebRanker Technologies',
+                'name' => 'Rankexa Technologies',
                 'logo' => [
                     '@type' => 'ImageObject',
                     'url' => asset('asset/logo.svg'),

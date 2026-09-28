@@ -28,20 +28,20 @@
   root.id = 'dsPageLoader';
   root.className = 'ds-page-loader';
   root.setAttribute('role', 'progressbar');
-  root.setAttribute('aria-label', 'WebRanker loading');
+  root.setAttribute('aria-label', 'Rankexa.in loading');
   root.setAttribute('aria-valuemin', '0');
   root.setAttribute('aria-valuemax', '100');
   root.setAttribute('aria-valuenow', '0');
   root.innerHTML =
     '<div class="ds-page-loader__panel">' +
-      '<div class="ds-page-loader__logo-wrap" style="display:inline-flex;align-items:center;gap:12px;margin-bottom:0.25rem;">' +
-        '<svg class="ds-page-loader__logo-icon" viewBox="0 0 54 54" width="38" height="38" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;flex-shrink:0;">' +
-          '<path d="M8 10 V40 C8 44.4 11.6 48 16 48 H48" stroke="#ffffff" stroke-width="4.8" stroke-linecap="round" stroke-linejoin="round"/>' +
-          '<path d="M14 37 L24 24 L33 32 L46 12" stroke="#ff3b30" stroke-width="4.8" stroke-linecap="round" stroke-linejoin="round"/>' +
-        '</svg>' +
-        '<span style="font-family:\'Urbanist\', -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, sans-serif;font-size:2rem;font-weight:900;letter-spacing:-0.03em;line-height:1;">' +
-          '<span style="color:#ff3b30;">Web</span><span style="color:#ffffff;">Ranker</span>' +
-        '</span>' +
+      '<div class="ds-page-loader__logo-wrap" style="display:inline-flex;align-items:center;gap:14px;margin-bottom:0.35rem;">' +
+        '<div style="width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#ff3b30 0%,#ff5e3a 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 0 24px rgba(255,59,48,0.55);font-family:\'Urbanist\',sans-serif;font-weight:900;font-size:20px;color:#ffffff;letter-spacing:-0.05em;flex-shrink:0;">RX</div>' +
+        '<div style="display:flex;flex-direction:column;align-items:flex-start;text-align:left;">' +
+          '<span style="font-family:\'Urbanist\', -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, sans-serif;font-size:2rem;font-weight:900;letter-spacing:-0.03em;line-height:1;">' +
+            '<span style="color:#ffffff;">Rank</span><span style="color:#ff3b30;">exa</span><span style="color:#ff3b30;font-size:1.15rem;font-weight:800;margin-left:2px;">.in</span>' +
+          '</span>' +
+          '<span style="font-size:9px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-top:3px;font-family:\'Urbanist\',sans-serif;">Enterprise Engineering &amp; SEO</span>' +
+        '</div>' +
       '</div>' +
       '<div class="ds-page-loader__row">' +
         '<div class="ds-page-loader__track"><div class="ds-page-loader__bar" id="dsPageLoaderBar"></div></div>' +
@@ -2517,7 +2517,7 @@ function dsInitMainUI() {
       brandLink = document.createElement('a');
       brandLink.href = homeHref;
       brandLink.className = 'mobile-nav-brand';
-      brandLink.innerHTML = `<img src="${logoSrc}" alt="WebRanker">`;
+      brandLink.innerHTML = `<img src="${logoSrc}" alt="Rankexa">`;
       brandText.replaceWith(brandLink);
     }
 

@@ -27,7 +27,7 @@ class HomePageTest extends TestCase
         $response->assertStatus(200);
 
         // Verify SEO & Core Meta
-        $response->assertSee('<title>WebRanker', false);
+        $response->assertSee('<title>Rankexa', false);
         $response->assertSee('<meta name="description"', false);
         $response->assertSee('<link rel="canonical"', false);
         $response->assertSee('application/ld+json', false);
@@ -37,14 +37,10 @@ class HomePageTest extends TestCase
         $response->assertSee('Organization', false);
 
         // Verify Dynamic Sections & Brand
-        $response->assertSee('WebRanker');
-        $response->assertSee('FREE AUDIT');
-        $response->assertSee('Certification');
-        $response->assertSee('Blogs');
-        $response->assertSee('Case Studies');
-        $response->assertSee('header-chamfer-btn');
-        $response->assertSee('header-brand-wrap');
-        $response->assertSee('How We Grow You');
+        $response->assertSee('Rankexa');
+        $response->assertSee('Growth Audit');
+        $response->assertSee('See our services');
+        $response->assertSee('HOW WE GROW YOU');
         $response->assertSee('GROWTH &amp; ENGINEERING INSIGHTS', false);
     }
 

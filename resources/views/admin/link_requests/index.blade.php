@@ -325,7 +325,7 @@
 
                     <!-- Quick Email Client -->
                     @if($req->client_email && !str_starts_with($req->client_email, 'manual_'))
-                      <a href="mailto:{{ $req->client_email }}?subject={{ urlencode('Regarding your backlink placement on ' . ($req->target_page_title ?? 'WebRanker')) }}&body={{ urlencode("Hi {$req->client_name},\n\nWe are ready to place your link ('{$req->requested_anchor_text}') on:\n{$req->target_page_url}\n\nBudget: {$req->budget_offer}\n\nPlease confirm.\n\nBest regards,\nEditorial Team") }}"
+                      <a href="mailto:{{ $req->client_email }}?subject={{ urlencode('Regarding your backlink placement on ' . ($req->target_page_title ?? 'Rankexa')) }}&body={{ urlencode("Hi {$req->client_name},\n\nWe are ready to place your link ('{$req->requested_anchor_text}') on:\n{$req->target_page_url}\n\nBudget: {$req->budget_offer}\n\nPlease confirm.\n\nBest regards,\nEditorial Team") }}"
                          class="w-7 h-7 rounded-lg bg-slate-800 hover:bg-emerald-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors shadow-sm"
                          title="Email Client">
                         <i class="fas fa-envelope text-[11px]"></i>

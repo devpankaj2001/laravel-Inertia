@@ -184,7 +184,7 @@
             Card Short Summary (Used on Directory &amp; Cards)
           </label>
           <textarea name="description" rows="3"
-                    placeholder="Short 2-3 sentence summary of how WebRanker transforms this industry..."
+                    placeholder="Short 2-3 sentence summary of how Rankexa transforms this industry..."
                     class="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white focus:outline-none focus:border-[#ff3b30] leading-relaxed">{{ old('description') }}</textarea>
         </div>
 
@@ -211,7 +211,7 @@
         <!-- Featured Image -->
         <div class="md:col-span-2 space-y-1.5">
           <label class="block text-xs font-bold uppercase tracking-wider text-slate-300">
-            Cover / Diagram Image (Optional — defaults to WebRanker high-tech cover if empty)
+            Cover / Diagram Image (Optional — defaults to Rankexa high-tech cover if empty)
           </label>
           <input type="file" name="featured_image_file" accept="image/*"
                  class="w-full px-3.5 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-400 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-[#ff3b30] file:text-white hover:file:bg-red-600">
@@ -301,7 +301,7 @@
         <div>
           <h3 class="text-sm font-extrabold uppercase tracking-wider text-white flex items-center gap-2">
             <i class="fas fa-scale-balanced text-[#ff3b30]"></i>
-            <span>4. Industry Challenges vs WebRanker Engineering Solutions</span>
+            <span>4. Industry Challenges vs Rankexa Engineering Solutions</span>
           </h3>
           <p class="text-xs text-slate-400 mt-1">Showcase the typical failure points in this industry vs our modern solutions.</p>
         </div>
@@ -320,7 +320,7 @@
               <textarea name="challenge_descriptions[]" rows="2" placeholder="Details of how legacy systems fail..." class="w-full px-3 py-2 bg-slate-900 border border-slate-800 rounded-lg text-xs text-slate-300 mt-1">Legacy CMS templates choke during flash traffic surges, leading to 8-second cart abandonment and dropped organic rankings.</textarea>
             </div>
             <div class="space-y-1">
-              <label class="block text-[11px] font-bold uppercase text-emerald-400">WebRanker Engineering Solution</label>
+              <label class="block text-[11px] font-bold uppercase text-emerald-400">Rankexa Engineering Solution</label>
               <input type="text" name="solution_titles[]" value="Decoupled Edge SSR &amp; Global Microservices" placeholder="Solution Title" class="w-full px-3 py-2 bg-slate-900 border border-slate-800 rounded-lg text-xs text-white">
               <textarea name="solution_descriptions[]" rows="2" placeholder="How our architecture solves it..." class="w-full px-3 py-2 bg-slate-900 border border-slate-800 rounded-lg text-xs text-slate-300 mt-1">We decouple the frontend onto edge networks delivering sub-400ms TTFB with high-throughput asynchronous backends.</textarea>
             </div>
@@ -371,7 +371,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div class="space-y-1.5">
           <label class="block text-xs font-bold uppercase tracking-wider text-slate-300">Meta Title Tag</label>
-          <input type="text" name="meta_title" value="{{ old('meta_title') }}" placeholder="Defaults to: [Name] Digital Engineering &amp; SEO Architecture | WebRanker" class="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white focus:outline-none focus:border-[#ff3b30]">
+          <input type="text" name="meta_title" value="{{ old('meta_title') }}" placeholder="Defaults to: [Name] Digital Engineering &amp; SEO Architecture | Rankexa.in" class="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white focus:outline-none focus:border-[#ff3b30]">
         </div>
 
         <div class="space-y-1.5">
@@ -652,7 +652,7 @@
           <textarea name="challenge_descriptions[]" rows="2" placeholder="Details of how legacy systems fail..." class="w-full px-3 py-2 bg-slate-900 border border-slate-800 rounded-lg text-xs text-slate-300 mt-1"></textarea>
         </div>
         <div class="space-y-1">
-          <label class="block text-[11px] font-bold uppercase text-emerald-400">WebRanker Engineering Solution</label>
+          <label class="block text-[11px] font-bold uppercase text-emerald-400">Rankexa Engineering Solution</label>
           <input type="text" name="solution_titles[]" placeholder="Solution Title" class="w-full px-3 py-2 bg-slate-900 border border-slate-800 rounded-lg text-xs text-white">
           <textarea name="solution_descriptions[]" rows="2" placeholder="How our architecture solves it..." class="w-full px-3 py-2 bg-slate-900 border border-slate-800 rounded-lg text-xs text-slate-300 mt-1"></textarea>
         </div>

@@ -74,7 +74,7 @@
                       <time datetime="{{ $post->published_at ? $post->published_at->format('Y-m-d') : $post->created_at->format('Y-m-d') }}">
                         {{ $post->published_at ? strtoupper($post->published_at->format('d M. Y')) : strtoupper($post->created_at->format('d M. Y')) }}
                       </time>
-                      / {{ $post->author_name ?? 'WebRanker' }}
+                      / {{ $post->author_name ?? 'Rankexa' }}
                     </p>
                   </div>
 
@@ -146,7 +146,7 @@
           <div>
             <span class="text-xs font-extrabold tracking-widest text-[#ff3b30] uppercase">CURATED INSIGHTS</span>
             <h2 id="blogInsightsHeading" class="text-3xl font-black text-[#161514] tracking-tight mt-1">
-              Insights from the WebRanker Lab
+              Insights from the Rankexa Lab
             </h2>
           </div>
           <div class="flex items-center gap-2">

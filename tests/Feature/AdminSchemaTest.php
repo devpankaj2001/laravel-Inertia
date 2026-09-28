@@ -35,7 +35,7 @@ class AdminSchemaTest extends TestCase
     public function test_admin_can_login_and_access_dashboard(): void
     {
         $response = $this->post('/admin/login', [
-            'email' => 'admin@webranker.com',
+            'email' => 'admin@rankexa.in',
             'password' => 'password123',
         ]);
 
@@ -53,7 +53,7 @@ class AdminSchemaTest extends TestCase
      */
     public function test_admin_can_view_schema_management_center(): void
     {
-        $admin = User::where('email', 'admin@webranker.com')->first();
+        $admin = User::where('email', 'admin@rankexa.in')->first();
 
         $response = $this->actingAs($admin)->get('/admin/schema');
 
@@ -69,7 +69,7 @@ class AdminSchemaTest extends TestCase
      */
     public function test_admin_can_update_local_business_schema(): void
     {
-        $admin = User::where('email', 'admin@webranker.com')->first();
+        $admin = User::where('email', 'admin@rankexa.in')->first();
 
         $payload = [
             'section' => 'local',
@@ -107,7 +107,7 @@ class AdminSchemaTest extends TestCase
      */
     public function test_admin_can_inject_custom_jsonld_schema(): void
     {
-        $admin = User::where('email', 'admin@webranker.com')->first();
+        $admin = User::where('email', 'admin@rankexa.in')->first();
 
         $customSchema = [
             '@context' => 'https://schema.org',
@@ -137,7 +137,7 @@ class AdminSchemaTest extends TestCase
      */
     public function test_invalid_custom_jsonld_returns_validation_error(): void
     {
-        $admin = User::where('email', 'admin@webranker.com')->first();
+        $admin = User::where('email', 'admin@rankexa.in')->first();
 
         $payload = [
             'section' => 'custom',

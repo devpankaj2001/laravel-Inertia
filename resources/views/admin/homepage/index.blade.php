@@ -640,7 +640,7 @@ document.addEventListener('DOMContentLoaded', function() {
     software_app: {
       "@@context": "https://schema.org",
       "@@type": "SoftwareApplication",
-      "name": "WebRanker Audit Engine",
+      "name": "Rankexa Audit Engine",
       "operatingSystem": "All Web Browsers",
       "applicationCategory": "BusinessApplication",
       "offers": {
@@ -655,14 +655,14 @@ document.addEventListener('DOMContentLoaded', function() {
       "serviceType": "Search Engine Optimization & Next.js Web Engineering",
       "provider": {
         "@@type": "LocalBusiness",
-        "name": "WebRanker Technologies HQ"
+        "name": "Rankexa Technologies HQ"
       },
       "areaServed": "Global"
     },
     faq_custom: {
       "@@context": "https://schema.org",
       "@@type": "Question",
-      "name": "How quickly can WebRanker audit my site?",
+      "name": "How quickly can Rankexa audit my site?",
       "acceptedAnswer": {
         "@@type": "Answer",
         "text": "Our technical SEO audit engine scans your full site architecture and delivers an actionable roadmap within 48 hours."

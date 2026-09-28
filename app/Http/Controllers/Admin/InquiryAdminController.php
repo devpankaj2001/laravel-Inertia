@@ -145,7 +145,7 @@ class InquiryAdminController extends Controller
             ? 'https://wa.me/' . $cleanPhone . '?text=' . urlencode($inquiry->ai_suggested_reply ?? '')
             : null;
 
-        $mailSubject = 'Regarding your inquiry with WebRanker (' . ($inquiry->service_interest ?: 'Web & Growth') . ')';
+        $mailSubject = 'Regarding your inquiry with Rankexa (' . ($inquiry->service_interest ?: 'Web & Growth') . ')';
         $mailUrl = 'mailto:' . $inquiry->email . '?subject=' . urlencode($mailSubject) . '&body=' . urlencode($inquiry->ai_suggested_reply ?? '');
 
         return response()->json([

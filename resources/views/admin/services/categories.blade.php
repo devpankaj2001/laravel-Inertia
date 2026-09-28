@@ -44,7 +44,7 @@
       <div>
         <h4 class="text-sm font-extrabold text-white">How Dynamic Categories Work</h4>
         <p class="text-xs text-slate-400 mt-1 leading-relaxed">
-          Categories in WebRanker are completely dynamic. When you assign or type a new category in any service, it automatically registers as a pillar and populates the frontend mega-menu, sitemaps, and category filters.
+          Categories in Rankexa are completely dynamic. When you assign or type a new category in any service, it automatically registers as a pillar and populates the frontend mega-menu, sitemaps, and category filters.
         </p>
       </div>
     </div>

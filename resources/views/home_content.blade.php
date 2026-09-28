@@ -17,7 +17,7 @@
           <span>{{ $homeContent['title_accent'] ?? 'From search to sales.' }}</span>
         </h1>
         <p class="wr-hero-lead">
-          {{ $homeContent['lead'] ?? 'WebRanker is a results-driven digital agency. We design fast, conversion-ready websites and grow brands with SEO, PPC, social, content, and email — so you rank higher, attract the right traffic, and convert it into revenue.' }}
+          {{ $homeContent['lead'] ?? 'Rankexa is a results-driven digital agency. We design fast, conversion-ready websites and grow brands with SEO, PPC, social, content, and email — so you rank higher, attract the right traffic, and convert it into revenue.' }}
         </p>
         <div class="wr-hero-ctas">
           <a href="{{ $homeContent['cta_link'] ?? '#consultation' }}" class="hero-lab-btn hero-lab-btn--primary">
@@ -83,12 +83,12 @@
                 <i class="fas fa-chart-line text-xs"></i>
               </div>
               <div class="serp-url-meta">
-                <strong>WebRanker</strong>
-                <span class="serp-url-cite">https://webranker.in › digital-growth</span>
+                <strong>Rankexa</strong>
+                <span class="serp-url-cite">https://rankexa.in › digital-growth</span>
               </div>
               <span class="serp-rank-badge"><i class="fas fa-trophy"></i> Position 1</span>
             </div>
-            <h3 class="serp-title">WebRanker — SEO, Web Design &amp; Digital Marketing Agency</h3>
+            <h3 class="serp-title">Rankexa — SEO, Web Design &amp; Digital Marketing Agency</h3>
             <p class="serp-snippet">
               Grow online with SEO, PPC, social media, content, email, and high-converting websites. Data-driven strategies for startups, local businesses, and growing brands.
             </p>
@@ -164,7 +164,7 @@
     </div>
   </section>
 
-    <!-- ======= HOW WEBRANKER GROWS YOU ======= -->
+    <!-- ======= HOW RANKEXA GROWS YOU ======= -->
     <section id="growth-engine" class="wr-engine">
       <div class="max-w-7xl mx-auto px-6">
         <header class="text-center max-w-3xl mx-auto mb-12 space-y-4">
@@ -173,7 +173,7 @@
             Rank. Design. Convert. Repeat.
           </h2>
           <p class="text-[#6e675f] text-base sm:text-lg leading-relaxed">
-            Every WebRanker engagement is built around four growth levers — the same services we deliver for startups, local businesses, and scaling brands.
+            Every Rankexa engagement is built around four growth levers — the same services we deliver for startups, local businesses, and scaling brands.
           </p>
         </header>
 
@@ -226,7 +226,7 @@
                 <div class="wr-serp-row"><span>14</span><b>Competitor local plumber</b></div>
                 <div class="wr-serp-row"><span>08</span><b>Generic directory listing</b></div>
                 <div class="wr-serp-row"><span>03</span><b>Paid ad overlay</b></div>
-                <div class="wr-serp-row is-you"><span>01</span><b>Your brand — WebRanker SEO</b><i>Featured snippet</i></div>
+                <div class="wr-serp-row is-you"><span>01</span><b>Your brand — Rankexa SEO</b><i>Featured snippet</i></div>
               </div>
             </article>
             <article class="wr-engine-pane" data-engine-pane="web">
@@ -468,7 +468,7 @@
                 </button>
 
                 <div id="formSuccessMsg" class="consult-success hidden">
-                  Thank you! A WebRanker strategist will contact you shortly.
+                  Thank you! A Rankexa strategist will contact you shortly.
                 </div>
 
                 <div id="formErrorMsg" class="consult-error hidden p-3 rounded-lg bg-red-50 border border-red-200 text-red-600 text-xs font-bold text-center mt-3"></div>
@@ -481,10 +481,10 @@
     </div>
   </section>
 
-  <section id="why-webranker" class="py-24 bg-[#fff] border-t border-[#e6dfd3] relative overflow-hidden">
+  <section id="why-rankexa" class="py-24 bg-[#fff] border-t border-[#e6dfd3] relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-6 relative z-10">
       <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-        <div class="badge-pill-eyebrow"><span>WHY WEBRANKER</span></div>
+        <div class="badge-pill-eyebrow"><span>WHY RANKEXA</span></div>
         <h2 class="text-3xl sm:text-5xl font-extrabold text-[#464f79] tracking-tight text-gradient-3">
           Building digital experiences that deliver real results
         </h2>
@@ -538,7 +538,7 @@
                 One team for your website, rankings, and campaigns
               </h3>
               <p class="text-[#6e675f] text-base leading-relaxed font-normal">
-                Most brands split web, SEO, and ads across vendors. WebRanker connects them: a site that can rank, content that earns clicks, and campaigns that fill the gaps — with monthly reporting you can actually use.
+                Most brands split web, SEO, and ads across vendors. Rankexa connects them: a site that can rank, content that earns clicks, and campaigns that fill the gaps — with monthly reporting you can actually use.
               </p>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -601,7 +601,7 @@
                 <i class="fas fa-quote-left"></i>
               </div>
               <div>
-                <p class="text-sm text-[#6e675f] italic leading-relaxed">"Working with WebRanker has been a game-changer for our international presence. Their global SEO and technical expertise increased our organic acquisition across North America and Europe."</p>
+                <p class="text-sm text-[#6e675f] italic leading-relaxed">"Working with Rankexa has been a game-changer for our international presence. Their global SEO and technical expertise increased our organic acquisition across North America and Europe."</p>
                 <p class="text-xs font-extrabold text-[#161514] mt-1.5">Enterprise Client · Global SaaS &amp; eCommerce</p>
               </div>
             </div>
@@ -616,14 +616,14 @@
       <!-- Section Sub-Header -->
       <div class="text-center max-w-3xl mx-auto mb-12 space-y-4">
         <div class="badge-pill-eyebrow">
-          <span>WEBRANKER SERVICES</span>
+          <span>RANKEXA SERVICES</span>
         </div>
 
         <h2 class="text-3xl sm:text-5xl font-extrabold text-[#464f79] tracking-tight text-gradient-3">
           Digital marketing, web, and search — under one roof
         </h2>
         <p class="text-[#6e675f] text-base">
-          SEO, web design, PPC, social, content, eCommerce, and ongoing support — the services WebRanker actually delivers to grow traffic and conversions.
+          SEO, web design, PPC, social, content, eCommerce, and ongoing support — the services Rankexa actually delivers to grow traffic and conversions.
         </p>
       </div>
 
@@ -1209,7 +1209,7 @@
       <!-- Main Headline & Subtitle -->
       <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
         <h2 class="text-4xl sm:text-6xl font-extrabold text-[#464f79] tracking-tight leading-tight text-gradient-3">
-          The WebRanker growth stack
+          The Rankexa growth stack
         </h2>
         <p class="text-gray-500 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto font-normal">
           SEO, web, paid media, social, content, and speed — connected so every channel supports the same growth goal.
@@ -1377,7 +1377,7 @@
                           <span class="ai-play-card-dot is-red"></span>
                           <span class="ai-play-card-dot is-amber"></span>
                           <span class="ai-play-card-dot is-green"></span>
-                          <span class="ai-play-card-url">webranker.in/ecommerce</span>
+                          <span class="ai-play-card-url">rankexa.in/ecommerce</span>
                         </div>
                         <div class="ai-play-card-media">
                           <img src="{{ asset('asset/agp-lab-ecom.jpg') }}" alt="E-commerce SEO" loading="lazy">
@@ -1406,7 +1406,7 @@
                           <span class="ai-play-card-dot is-red"></span>
                           <span class="ai-play-card-dot is-amber"></span>
                           <span class="ai-play-card-dot is-green"></span>
-                          <span class="ai-play-card-url">webranker.in/web-design</span>
+                          <span class="ai-play-card-url">rankexa.in/web-design</span>
                         </div>
                         <div class="ai-play-card-media">
                           <img src="{{ asset('asset/svc-1.png') }}" alt="Web design" loading="lazy">
@@ -1435,7 +1435,7 @@
                           <span class="ai-play-card-dot is-red"></span>
                           <span class="ai-play-card-dot is-amber"></span>
                           <span class="ai-play-card-dot is-green"></span>
-                          <span class="ai-play-card-url">webranker.in/fintech</span>
+                          <span class="ai-play-card-url">rankexa.in/fintech</span>
                         </div>
                         <div class="ai-play-card-media">
                           <img src="{{ asset('asset/da-lab-finance.jpg') }}" alt="Fintech SEO" loading="lazy">
@@ -1464,7 +1464,7 @@
                           <span class="ai-play-card-dot is-red"></span>
                           <span class="ai-play-card-dot is-amber"></span>
                           <span class="ai-play-card-dot is-green"></span>
-                          <span class="ai-play-card-url">webranker.in/healthcare</span>
+                          <span class="ai-play-card-url">rankexa.in/healthcare</span>
                         </div>
                         <div class="ai-play-card-media">
                           <img src="{{ asset('asset/da-lab-health.jpg') }}" alt="Healthcare web" loading="lazy">
@@ -1493,7 +1493,7 @@
                           <span class="ai-play-card-dot is-red"></span>
                           <span class="ai-play-card-dot is-amber"></span>
                           <span class="ai-play-card-dot is-green"></span>
-                          <span class="ai-play-card-url">webranker.in/seo</span>
+                          <span class="ai-play-card-url">rankexa.in/seo</span>
                         </div>
                         <div class="ai-play-card-media">
                           <img src="{{ asset('asset/awp-lab-search.jpg') }}" alt="Technical SEO" loading="lazy">
@@ -1691,7 +1691,7 @@
             Client's Testimonials
           </h2>
           <p class="text-[#6e675f] text-base max-w-xl">
-            Hear from founders and marketing leads who trust WebRanker for SEO, websites, and campaigns.
+            Hear from founders and marketing leads who trust Rankexa for SEO, websites, and campaigns.
           </p>
         </div>
 
@@ -1728,7 +1728,7 @@
               <h3 class="text-xl font-extrabold text-[#161514] mb-3">SEO that actually moved the needle</h3>
               <!-- Review Text -->
               <p class="text-[#6e675f] text-sm sm:text-base leading-relaxed mb-8 font-normal">
-                "Working with WebRanker has been a game-changer. Their SEO strategies improved our search rankings and increased website traffic. Highly recommend."
+                "Working with Rankexa has been a game-changer. Their SEO strategies improved our search rankings and increased website traffic. Highly recommend."
               </p>
             </div>
             <!-- Card Footer -->
@@ -1836,7 +1836,7 @@
               <h3 class="text-xl font-extrabold text-[#161514] mb-3">Consistent ranking reports</h3>
               <!-- Review Text -->
               <p class="text-[#6e675f] text-sm sm:text-base leading-relaxed mb-8 font-normal">
-                "Transparent monthly reports, faster pages, and content that ranks. WebRanker feels like an in-house growth team."
+                "Transparent monthly reports, faster pages, and content that ranks. Rankexa feels like an in-house growth team."
               </p>
             </div>
             <!-- Card Footer -->
@@ -1942,7 +1942,7 @@
                         <p class="blog-grid-meta">
                           <time datetime="{{ $blog->published_at ? $blog->published_at->format('Y-m-d') : $blog->created_at->format('Y-m-d') }}">
                             {{ $blog->published_at ? strtoupper($blog->published_at->format('d M. Y')) : strtoupper($blog->created_at->format('d M. Y')) }}
-                          </time> / {{ $blog->author_name ?? 'WebRanker Team' }}
+                          </time> / {{ $blog->author_name ?? 'Rankexa Team' }}
                         </p>
                       </div>
                       <div class="blog-list-body">
@@ -1979,7 +1979,7 @@
 
         <!-- Subtitle -->
         <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed mb-8 font-normal">
-          Talk to a WebRanker strategist about SEO, web design, PPC, or social — we’ll recommend the shortest path to more visibility and leads.
+          Talk to a Rankexa strategist about SEO, web design, PPC, or social — we’ll recommend the shortest path to more visibility and leads.
         </p>
 
         <!-- Enquiry Button -->
@@ -2042,7 +2042,7 @@
           <iframe
             id="officesGlobeFrame"
             class="offices-globe-frame"
-            title="WebRanker Jaipur office on the globe"
+            title="Rankexa Jaipur office on the globe"
             src="{{ asset('globe/offices-map.html?embed=1') }}"
             data-src="{{ asset('globe/offices-map.html?embed=1') }}"
             loading="lazy"

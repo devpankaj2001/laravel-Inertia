@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Sign In | WebRanker Control Center</title>
+  <title>Admin Sign In | Rankexa.in Control Center</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,7 +52,7 @@
             <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-500 text-sm">
               <i class="fas fa-envelope"></i>
             </span>
-            <input type="email" id="email" name="email" value="{{ old('email', 'admin@webranker.com') }}" required autofocus
+            <input type="email" id="email" name="email" value="{{ old('email', 'admin@rankexa.in') }}" required autofocus
                    class="w-full pl-10 pr-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-white text-sm focus:outline-none focus:border-[#ff3b30] focus:ring-1 focus:ring-[#ff3b30] placeholder-slate-600 transition-colors">
           </div>
         </div>
@@ -86,7 +86,7 @@
 
     <div class="text-center">
       <a href="{{ route('home') }}" class="text-xs text-slate-500 hover:text-slate-300 transition-colors inline-flex items-center gap-1.5">
-        <i class="fas fa-arrow-left text-[10px]"></i> Return to WebRanker Home
+        <i class="fas fa-arrow-left text-[10px]"></i> Return to Rankexa Home
       </a>
     </div>
   </div>

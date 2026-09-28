@@ -26,8 +26,8 @@ class ServiceSeeder extends Seeder
                 'sort_order' => 1,
                 'is_featured' => true,
                 'is_active' => true,
-                'meta_title' => 'Full-Stack Web Development Services | Laravel, Next.js, MERN & Python | WebRanker',
-                'meta_description' => 'Struggling with slow, bloated websites? WebRanker engineers custom full-stack web applications in PHP/Laravel, Next.js, MERN, Python & Headless Shopify that load in under 0.4s and rank #1.',
+                'meta_title' => 'Full-Stack Web Development Services | Laravel, Next.js, MERN & Python | Rankexa.in',
+                'meta_description' => 'Struggling with slow, bloated websites? Rankexa engineers custom full-stack web applications in PHP/Laravel, Next.js, MERN, Python & Headless Shopify that load in under 0.4s and rank #1.',
                 'focus_keywords' => 'Laravel web development, Next.js React app, hire MERN developer, Python FastAPI, headless WordPress, Shopify Plus, Core Web Vitals, custom web apps',
                 'detailed_content' => '<div class="space-y-8">
   <div class="p-6 sm:p-8 rounded-3xl bg-[#faf7f2] border border-[#e6dfd3] space-y-4">
@@ -36,7 +36,7 @@ class ServiceSeeder extends Seeder
       If you have ever hired an agency only to receive a sluggish, cookie-cutter website stitched together with 45 third-party plugins—you are not alone. Most websites on the internet today look acceptable on the surface, but underneath, they are an engineering nightmare: bloated JavaScript bundles, unindexed dynamic routes, poor mobile responsiveness, and fragile database queries that freeze the moment traffic surges.
     </p>
     <p class="text-base text-[#4b5563] leading-relaxed">
-      At <strong>WebRanker</strong>, we take a fundamentally different, human-first engineering stance. We treat your web application as a mission-critical revenue engine. Whether you are building an enterprise B2B SaaS platform, an interactive client portal, or a high-converting e-commerce store, our software architects handcraft clean, modular code that loads in under 400 milliseconds, delights real human visitors, and dominates Google search results.
+      At <strong>Rankexa</strong>, we take a fundamentally different, human-first engineering stance. We treat your web application as a mission-critical revenue engine. Whether you are building an enterprise B2B SaaS platform, an interactive client portal, or a high-converting e-commerce store, our software architects handcraft clean, modular code that loads in under 400 milliseconds, delights real human visitors, and dominates Google search results.
     </p>
   </div>
 
@@ -228,7 +228,7 @@ class ServiceSeeder extends Seeder
   </div>
 
   <div class="p-6 sm:p-8 rounded-3xl bg-[#161514] text-white space-y-4">
-    <h3 class="text-2xl font-black text-white tracking-tight">The WebRanker Code Quality Pledge</h3>
+    <h3 class="text-2xl font-black text-white tracking-tight">The Rankexa Code Quality Pledge</h3>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-2">
       <div class="space-y-1.5">
         <div class="text-[#ff3b30] font-black text-xl">01. 100% Code Ownership</div>
@@ -288,7 +288,7 @@ class ServiceSeeder extends Seeder
                 'custom_schema' => json_encode([
                     '@context' => 'https://schema.org',
                     '@type' => 'SoftwareApplication',
-                    'name' => 'WebRanker Enterprise Full-Stack Web Development Engine',
+                    'name' => 'Rankexa Enterprise Full-Stack Web Development Engine',
                     'operatingSystem' => 'Cloud, All Modern Browsers',
                     'applicationCategory' => 'WebApplication',
                     'description' => 'Custom full-stack web application development in PHP, Laravel, Next.js, React, MERN, Python, FastAPI, Django, WordPress, Shopify, and Headless architectures.',
@@ -314,7 +314,7 @@ class ServiceSeeder extends Seeder
                 'sort_order' => 2,
                 'is_featured' => true,
                 'is_active' => true,
-                'meta_title' => 'Cross-Platform & Native Mobile App Development | WebRanker',
+                'meta_title' => 'Cross-Platform & Native Mobile App Development | Rankexa.in',
                 'meta_description' => 'High-performance iOS and Android mobile app development using Flutter and React Native with biometric security, offline sync, and real-time sockets.',
                 'focus_keywords' => 'mobile app development, iOS app developer, Android app development, Flutter agency, React Native development',
                 'detailed_content' => '<h3>Engineered for 60fps Native Fluidity & Offline Resilience</h3>
@@ -353,7 +353,7 @@ class ServiceSeeder extends Seeder
                 'custom_schema' => json_encode([
                     '@context' => 'https://schema.org',
                     '@type' => 'SoftwareApplication',
-                    'name' => 'WebRanker Mobile App Engineering Suite',
+                    'name' => 'Rankexa Mobile App Engineering Suite',
                     'operatingSystem' => 'iOS, Android',
                     'applicationCategory' => 'MobileApplication',
                 ], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES),
@@ -372,11 +372,11 @@ class ServiceSeeder extends Seeder
                 'sort_order' => 3,
                 'is_featured' => false,
                 'is_active' => true,
-                'meta_title' => 'Enterprise Custom Software Development & APIs | WebRanker',
+                'meta_title' => 'Enterprise Custom Software Development & APIs | Rankexa.in',
                 'meta_description' => 'Scalable enterprise software development, event-driven microservices, multi-tenant SaaS architecture, and resilient API ecosystems.',
                 'focus_keywords' => 'custom software development, enterprise software, microservices architecture, SaaS development, bespoke software solutions',
                 'detailed_content' => '<h3>Bespoke Software Engineered for Complex Commercial Workflows</h3>
-<p>Off-the-shelf software inevitably creates process compromises and costly license lock-in. WebRanker builds custom, proprietary software systems tailored directly to your operational workflows, compliance requirements, and scale goals.</p>
+<p>Off-the-shelf software inevitably creates process compromises and costly license lock-in. Rankexa builds custom, proprietary software systems tailored directly to your operational workflows, compliance requirements, and scale goals.</p>
 
 <h3>Enterprise Architectural Pillars</h3>
 <ul>
@@ -423,7 +423,7 @@ class ServiceSeeder extends Seeder
                 'sort_order' => 4,
                 'is_featured' => false,
                 'is_active' => true,
-                'meta_title' => 'Cloud Architecture, Kubernetes & DevOps CI/CD | WebRanker',
+                'meta_title' => 'Cloud Architecture, Kubernetes & DevOps CI/CD | Rankexa.in',
                 'meta_description' => 'Enterprise cloud infrastructure, Kubernetes containerization, Terraform IaC, and automated zero-downtime CI/CD deployment pipelines on AWS & GCP.',
                 'focus_keywords' => 'cloud devops services, AWS cloud consulting, Kubernetes deployment, Terraform infrastructure as code, CI/CD pipeline automation',
                 'detailed_content' => '<h3>Elastic Infrastructure Engineered for Uninterrupted Availability</h3>
@@ -473,13 +473,13 @@ class ServiceSeeder extends Seeder
                 'sort_order' => 5,
                 'is_featured' => true,
                 'is_active' => true,
-                'meta_title' => 'Enterprise Technical SEO & Organic Search Growth | WebRanker',
+                'meta_title' => 'Enterprise Technical SEO & Organic Search Growth | Rankexa.in',
                 'meta_description' => 'Dominate organic Google SERPs with entity schema graphing, topical authority architecture, algorithmic technical audits, and commercial rank growth.',
                 'focus_keywords' => 'technical SEO services, enterprise SEO agency, topical authority mapping, JSON-LD schema optimization, organic search growth',
                 'detailed_content' => '<h3>Algorithmic Search Optimization That Dominates First-Page SERPs</h3>
 <p>Modern Google rankings demand much more than keyword stuffing. Search algorithms now evaluate entity graphs, topical depth, Core Web Vitals, and semantic Schema.org microdata. We deliver algorithmic search dominance through rigorous technical engineering and high-authority digital PR.</p>
 
-<h3>The WebRanker Search Methodology</h3>
+<h3>The Rankexa Search Methodology</h3>
 <ul>
   <li><strong>Technical Crawl Optimization:</strong> Eliminating crawl budget waste, index bloat, redirect chains, and canonical confusion.</li>
   <li><strong>Topical Authority Mapping:</strong> Architecting comprehensive pillar and cluster structures that establish undeniable niche leadership.</li>
@@ -524,7 +524,7 @@ class ServiceSeeder extends Seeder
                 'sort_order' => 6,
                 'is_featured' => true,
                 'is_active' => true,
-                'meta_title' => 'Enterprise AI Solutions, LLMs & Autonomous Agents | WebRanker',
+                'meta_title' => 'Enterprise AI Solutions, LLMs & Autonomous Agents | Rankexa.in',
                 'meta_description' => 'Build enterprise AI agents, custom RAG vector search pipelines, and autonomous workflow bots to automate high-friction business operations.',
                 'focus_keywords' => 'enterprise AI solutions, custom LLM development, RAG vector search, AI workflow automation, autonomous AI agents',
                 'detailed_content' => '<h3>Autonomous Intelligence That Multiplies Enterprise Productivity</h3>
@@ -574,7 +574,7 @@ class ServiceSeeder extends Seeder
                 'sort_order' => 7,
                 'is_featured' => false,
                 'is_active' => true,
-                'meta_title' => 'Headless E-Commerce & Shopify Plus Solutions | WebRanker',
+                'meta_title' => 'Headless E-Commerce & Shopify Plus Solutions | Rankexa.in',
                 'meta_description' => 'High-conversion headless e-commerce storefronts, Shopify Plus scaling, 1-click checkout optimization, and real-time inventory ERP integrations.',
                 'focus_keywords' => 'headless ecommerce development, Shopify Plus agency, custom ecommerce portals, conversion rate optimization, omnichannel retail',
                 'detailed_content' => '<h3>High-Conversion Commerce Architectures for High-Growth Retailers</h3>
@@ -620,7 +620,7 @@ class ServiceSeeder extends Seeder
                 'sort_order' => 8,
                 'is_featured' => false,
                 'is_active' => true,
-                'meta_title' => 'Core Web Vitals & 99+ PageSpeed Optimization | WebRanker',
+                'meta_title' => 'Core Web Vitals & 99+ PageSpeed Optimization | Rankexa.in',
                 'meta_description' => 'Guaranteed 95+ Google PageSpeed scores, sub-second LCP, zero CLS, and TTFB reduction to skyrocket organic rank and conversion rates.',
                 'focus_keywords' => 'core web vitals optimization, website speed optimization, Google PageSpeed 99, TTFB reduction, LCP and INP fix',
                 'detailed_content' => '<h3>Sub-Second Performance Engineering for Search & Conversion</h3>
@@ -667,7 +667,7 @@ class ServiceSeeder extends Seeder
                 'sort_order' => 9,
                 'is_featured' => false,
                 'is_active' => true,
-                'meta_title' => 'UI/UX Design Systems & High-Conversion Branding | WebRanker',
+                'meta_title' => 'UI/UX Design Systems & High-Conversion Branding | Rankexa.in',
                 'meta_description' => 'Elevate brand prestige with human-centric UX research, interactive Figma design systems, WCAG 2.1 AA accessibility, and CRO UI interfaces.',
                 'focus_keywords' => 'UI UX design services, enterprise design systems, Figma prototyping, conversion rate design, digital product design',
                 'detailed_content' => '<h3>Conversion-Focused Digital Interfaces That Command Respect</h3>
@@ -713,7 +713,7 @@ class ServiceSeeder extends Seeder
                 'sort_order' => 10,
                 'is_featured' => false,
                 'is_active' => true,
-                'meta_title' => '24/7 Enterprise Website Maintenance & SLA Support | WebRanker',
+                'meta_title' => '24/7 Enterprise Website Maintenance & SLA Support | Rankexa.in',
                 'meta_description' => 'Peace of mind with 24/7 uptime monitoring, automated hourly backups, vulnerability patching, and perpetual Core Web Vitals health guard.',
                 'focus_keywords' => 'website maintenance services, 24/7 website support, web security patching, SLA uptime guarantee, enterprise web maintenance',
                 'detailed_content' => '<h3>Perpetual Peace of Mind with Guaranteed Response Times</h3>

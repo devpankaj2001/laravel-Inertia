@@ -22,37 +22,37 @@ class HomeContentSeeder extends Seeder
     {
         // 0. Default Admin Account
         User::updateOrCreate(
-            ['email' => 'admin@webranker.com'],
+            ['email' => 'admin@rankexa.in'],
             [
-                'name' => 'WebRanker Admin',
+                'name' => 'Rankexa Admin',
                 'password' => Hash::make('password123'),
             ]
         );
 
         // 1. Site Settings (SEO & Brand)
         $settings = [
-            'site_name' => 'WebRanker',
+            'site_name' => 'Rankexa',
             'site_tagline' => 'Web & App Development, SEO, Content & Performance Optimization',
-            'meta_title' => 'WebRanker | Web & App Development, SEO, Content & Performance Optimization',
-            'meta_description' => 'WebRanker is an elite engineering and organic search agency specializing in Web Development, Mobile Apps, Technical SEO, Topical Content, and Site Speed Optimization for E-Commerce, Healthcare, and Fintech.',
+            'meta_title' => 'Rankexa.in | Web & App Development, SEO, Content & Performance Optimization',
+            'meta_description' => 'Rankexa is an elite engineering and organic search agency specializing in Web Development, Mobile Apps, Technical SEO, Topical Content, and Site Speed Optimization for E-Commerce, Healthcare, and Fintech.',
             'meta_keywords' => 'web development, mobile app development, technical SEO, organic search ranking, site speed optimization, core web vitals, ecommerce development, AI automation',
-            'canonical_base' => 'https://webranker.com',
+            'canonical_base' => 'https://rankexa.in',
             'og_image' => 'asset/logo.svg',
-            'contact_email' => 'growth@webranker.com',
+            'contact_email' => 'info@rankexa.in',
             'contact_phone' => '+91 (141) 234-5678',
             'contact_address' => 'Plot no. 51, Shaheed Amit Bhardwaj Marg, opp. 8/1, Sector 8, Malviya Nagar, Jaipur, Rajasthan 302017',
             'geo_latitude' => '26.844394',
             'geo_longitude' => '75.805302',
-            'social_twitter' => 'https://twitter.com/webranker',
-            'social_linkedin' => 'https://linkedin.com/company/webranker',
-            'social_github' => 'https://github.com/webranker',
-            'google_site_verification' => 'google-site-verification-webranker-token',
-            'bing_site_verification' => 'bing-site-verification-webranker-token',
+            'social_twitter' => 'https://twitter.com/rankexa',
+            'social_linkedin' => 'https://linkedin.com/company/rankexa',
+            'social_github' => 'https://github.com/rankexa',
+            'google_site_verification' => 'google-site-verification-rankexa-token',
+            'bing_site_verification' => 'bing-site-verification-rankexa-token',
 
             // Structured Schema Configurations
             'schema_local_business' => json_encode([
-                'name' => 'WebRanker Technologies HQ',
-                'legal_name' => 'WebRanker Digital & Engineering Solutions Pvt. Ltd.',
+                'name' => 'Rankexa Technologies HQ',
+                'legal_name' => 'Rankexa Digital & Engineering Solutions Pvt. Ltd.',
                 'image' => 'asset/logo.svg',
                 'street_address' => 'Plot no. 51, Shaheed Amit Bhardwaj Marg, opp. 8/1, Sector 8, Malviya Nagar, Jaipur, Rajasthan 302017',
                 'address_locality' => 'Jaipur',
@@ -60,7 +60,7 @@ class HomeContentSeeder extends Seeder
                 'postal_code' => '302017',
                 'address_country' => 'IN',
                 'telephone' => '+91 97185 70218',
-                'email' => 'growth@webranker.com',
+                'email' => 'info@rankexa.in',
                 'latitude' => '26.844394',
                 'longitude' => '75.805302',
                 'price_range' => '$$$',
@@ -70,31 +70,31 @@ class HomeContentSeeder extends Seeder
             ]),
 
             'schema_organization' => json_encode([
-                'name' => 'WebRanker',
-                'legal_name' => 'WebRanker Digital Global Enterprise Ltd.',
-                'alternate_name' => 'WebRanker SEO & Tech Labs',
+                'name' => 'Rankexa',
+                'legal_name' => 'Rankexa Digital Global Enterprise Ltd.',
+                'alternate_name' => 'Rankexa SEO & Tech Labs',
                 'founding_date' => '2020-01-15',
                 'founder_name' => 'Alexander Reed',
                 'logo_url' => 'asset/logo.svg',
                 'customer_service_phone' => '+91 (141) 234-5678',
-                'customer_service_email' => 'support@webranker.com',
+                'customer_service_email' => 'support@rankexa.in',
                 'social_links' => [
-                    'https://twitter.com/webranker',
-                    'https://linkedin.com/company/webranker',
-                    'https://facebook.com/webranker',
-                    'https://github.com/webranker',
-                    'https://youtube.com/@webranker',
+                    'https://twitter.com/rankexa',
+                    'https://linkedin.com/company/rankexa',
+                    'https://facebook.com/rankexa',
+                    'https://github.com/rankexa',
+                    'https://youtube.com/@rankexa',
                 ],
             ]),
 
             'schema_seo' => json_encode([
-                'meta_title' => 'WebRanker | Web & App Development, SEO, Content & Performance Optimization',
-                'meta_description' => 'WebRanker is an elite engineering and organic search agency specializing in Web Development, Mobile Apps, Technical SEO, Topical Content, and Site Speed Optimization.',
+                'meta_title' => 'Rankexa.in | Web & App Development, SEO, Content & Performance Optimization',
+                'meta_description' => 'Rankexa is an elite engineering and organic search agency specializing in Web Development, Mobile Apps, Technical SEO, Topical Content, and Site Speed Optimization.',
                 'meta_keywords' => 'web development, mobile app development, technical SEO, organic search ranking, site speed optimization, core web vitals, ecommerce development, AI automation',
-                'og_title' => 'WebRanker | Top #1 Organic Growth & Engineering',
+                'og_title' => 'Rankexa | Top #1 Organic Growth & Engineering',
                 'og_description' => 'Turn search traffic into revenue with sub-second web performance, custom app architectures, and high-impact SEO.',
                 'og_image' => 'asset/logo.svg',
-                'twitter_handle' => '@webranker',
+                'twitter_handle' => '@rankexa',
                 'robots_directive' => 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
                 'google_site_verification' => 'google-verification-code-sample',
                 'bing_site_verification' => 'bing-verification-code-sample',
@@ -104,7 +104,7 @@ class HomeContentSeeder extends Seeder
                 [
                     '@context' => 'https://schema.org',
                     '@type' => 'SoftwareApplication',
-                    'name' => 'WebRanker Core Performance Audit Engine',
+                    'name' => 'Rankexa Core Performance Audit Engine',
                     'operatingSystem' => 'All Web Platforms',
                     'applicationCategory' => 'BusinessApplication',
                     'offers' => [
@@ -320,7 +320,7 @@ class HomeContentSeeder extends Seeder
                 'metric_highlight' => '+420%',
                 'metric_label' => 'Organic Search Traffic',
                 'service_used' => 'Web Development & Technical SEO',
-                'review_text' => 'WebRanker transformed our fragmented clinical web presence into a blazing-fast, server-rendered Next.js portal. In less than 4 months, our organic patient inquiries quadrupled, and our Google PageSpeed score jumped from 48 to a flawless 99 on mobile.',
+                'review_text' => 'Rankexa transformed our fragmented clinical web presence into a blazing-fast, server-rendered Next.js portal. In less than 4 months, our organic patient inquiries quadrupled, and our Google PageSpeed score jumped from 48 to a flawless 99 on mobile.',
                 'sort_order' => 1,
             ],
             [
@@ -332,7 +332,7 @@ class HomeContentSeeder extends Seeder
                 'metric_highlight' => '99/100',
                 'metric_label' => 'Core Web Vitals Score',
                 'service_used' => 'Site Speed & Custom Software',
-                'review_text' => 'The engineering rigor WebRanker brought to our fintech app was phenomenal. Their zero-CLS architecture and technical SEO clusters gave us #1 search rankings across 38 high-intent commercial terms in both the US and UK markets.',
+                'review_text' => 'The engineering rigor Rankexa brought to our fintech app was phenomenal. Their zero-CLS architecture and technical SEO clusters gave us #1 search rankings across 38 high-intent commercial terms in both the US and UK markets.',
                 'sort_order' => 2,
             ],
             [
@@ -344,7 +344,7 @@ class HomeContentSeeder extends Seeder
                 'metric_highlight' => '$3.8M',
                 'metric_label' => 'Incremental Organic Revenue',
                 'service_used' => 'Headless E-Commerce & SEO',
-                'review_text' => 'We replaced our sluggish legacy store with WebRanker’s headless architecture. Our conversion rate increased by 28%, bounce rate plummeted by 44%, and we achieved top 3 Google positions for our most profitable product lines.',
+                'review_text' => 'We replaced our sluggish legacy store with Rankexa’s headless architecture. Our conversion rate increased by 28%, bounce rate plummeted by 44%, and we achieved top 3 Google positions for our most profitable product lines.',
                 'sort_order' => 3,
             ],
         ];
@@ -356,19 +356,19 @@ class HomeContentSeeder extends Seeder
         // 5. Accordion FAQs (High-Intent Organic Search Queries)
         $faqs = [
             [
-                'question' => 'How does WebRanker achieve guaranteed sub-second load times and 99+ Core Web Vitals?',
+                'question' => 'How does Rankexa achieve guaranteed sub-second load times and 99+ Core Web Vitals?',
                 'answer' => 'We utilize an advanced performance stack comprising server-side rendering (SSR), edge function caching, automated AVIF/WebP image pipelines, tree-shaken critical CSS, and zero-blocking JavaScript. Every asset is optimized to ensure Largest Contentful Paint (LCP) remains under 0.8s, Interaction to Next Paint (INP) under 50ms, and Cumulative Layout Shift (CLS) at exactly 0.00.',
                 'category' => 'Performance & Engineering',
                 'sort_order' => 1,
             ],
             [
-                'question' => 'What is WebRanker’s approach to topical authority and #1 Google rankings?',
+                'question' => 'What is Rankexa’s approach to topical authority and #1 Google rankings?',
                 'answer' => 'Rather than chasing isolated keywords, we build comprehensive semantic entity graphs. We map out full topical clusters, engineer deep internal linking networks, apply schema.org structured microdata, and resolve technical crawl bottlenecks. This signals undeniable topical authority to Google’s Helpful Content and RankBrain algorithms.',
                 'category' => 'SEO & Ranking',
                 'sort_order' => 2,
             ],
             [
-                'question' => 'How quickly will we see measurable organic growth after launching with WebRanker?',
+                'question' => 'How quickly will we see measurable organic growth after launching with Rankexa?',
                 'answer' => 'While organic search is an ongoing compounding asset, our technical optimizations yield immediate crawl rate spikes within 14 days. Most enterprise clients experience a 40% to 120% surge in impressions within 60 days, followed by significant top-3 rank captures and inbound lead volume scaling through months 3 to 6.',
                 'category' => 'Growth & Timeline',
                 'sort_order' => 3,

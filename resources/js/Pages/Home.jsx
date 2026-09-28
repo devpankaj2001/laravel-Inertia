@@ -7,7 +7,7 @@ export default function Home({
   seo = {},
 }) {
   useEffect(() => {
-    // 1. Initialize WEBRANKER SERVICES Interactive Matrix Tabs
+    // 1. Initialize RANKEXA SERVICES Interactive Matrix Tabs
     const svcCards = document.querySelectorAll('#svcCardsContainer .svc-grid-card');
     const activeNum = document.getElementById('activeSvcNum');
     const activeCategory = document.getElementById('activeSvcCategory');
@@ -196,7 +196,7 @@ export default function Home({
       locListeners.push({ card: c, listener });
     });
 
-    // 5. Initialize Why WebRanker Feature Showcase Tabs
+    // 5. Initialize Why Rankexa Feature Showcase Tabs
     const featureTabs = document.querySelectorAll('.ai-feature-tab-btn');
     const featurePanes = document.querySelectorAll('.ai-feature-pane');
     const featureListeners = [];

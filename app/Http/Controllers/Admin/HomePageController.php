@@ -19,7 +19,7 @@ class HomePageController extends Controller
             'kicker' => SiteSetting::get('home_hero_kicker', 'SEO, Web Design & Digital Marketing'),
             'title' => SiteSetting::get('home_hero_title', 'Smooth and grow your business.'),
             'title_accent' => SiteSetting::get('home_hero_title_accent', 'From search to sales.'),
-            'lead' => SiteSetting::get('home_hero_lead', 'WebRanker is a results-driven digital agency. We design fast, conversion-ready websites and grow brands with SEO, PPC, social, content, and email — so you rank higher, attract the right traffic, and convert it into revenue.'),
+            'lead' => SiteSetting::get('home_hero_lead', 'Rankexa is a results-driven digital agency. We design fast, conversion-ready websites and grow brands with SEO, PPC, social, content, and email — so you rank higher, attract the right traffic, and convert it into revenue.'),
             'cta_text' => SiteSetting::get('home_hero_cta_text', 'Claim Free Growth Audit'),
             'cta_link' => SiteSetting::get('home_hero_cta_link', '#consultation'),
             'secondary_text' => SiteSetting::get('home_hero_secondary_text', 'See our services'),
@@ -36,8 +36,8 @@ class HomePageController extends Controller
 
         // 2. Local Business Schema (Jaipur HQ / Local SEO)
         $localBusiness = SiteSetting::get('schema_local_business', [
-            'name' => 'WebRanker Technologies HQ',
-            'legal_name' => 'WebRanker Digital & Engineering Solutions Pvt. Ltd.',
+            'name' => 'Rankexa Technologies HQ',
+            'legal_name' => 'Rankexa Digital & Engineering Solutions Pvt. Ltd.',
             'image' => 'asset/logo.svg',
             'street_address' => 'Plot no. 51, Shaheed Amit Bhardwaj Marg, opp. 8/1, Sector 8, Malviya Nagar, Jaipur, Rajasthan 302017',
             'address_locality' => 'Jaipur',
@@ -45,7 +45,7 @@ class HomePageController extends Controller
             'postal_code' => '302017',
             'address_country' => 'IN',
             'telephone' => '+91 97185 70218',
-            'email' => 'growth@webranker.com',
+            'email' => 'growth@rankexa.in',
             'latitude' => '26.844394',
             'longitude' => '75.805302',
             'price_range' => '$$$',
@@ -56,19 +56,19 @@ class HomePageController extends Controller
 
         // 3. Organization & Corporate Business Schema
         $organization = SiteSetting::get('schema_organization', [
-            'name' => 'WebRanker',
-            'legal_name' => 'WebRanker Digital Global Enterprise Ltd.',
-            'alternate_name' => 'WebRanker SEO & Tech Labs',
+            'name' => 'Rankexa',
+            'legal_name' => 'Rankexa Digital Global Enterprise Ltd.',
+            'alternate_name' => 'Rankexa SEO & Tech Labs',
             'founding_date' => '2020-01-15',
             'founder_name' => 'Alexander Reed',
             'logo_url' => 'asset/logo.svg',
             'customer_service_phone' => '+91 97185 70218',
-            'customer_service_email' => 'support@webranker.com',
+            'customer_service_email' => 'support@rankexa.in',
             'social_links' => [
-                'https://twitter.com/webranker',
-                'https://linkedin.com/company/webranker',
-                'https://facebook.com/webranker',
-                'https://github.com/webranker',
+                'https://twitter.com/rankexa',
+                'https://linkedin.com/company/rankexa',
+                'https://facebook.com/rankexa',
+                'https://github.com/rankexa',
             ],
         ]);
 
@@ -79,7 +79,7 @@ class HomePageController extends Controller
                 [
                     '@context' => 'https://schema.org',
                     '@type' => 'ProfessionalService',
-                    'name' => 'WebRanker Search & Web Engineering',
+                    'name' => 'Rankexa Search & Web Engineering',
                     'image' => asset('asset/logo.svg'),
                     'priceRange' => '$$$',
                     'telephone' => '+91 97185 70218',
@@ -104,13 +104,13 @@ class HomePageController extends Controller
 
         // 5. SEO & Meta Tags
         $seo = SiteSetting::get('schema_seo', [
-            'meta_title' => 'WebRanker | Web & App Development, SEO, Content & Performance Optimization',
-            'meta_description' => 'WebRanker is an elite engineering and organic search agency specializing in Web Development, Mobile Apps, Technical SEO, Topical Content, and Site Speed Optimization.',
+            'meta_title' => 'Rankexa.in | Web & App Development, SEO, Content & Performance Optimization',
+            'meta_description' => 'Rankexa is an elite engineering and organic search agency specializing in Web Development, Mobile Apps, Technical SEO, Topical Content, and Site Speed Optimization.',
             'meta_keywords' => 'web development, mobile app development, technical SEO, organic search ranking, site speed optimization, core web vitals',
-            'og_title' => 'WebRanker | Top #1 Organic Growth & Engineering',
+            'og_title' => 'Rankexa | Top #1 Organic Growth & Engineering',
             'og_description' => 'Turn search traffic into revenue with sub-second web performance, custom app architectures, and high-impact SEO.',
             'og_image' => 'asset/logo.svg',
-            'twitter_handle' => '@webranker',
+            'twitter_handle' => '@rankexa',
             'robots_directive' => 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
             'google_site_verification' => '',
             'bing_site_verification' => '',
@@ -170,8 +170,8 @@ class HomePageController extends Controller
         if ($section === 'local') {
             // Local Business Schema JSON-LD
             $local = [
-                'name' => $request->input('local_name', 'WebRanker Technologies HQ'),
-                'legal_name' => $request->input('local_legal_name', 'WebRanker Digital & Engineering Solutions Pvt. Ltd.'),
+                'name' => $request->input('local_name', 'Rankexa Technologies HQ'),
+                'legal_name' => $request->input('local_legal_name', 'Rankexa Digital & Engineering Solutions Pvt. Ltd.'),
                 'image' => $request->input('local_image', 'asset/logo.svg'),
                 'street_address' => $request->input('local_street_address', ''),
                 'address_locality' => $request->input('local_address_locality', 'Jaipur'),
@@ -179,7 +179,7 @@ class HomePageController extends Controller
                 'postal_code' => $request->input('local_postal_code', '302017'),
                 'address_country' => $request->input('local_address_country', 'IN'),
                 'telephone' => $request->input('local_telephone', '+91 97185 70218'),
-                'email' => $request->input('local_email', 'growth@webranker.com'),
+                'email' => $request->input('local_email', 'growth@rankexa.in'),
                 'latitude' => $request->input('local_latitude', '26.844394'),
                 'longitude' => $request->input('local_longitude', '75.805302'),
                 'price_range' => $request->input('local_price_range', '$$$'),
@@ -199,14 +199,14 @@ class HomePageController extends Controller
             $socialArray = array_values(array_filter(array_map('trim', explode("\n", str_replace("\r", "", $rawSocial)))));
 
             $org = [
-                'name' => $request->input('org_name', 'WebRanker'),
+                'name' => $request->input('org_name', 'Rankexa'),
                 'legal_name' => $request->input('org_legal_name', ''),
                 'alternate_name' => $request->input('org_alternate_name', ''),
                 'founding_date' => $request->input('org_founding_date', '2020-01-15'),
                 'founder_name' => $request->input('org_founder_name', 'Alexander Reed'),
                 'logo_url' => $request->input('org_logo_url', 'asset/logo.svg'),
                 'customer_service_phone' => $request->input('org_phone', '+91 97185 70218'),
-                'customer_service_email' => $request->input('org_email', 'support@webranker.com'),
+                'customer_service_email' => $request->input('org_email', 'support@rankexa.in'),
                 'social_links' => $socialArray,
             ];
 
@@ -243,7 +243,7 @@ class HomePageController extends Controller
                 'og_title' => $request->input('og_title', ''),
                 'og_description' => $request->input('og_description', ''),
                 'og_image' => $request->input('og_image', 'asset/logo.svg'),
-                'twitter_handle' => $request->input('twitter_handle', '@webranker'),
+                'twitter_handle' => $request->input('twitter_handle', '@rankexa'),
                 'robots_directive' => $request->input('robots_directive', 'index, follow, max-image-preview:large'),
                 'google_site_verification' => $request->input('google_site_verification', ''),
                 'bing_site_verification' => $request->input('bing_site_verification', ''),

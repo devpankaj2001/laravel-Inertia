@@ -35,7 +35,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
             return redirect()->intended(route('admin.dashboard'))
-                ->with('success', 'Welcome back to the WebRanker Administration Console.');
+                ->with('success', 'Welcome back to the Rankexa Administration Console.');
         }
 
         return back()->withErrors([

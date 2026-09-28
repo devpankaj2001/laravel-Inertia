@@ -47,7 +47,7 @@
             {{ $post->author_initials }}
           </span>
           <div class="text-left">
-            <p class="font-extrabold text-white text-sm">{{ $post->author_name ?? 'WebRanker Team' }}</p>
+            <p class="font-extrabold text-white text-sm">{{ $post->author_name ?? 'Rankexa Team' }}</p>
             <p class="text-[11px] text-slate-400">{{ $post->author_role ?? 'Technical Specialist' }}</p>
           </div>
         </div>
@@ -206,12 +206,12 @@
                 {{ $post->author_initials }}
               </span>
               <div>
-                <h5 class="font-black text-[#161514] text-base">{{ $post->author_name ?? 'WebRanker Team' }}</h5>
+                <h5 class="font-black text-[#161514] text-base">{{ $post->author_name ?? 'Rankexa Team' }}</h5>
                 <p class="text-xs text-[#ff3b30] font-semibold">{{ $post->author_role ?? 'Technical Specialist' }}</p>
               </div>
             </div>
             <p class="text-xs text-[#6e675f] leading-relaxed">
-              Leading engineering strategy, high-concurrency cloud deployments, and production generative AI architecture at WebRanker.
+              Leading engineering strategy, high-concurrency cloud deployments, and production generative AI architecture at Rankexa.
             </p>
           </div>
 

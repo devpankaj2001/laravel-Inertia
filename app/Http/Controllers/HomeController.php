@@ -47,7 +47,7 @@ class HomeController extends Controller
             'kicker' => SiteSetting::get('home_hero_kicker', 'SEO, Web Design & Digital Marketing'),
             'title' => SiteSetting::get('home_hero_title', 'Smooth and grow your business.'),
             'title_accent' => SiteSetting::get('home_hero_title_accent', 'From search to sales.'),
-            'lead' => SiteSetting::get('home_hero_lead', 'WebRanker is a results-driven digital agency. We design fast, conversion-ready websites and grow brands with SEO, PPC, social, content, and email — so you rank higher, attract the right traffic, and convert it into revenue.'),
+            'lead' => SiteSetting::get('home_hero_lead', 'Rankexa is a results-driven digital agency. We design fast, conversion-ready websites and grow brands with SEO, PPC, social, content, and email — so you rank higher, attract the right traffic, and convert it into revenue.'),
             'cta_text' => SiteSetting::get('home_hero_cta_text', 'Claim Free Growth Audit'),
             'cta_link' => SiteSetting::get('home_hero_cta_link', '#consultation'),
             'secondary_text' => SiteSetting::get('home_hero_secondary_text', 'See our services'),
@@ -75,9 +75,9 @@ class HomeController extends Controller
             'enable_custom_jsonld' => true,
         ]);
 
-        $siteName = $seoSettings['meta_title'] ?? SiteSetting::get('site_name', 'WebRanker');
-        $metaTitle = $seoSettings['meta_title'] ?? SiteSetting::get('meta_title', 'WebRanker | Web & App Development, SEO, Content & Performance Optimization');
-        $metaDescription = $seoSettings['meta_description'] ?? SiteSetting::get('meta_description', 'WebRanker is an elite engineering and organic search agency specializing in Web Development, Mobile Apps, Technical SEO, Topical Content, and Site Speed Optimization.');
+        $siteName = $seoSettings['meta_title'] ?? SiteSetting::get('site_name', 'Rankexa');
+        $metaTitle = $seoSettings['meta_title'] ?? SiteSetting::get('meta_title', 'Rankexa.in | Web & App Development, SEO, Content & Performance Optimization');
+        $metaDescription = $seoSettings['meta_description'] ?? SiteSetting::get('meta_description', 'Rankexa is an elite engineering and organic search agency specializing in Web Development, Mobile Apps, Technical SEO, Topical Content, and Site Speed Optimization.');
         $metaKeywords = $seoSettings['meta_keywords'] ?? SiteSetting::get('meta_keywords', 'web development, mobile app development, technical SEO, core web vitals, ecommerce development, AI automation');
         $ogImage = asset($seoSettings['og_image'] ?? SiteSetting::get('og_image', 'asset/logo.svg'));
         $canonicalUrl = url()->current();
@@ -93,9 +93,9 @@ class HomeController extends Controller
                 '@context' => 'https://schema.org',
                 '@type' => 'Organization',
                 '@id' => url('/') . '/#organization',
-                'name' => $orgSettings['name'] ?? 'WebRanker',
-                'legalName' => $orgSettings['legal_name'] ?? 'WebRanker Digital Global Enterprise Ltd.',
-                'alternateName' => $orgSettings['alternate_name'] ?? 'WebRanker SEO & Tech Labs',
+                'name' => $orgSettings['name'] ?? 'Rankexa',
+                'legalName' => $orgSettings['legal_name'] ?? 'Rankexa Digital Global Enterprise Ltd.',
+                'alternateName' => $orgSettings['alternate_name'] ?? 'Rankexa SEO & Tech Labs',
                 'url' => url('/'),
                 'logo' => [
                     '@type' => 'ImageObject',
@@ -110,7 +110,7 @@ class HomeController extends Controller
                     '@type' => 'ContactPoint',
                     'telephone' => $orgSettings['customer_service_phone'] ?? SiteSetting::get('contact_phone', '+91 (141) 234-5678'),
                     'contactType' => 'customer service',
-                    'email' => $orgSettings['customer_service_email'] ?? SiteSetting::get('contact_email', 'growth@webranker.com'),
+                    'email' => $orgSettings['customer_service_email'] ?? SiteSetting::get('contact_email', 'growth@rankexa.in'),
                     'areaServed' => 'Worldwide',
                     'availableLanguage' => ['English'],
                 ],
@@ -143,11 +143,11 @@ class HomeController extends Controller
                 '@context' => 'https://schema.org',
                 '@type' => ['ProfessionalService', 'LocalBusiness'],
                 '@id' => url('/') . '/#localbusiness',
-                'name' => $localSettings['name'] ?? 'WebRanker Technologies HQ',
-                'legalName' => $localSettings['legal_name'] ?? 'WebRanker Digital & Engineering Solutions Pvt. Ltd.',
+                'name' => $localSettings['name'] ?? 'Rankexa Technologies HQ',
+                'legalName' => $localSettings['legal_name'] ?? 'Rankexa Digital & Engineering Solutions Pvt. Ltd.',
                 'image' => asset($localSettings['image'] ?? 'asset/logo.svg'),
                 'telephone' => $localSettings['telephone'] ?? SiteSetting::get('contact_phone', '+91 (141) 234-5678'),
-                'email' => $localSettings['email'] ?? SiteSetting::get('contact_email', 'growth@webranker.com'),
+                'email' => $localSettings['email'] ?? SiteSetting::get('contact_email', 'growth@rankexa.in'),
                 'priceRange' => $localSettings['price_range'] ?? '$$$',
                 'currenciesAccepted' => $localSettings['currencies_accepted'] ?? 'USD, EUR, GBP, INR',
                 'areaServed' => $localSettings['area_served'] ?? 'Worldwide',
@@ -203,6 +203,7 @@ class HomeController extends Controller
                         'item' => [
                             '@type' => 'Service',
                             'name' => $svc->title,
+                            'url' => route('services.show', $svc->slug),
                             'description' => $svc->short_description,
                             'provider' => [
                                 '@id' => url('/') . '/#organization',
@@ -264,6 +265,16 @@ class HomeController extends Controller
                 'schemas' => $schemas,
                 'customJsonLd' => $customJsonLd,
             ],
-        ]);
+        ])->withViewData(compact(
+            'metaTitle',
+            'metaDescription',
+            'metaKeywords',
+            'canonicalUrl',
+            'ogImage',
+            'googleVerification',
+            'bingVerification',
+            'schemas',
+            'customJsonLd'
+        ));
     }
 }

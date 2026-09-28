@@ -25,8 +25,8 @@ class ServicePageController extends Controller
         $allServices = $query->get();
         $categories = Service::select('category')->distinct()->pluck('category')->filter()->values();
 
-        $metaTitle = "Enterprise Web, App & SEO Services Catalog | WebRanker";
-        $metaDescription = "Explore WebRanker's full suite of engineering, technical SEO, mobile application, and AI automation solutions engineered for #1 organic rankings and sub-second performance.";
+        $metaTitle = "Enterprise Web, App & SEO Services Catalog | Rankexa.in";
+        $metaDescription = "Explore Rankexa's full suite of engineering, technical SEO, mobile application, and AI automation solutions engineered for #1 organic rankings and sub-second performance.";
         $metaKeywords = "web development services, technical SEO services, mobile app development, custom software, digital marketing";
         $canonicalUrl = url('/services');
         $ogImage = asset('asset/logo.svg');
@@ -104,11 +104,11 @@ class ServicePageController extends Controller
 
         // Retrieve LocalBusiness & Organization settings
         $localBusinessData = SiteSetting::get('schema_local_business', [
-            'name' => 'WebRanker Technologies HQ',
-            'legal_name' => 'WebRanker Digital & Engineering Solutions Pvt. Ltd.',
+            'name' => 'Rankexa Technologies HQ',
+            'legal_name' => 'Rankexa Digital & Engineering Solutions Pvt. Ltd.',
             'image' => asset('asset/logo.svg'),
             'telephone' => '+91 97185 70218',
-            'email' => 'growth@webranker.com',
+            'email' => 'info@rankexa.in',
             'street_address' => 'Plot no. 51, Shaheed Amit Bhardwaj Marg, opp. 8/1, Sector 8, Malviya Nagar',
             'address_locality' => 'Jaipur',
             'address_region' => 'Rajasthan',
@@ -121,15 +121,15 @@ class ServicePageController extends Controller
         ]);
 
         $orgData = SiteSetting::get('schema_organization', [
-            'name' => 'WebRanker',
-            'legal_name' => 'WebRanker Digital Global Enterprise Ltd.',
+            'name' => 'Rankexa',
+            'legal_name' => 'Rankexa Digital Global Enterprise Ltd.',
             'logo_url' => asset('asset/logo.svg'),
             'customer_service_phone' => '+91 97185 70218',
-            'customer_service_email' => 'support@webranker.com',
+            'customer_service_email' => 'support@rankexa.in',
             'social_links' => [
-                'https://twitter.com/webranker',
-                'https://linkedin.com/company/webranker',
-                'https://github.com/webranker',
+                'https://twitter.com/rankexa',
+                'https://linkedin.com/company/rankexa',
+                'https://github.com/rankexa',
             ],
         ]);
 

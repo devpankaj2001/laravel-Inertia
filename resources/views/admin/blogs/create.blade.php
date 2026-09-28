@@ -389,7 +389,7 @@
             SEO Title Tag <span class="text-slate-500 lowercase">(Recommended: 50-60 chars)</span>
           </label>
           <input type="text" id="metaTitleInput" name="meta_title" value="{{ old('meta_title') }}"
-                 placeholder="e.g. Data Engineering Patterns for ML Feature Stores | WebRanker AI"
+                 placeholder="e.g. Data Engineering Patterns for ML Feature Stores | Rankexa.in AI"
                  class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-[#ff3b30] text-sm">
         </div>
 

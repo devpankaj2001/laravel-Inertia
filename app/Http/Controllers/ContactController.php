@@ -11,7 +11,7 @@ use Inertia\Inertia;
 class ContactController extends Controller
 {
     /**
-     * Display the official WebRanker Contact & Growth Consultation Page.
+     * Display the official Rankexa Contact & Growth Consultation Page.
      */
     public function index(Request $request)
     {
@@ -47,8 +47,8 @@ class ContactController extends Controller
         ];
 
         // SEO Meta & Canonical Setup
-        $metaTitle = "Contact Us | WebRanker - Enterprise SEO & Web Engineering Agency";
-        $metaDescription = "Connect with WebRanker's senior SEO engineers and growth architects. Schedule a free organic audit, discuss custom web development, or request technical consulting.";
+        $metaTitle = "Contact Us | Rankexa.in - Enterprise SEO & Web Engineering Agency";
+        $metaDescription = "Connect with Rankexa's senior SEO engineers and growth architects. Schedule a free organic audit, discuss custom web development, or request technical consulting.";
         $canonicalUrl = route('contact');
 
         $schemas = [

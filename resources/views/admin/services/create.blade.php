@@ -359,9 +359,9 @@
             <span id="metaTitleCount" class="text-[11px] font-mono text-slate-500">0 / 60</span>
           </div>
           <input type="text" id="metaTitleInput" name="meta_title" value="{{ old('meta_title') }}"
-                 placeholder="e.g. Next.js &amp; Custom Web Development Services | WebRanker"
+                 placeholder="e.g. Next.js &amp; Custom Web Development Services | Rankexa.in"
                  class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-[#ff3b30] text-sm">
-          <p class="text-[11px] text-slate-500">Leave blank to automatically synthesize: <code class="text-slate-400">[Service Title] | WebRanker</code></p>
+          <p class="text-[11px] text-slate-500">Leave blank to automatically synthesize: <code class="text-slate-400">[Service Title] | Rankexa.in</code></p>
         </div>
 
         <!-- Meta Description -->

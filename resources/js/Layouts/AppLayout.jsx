@@ -32,7 +32,7 @@ export default function AppLayout({
     setLinkModalData({
       isOpen: true,
       targetPageUrl: url || (typeof window !== 'undefined' ? window.location.href : ''),
-      targetPageTitle: title || 'WebRanker Page',
+      targetPageTitle: title || 'Rankexa Page',
     });
   };
 

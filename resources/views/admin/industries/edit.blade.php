@@ -318,7 +318,7 @@
         <div>
           <h3 class="text-sm font-extrabold uppercase tracking-wider text-white flex items-center gap-2">
             <i class="fas fa-scale-balanced text-[#ff3b30]"></i>
-            <span>4. Industry Challenges vs WebRanker Engineering Solutions</span>
+            <span>4. Industry Challenges vs Rankexa Engineering Solutions</span>
           </h3>
           <p class="text-xs text-slate-400 mt-1">Showcase the typical failure points in this industry vs our modern solutions.</p>
         </div>
@@ -348,7 +348,7 @@
                 <textarea name="challenge_descriptions[]" rows="2" placeholder="Details..." class="w-full px-3 py-2 bg-slate-900 border border-slate-800 rounded-lg text-xs text-slate-300 mt-1">{{ $chal['description'] ?? '' }}</textarea>
               </div>
               <div class="space-y-1">
-                <label class="block text-[11px] font-bold uppercase text-emerald-400">WebRanker Engineering Solution</label>
+                <label class="block text-[11px] font-bold uppercase text-emerald-400">Rankexa Engineering Solution</label>
                 <input type="text" name="solution_titles[]" value="{{ $solutions[$idx]['title'] ?? '' }}" placeholder="Solution Title" class="w-full px-3 py-2 bg-slate-900 border border-slate-800 rounded-lg text-xs text-white">
                 <textarea name="solution_descriptions[]" rows="2" placeholder="How our architecture solves it..." class="w-full px-3 py-2 bg-slate-900 border border-slate-800 rounded-lg text-xs text-slate-300 mt-1">{{ $solutions[$idx]['description'] ?? '' }}</textarea>
               </div>
@@ -379,7 +379,7 @@
       <div id="faqContainer" class="space-y-3">
         @php
           $faqs = $industry->faqs ?: [
-            ['question' => "How does WebRanker's engineering approach accelerate {$industry->name} growth?", 'answer' => "We combine sub-second edge architectures, automated Schema.org entity indexing, and bulletproof security to drive both higher conversion rates and top organic Google rankings."],
+            ['question' => "How does Rankexa's engineering approach accelerate {$industry->name} growth?", 'answer' => "We combine sub-second edge architectures, automated Schema.org entity indexing, and bulletproof security to drive both higher conversion rates and top organic Google rankings."],
             ['question' => "Do you handle integrations with existing internal legacy software?", 'answer' => "Yes, our team specializes in building resilient API bridges, background webhook queues, and zero-downtime data synchronization pipelines."]
           ];
         @endphp
@@ -408,7 +408,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div class="space-y-1.5">
           <label class="block text-xs font-bold uppercase tracking-wider text-slate-300">Meta Title Tag</label>
-          <input type="text" name="meta_title" value="{{ old('meta_title', $industry->meta_title) }}" placeholder="Defaults to: [Name] Digital Engineering &amp; SEO Architecture | WebRanker" class="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white focus:outline-none focus:border-[#ff3b30]">
+          <input type="text" name="meta_title" value="{{ old('meta_title', $industry->meta_title) }}" placeholder="Defaults to: [Name] Digital Engineering &amp; SEO Architecture | Rankexa.in" class="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white focus:outline-none focus:border-[#ff3b30]">
         </div>
 
         <div class="space-y-1.5">
@@ -681,7 +681,7 @@
           <textarea name="challenge_descriptions[]" rows="2" placeholder="Details of how legacy systems fail..." class="w-full px-3 py-2 bg-slate-900 border border-slate-800 rounded-lg text-xs text-slate-300 mt-1"></textarea>
         </div>
         <div class="space-y-1">
-          <label class="block text-[11px] font-bold uppercase text-emerald-400">WebRanker Engineering Solution</label>
+          <label class="block text-[11px] font-bold uppercase text-emerald-400">Rankexa Engineering Solution</label>
           <input type="text" name="solution_titles[]" placeholder="Solution Title" class="w-full px-3 py-2 bg-slate-900 border border-slate-800 rounded-lg text-xs text-white">
           <textarea name="solution_descriptions[]" rows="2" placeholder="How our architecture solves it..." class="w-full px-3 py-2 bg-slate-900 border border-slate-800 rounded-lg text-xs text-slate-300 mt-1"></textarea>
         </div>

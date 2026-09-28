@@ -15,8 +15,8 @@ class SchemaController extends Controller
     public function index()
     {
         $localBusiness = SiteSetting::get('schema_local_business', [
-            'name' => 'WebRanker Technologies HQ',
-            'legal_name' => 'WebRanker Digital & Engineering Solutions Pvt. Ltd.',
+            'name' => 'Rankexa Technologies HQ',
+            'legal_name' => 'Rankexa Digital & Engineering Solutions Pvt. Ltd.',
             'image' => 'asset/logo.svg',
             'street_address' => 'Plot no. 51, Shaheed Amit Bhardwaj Marg, opp. 8/1, Sector 8, Malviya Nagar, Jaipur, Rajasthan 302017',
             'address_locality' => 'Jaipur',
@@ -24,7 +24,7 @@ class SchemaController extends Controller
             'postal_code' => '302017',
             'address_country' => 'IN',
             'telephone' => '+91 97185 70218',
-            'email' => 'growth@webranker.com',
+            'email' => 'growth@rankexa.in',
             'latitude' => '26.844394',
             'longitude' => '75.805302',
             'price_range' => '$$$',
@@ -34,30 +34,30 @@ class SchemaController extends Controller
         ]);
 
         $organization = SiteSetting::get('schema_organization', [
-            'name' => 'WebRanker',
-            'legal_name' => 'WebRanker Digital Global Enterprise Ltd.',
-            'alternate_name' => 'WebRanker SEO & Tech Labs',
+            'name' => 'Rankexa',
+            'legal_name' => 'Rankexa Digital Global Enterprise Ltd.',
+            'alternate_name' => 'Rankexa SEO & Tech Labs',
             'founding_date' => '2020-01-15',
             'founder_name' => 'Alexander Reed',
             'logo_url' => 'asset/logo.svg',
             'customer_service_phone' => '+91 (141) 234-5678',
-            'customer_service_email' => 'support@webranker.com',
+            'customer_service_email' => 'support@rankexa.in',
             'social_links' => [
-                'https://twitter.com/webranker',
-                'https://linkedin.com/company/webranker',
-                'https://facebook.com/webranker',
-                'https://github.com/webranker',
+                'https://twitter.com/rankexa',
+                'https://linkedin.com/company/rankexa',
+                'https://facebook.com/rankexa',
+                'https://github.com/rankexa',
             ],
         ]);
 
         $seo = SiteSetting::get('schema_seo', [
-            'meta_title' => 'WebRanker | Web & App Development, SEO, Content & Performance Optimization',
-            'meta_description' => 'WebRanker is an elite engineering and organic search agency specializing in Web Development, Mobile Apps, Technical SEO, Topical Content, and Site Speed Optimization.',
+            'meta_title' => 'Rankexa.in | Web & App Development, SEO, Content & Performance Optimization',
+            'meta_description' => 'Rankexa is an elite engineering and organic search agency specializing in Web Development, Mobile Apps, Technical SEO, Topical Content, and Site Speed Optimization.',
             'meta_keywords' => 'web development, mobile app development, technical SEO, organic search ranking, site speed optimization, core web vitals',
-            'og_title' => 'WebRanker | Top #1 Organic Growth & Engineering',
+            'og_title' => 'Rankexa | Top #1 Organic Growth & Engineering',
             'og_description' => 'Turn search traffic into revenue with sub-second web performance, custom app architectures, and high-impact SEO.',
             'og_image' => 'asset/logo.svg',
-            'twitter_handle' => '@webranker',
+            'twitter_handle' => '@rankexa',
             'robots_directive' => 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
             'google_site_verification' => '',
             'bing_site_verification' => '',
@@ -69,7 +69,7 @@ class SchemaController extends Controller
                 [
                     '@context' => 'https://schema.org',
                     '@type' => 'SoftwareApplication',
-                    'name' => 'WebRanker Core Performance Audit Engine',
+                    'name' => 'Rankexa Core Performance Audit Engine',
                     'operatingSystem' => 'All Web Platforms',
                     'applicationCategory' => 'BusinessApplication',
                     'offers' => [
@@ -102,7 +102,7 @@ class SchemaController extends Controller
 
         if ($section === 'local' || $section === 'all') {
             $localData = [
-                'name' => $request->input('local_name', 'WebRanker Technologies HQ'),
+                'name' => $request->input('local_name', 'Rankexa Technologies HQ'),
                 'legal_name' => $request->input('local_legal_name'),
                 'image' => $request->input('local_image', 'asset/logo.svg'),
                 'street_address' => $request->input('local_street_address'),
@@ -125,7 +125,7 @@ class SchemaController extends Controller
         if ($section === 'organization' || $section === 'all') {
             $socialLinks = array_filter(array_map('trim', explode("\n", (string) $request->input('org_social_links', ''))));
             $orgData = [
-                'name' => $request->input('org_name', 'WebRanker'),
+                'name' => $request->input('org_name', 'Rankexa'),
                 'legal_name' => $request->input('org_legal_name'),
                 'alternate_name' => $request->input('org_alternate_name'),
                 'founding_date' => $request->input('org_founding_date'),
@@ -146,7 +146,7 @@ class SchemaController extends Controller
                 'og_title' => $request->input('seo_og_title'),
                 'og_description' => $request->input('seo_og_description'),
                 'og_image' => $request->input('seo_og_image', 'asset/logo.svg'),
-                'twitter_handle' => $request->input('seo_twitter_handle', '@webranker'),
+                'twitter_handle' => $request->input('seo_twitter_handle', '@rankexa'),
                 'robots_directive' => $request->input('seo_robots_directive', 'index, follow'),
                 'google_site_verification' => $request->input('seo_google_site_verification'),
                 'bing_site_verification' => $request->input('seo_bing_site_verification'),

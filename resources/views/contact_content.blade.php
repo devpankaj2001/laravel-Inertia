@@ -115,7 +115,7 @@
 
           <!-- Trust Assurances Bento -->
           <div class="p-6 rounded-2xl bg-[#161514] text-white space-y-4 shadow-xl">
-            <p class="text-xs font-black uppercase tracking-widest text-[#ff3b30]">The WebRanker Guarantee</p>
+            <p class="text-xs font-black uppercase tracking-widest text-[#ff3b30]">The Rankexa Guarantee</p>
             <ul class="space-y-3 text-xs text-slate-300">
               <li class="flex items-center gap-2.5">
                 <i class="fas fa-shield-halved text-[#ff3b30]"></i>
@@ -289,7 +289,7 @@
           Frequently Asked Questions
         </h2>
         <p class="text-sm text-[#6e675f] mt-2">
-          Everything you need to know before initiating your growth consultation with WebRanker.
+          Everything you need to know before initiating your growth consultation with Rankexa.
         </p>
       </div>
 

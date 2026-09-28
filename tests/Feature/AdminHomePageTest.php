@@ -31,7 +31,7 @@ class AdminHomePageTest extends TestCase
      */
     public function test_admin_can_view_home_page_manager(): void
     {
-        $admin = User::where('email', 'admin@webranker.com')->first();
+        $admin = User::where('email', 'admin@rankexa.in')->first();
 
         $response = $this->actingAs($admin)->get('/admin/home-page');
         $response->assertStatus(200);
@@ -47,7 +47,7 @@ class AdminHomePageTest extends TestCase
      */
     public function test_admin_can_update_dynamic_home_content(): void
     {
-        $admin = User::where('email', 'admin@webranker.com')->first();
+        $admin = User::where('email', 'admin@rankexa.in')->first();
 
         $payload = [
             'section' => 'content',
@@ -84,7 +84,7 @@ class AdminHomePageTest extends TestCase
      */
     public function test_admin_can_update_local_schema_via_home_manager(): void
     {
-        $admin = User::where('email', 'admin@webranker.com')->first();
+        $admin = User::where('email', 'admin@rankexa.in')->first();
 
         $payload = [
             'section' => 'local',
@@ -121,7 +121,7 @@ class AdminHomePageTest extends TestCase
      */
     public function test_admin_can_inject_custom_schema_and_validate_syntax(): void
     {
-        $admin = User::where('email', 'admin@webranker.com')->first();
+        $admin = User::where('email', 'admin@rankexa.in')->first();
 
         // 1. Invalid JSON should fail with error
         $invalidPayload = [

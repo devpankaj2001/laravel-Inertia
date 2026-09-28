@@ -198,7 +198,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div class="space-y-1.5">
           <label class="block text-xs font-bold uppercase text-slate-300">Brand / Organization Name *</label>
-          <input type="text" name="org_name" value="{{ old('org_name', $organization['name'] ?? 'WebRanker') }}" required
+          <input type="text" name="org_name" value="{{ old('org_name', $organization['name'] ?? 'Rankexa') }}" required
                  class="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-white text-sm focus:border-[#ff3b30] focus:outline-none">
         </div>
 
@@ -251,7 +251,7 @@
           @endphp
           <textarea name="org_social_links" rows="5"
                     class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-white text-xs font-mono focus:border-[#ff3b30] focus:outline-none"
-                    placeholder="https://twitter.com/webranker&#10;https://linkedin.com/company/webranker&#10;https://facebook.com/webranker">{{ old('org_social_links', $socialLines) }}</textarea>
+                    placeholder="https://twitter.com/rankexa&#10;https://linkedin.com/company/rankexa&#10;https://facebook.com/rankexa">{{ old('org_social_links', $socialLines) }}</textarea>
           <p class="text-[11px] text-slate-500">Google uses these URLs to link social accounts to your official Knowledge Graph panel.</p>
         </div>
       </div>
@@ -317,7 +317,7 @@
 
           <div class="space-y-1.5">
             <label class="block text-xs font-bold uppercase text-slate-300">Twitter Handle</label>
-            <input type="text" name="seo_twitter_handle" value="{{ old('seo_twitter_handle', $seo['twitter_handle'] ?? '@webranker') }}"
+            <input type="text" name="seo_twitter_handle" value="{{ old('seo_twitter_handle', $seo['twitter_handle'] ?? '@rankexa') }}"
                    class="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-white text-sm focus:border-[#ff3b30] focus:outline-none">
           </div>
 
@@ -379,7 +379,7 @@
         <div class="relative">
           <textarea id="custom_jsonld_editor" name="custom_jsonld" rows="18"
                     class="w-full p-4 bg-slate-950 border border-slate-800 rounded-2xl text-emerald-400 font-mono text-xs leading-relaxed focus:border-[#ff3b30] focus:outline-none shadow-inner"
-                    placeholder='[&#10;  {&#10;    "@@context": "https://schema.org",&#10;    "@@type": "SoftwareApplication",&#10;    "name": "WebRanker Engine",&#10;    "applicationCategory": "BusinessApplication"&#10;  }&#10;]'>{{ old('custom_jsonld', $customJsonLdRaw) }}</textarea>
+                    placeholder='[&#10;  {&#10;    "@@context": "https://schema.org",&#10;    "@@type": "SoftwareApplication",&#10;    "name": "Rankexa Engine",&#10;    "applicationCategory": "BusinessApplication"&#10;  }&#10;]'>{{ old('custom_jsonld', $customJsonLdRaw) }}</textarea>
         </div>
 
         <div id="jsonValidationStatus" class="text-xs px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-400 flex items-center gap-2">

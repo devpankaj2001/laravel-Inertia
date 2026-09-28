@@ -216,7 +216,7 @@
                   Organizations in the <strong>{{ $industry->name }}</strong> sector frequently encounter severe bottlenecks: slow legacy databases, compliance vulnerabilities, high cart/quote bounce rates, and missed first-page search opportunities.
                 </p>
                 <p class="text-base text-[#4b5563] leading-relaxed">
-                  At <strong>WebRanker</strong>, we deliver tailored full-stack web and mobile engineering coupled with deep programmatic SEO. Whether you are modernizing core workflows, launching customer self-service portals, or optimizing high-traffic transactions, our senior architects build for sub-second speeds and commercial revenue scale.
+                  At <strong>Rankexa</strong>, we deliver tailored full-stack web and mobile engineering coupled with deep programmatic SEO. Whether you are modernizing core workflows, launching customer self-service portals, or optimizing high-traffic transactions, our senior architects build for sub-second speeds and commercial revenue scale.
                 </p>
               </div>
             @endif
@@ -266,7 +266,7 @@
                   </div>
                   <div class="space-y-2 md:border-l md:border-[#e6dfd3] md:pl-4">
                     <span class="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-wider text-emerald-600">
-                      <i class="fas fa-circle-check"></i> WebRanker Engineered Solution
+                      <i class="fas fa-circle-check"></i> Rankexa Engineered Solution
                     </span>
                     <h4 class="font-extrabold text-[#161514] text-base">{{ $solutions[$i]['title'] ?? 'Modern Architectural Fix' }}</h4>
                     <p class="text-xs text-[#6e675f] leading-relaxed">{{ $solutions[$i]['description'] ?? '' }}</p>
@@ -304,7 +304,7 @@
   @php
     $faqs = $industry->faqs ?: [
       [
-        'question' => "How does WebRanker ensure strict industry compliance for {$industry->name} builds?",
+        'question' => "How does Rankexa ensure strict industry compliance for {$industry->name} builds?",
         'answer' => "We implement automated security pipelines, end-to-end encryption, strict role-based access control (RBAC), and industry-specific certifications including HIPAA, PCI-DSS, SOC2, and GDPR."
       ],
       [

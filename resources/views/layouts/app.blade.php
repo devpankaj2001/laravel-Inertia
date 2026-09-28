@@ -120,7 +120,7 @@
     <div class="flex items-center justify-between w-full">
 
       <!-- Brand Logo -->
-      <a href="{{ route('home') }}" class="header-brand-wrap" aria-label="WebRanker Homepage">
+      <a href="{{ route('home') }}" class="header-brand-wrap" aria-label="Rankexa Homepage">
         <span class="header-brand-icon-box">
           <span class="header-brand-icon-wr">WR</span>
         </span>
@@ -312,7 +312,7 @@
       </div>
     </div>
     <div class="pt-6 border-t border-slate-800 text-center text-xs text-slate-400">
-      © {{ date('Y') }} WebRanker. Engineered for #1 Organic Rankings &amp; Peak Performance.
+      © {{ date('Y') }} Rankexa. Engineered for #1 Organic Rankings &amp; Peak Performance.
     </div>
   </div>
 
@@ -363,7 +363,7 @@
 
         <!-- Column 1: Brand & Enterprise Profile (Col span 4) -->
         <div class="lg:col-span-4 space-y-5">
-          <!-- WebRanker Brand Logo -->
+          <!-- Rankexa Brand Logo -->
           <a href="{{ route('home') }}" class="inline-flex items-center gap-3 text-2xl font-black text-[#161514] tracking-tight group">
             <svg class="w-8 h-8 flex-shrink-0 transition-transform group-hover:scale-105" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M8 10 V40 C8 44.4 11.6 48 16 48 H48" stroke="#161514" stroke-width="4.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -373,7 +373,7 @@
           </a>
 
           <p class="text-xs sm:text-sm text-[#6e675f] leading-relaxed font-medium">
-            WebRanker is an elite engineering and organic search agency. We architect sub-second web applications, mobile platforms, and high-impact SEO engines that drive commercial revenue scale.
+            Rankexa is an elite engineering and organic search agency. We architect sub-second web applications, mobile platforms, and high-impact SEO engines that drive commercial revenue scale.
           </p>
 
           <!-- System Status Pill -->
@@ -488,15 +488,15 @@
       <!-- Social & Ecosystem Connect Bar -->
       <div class="pt-8 border-t border-[#e6dfd3] flex flex-wrap items-center justify-between gap-4">
         <div class="flex flex-wrap items-center gap-2.5">
-          <a href="https://twitter.com/webranker" target="_blank" rel="noopener"
+          <a href="https://twitter.com/rankexa" target="_blank" rel="noopener"
              class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white hover:bg-[#161514] text-[#161514] hover:text-white border border-[#e6dfd3] text-xs font-bold transition-all shadow-2xs">
             <i class="fab fa-x-twitter text-xs"></i> <span>Twitter / X</span>
           </a>
-          <a href="https://linkedin.com/company/webranker" target="_blank" rel="noopener"
+          <a href="https://linkedin.com/company/rankexa" target="_blank" rel="noopener"
              class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white hover:bg-[#161514] text-[#161514] hover:text-white border border-[#e6dfd3] text-xs font-bold transition-all shadow-2xs">
             <i class="fab fa-linkedin-in text-xs text-blue-600"></i> <span>LinkedIn</span>
           </a>
-          <a href="https://github.com/webranker" target="_blank" rel="noopener"
+          <a href="https://github.com/rankexa" target="_blank" rel="noopener"
              class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white hover:bg-[#161514] text-[#161514] hover:text-white border border-[#e6dfd3] text-xs font-bold transition-all shadow-2xs">
             <i class="fab fa-github text-xs"></i> <span>GitHub</span>
           </a>
@@ -518,7 +518,7 @@
       <!-- Bottom Legal & Attribution Bar -->
       <div class="pt-6 border-t border-[#e6dfd3] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#6e675f] font-medium">
         <div>
-          © {{ date('Y') }} WebRanker Technologies Inc. All Rights Reserved. Engineered for #1 Organic Rankings &amp; Peak Performance.
+          © {{ date('Y') }} Rankexa Technologies Inc. All Rights Reserved. Engineered for #1 Organic Rankings &amp; Peak Performance.
         </div>
 
         <div class="flex items-center gap-5 text-xs text-[#7e766e]">
@@ -637,10 +637,10 @@
         <div class="ds-chat-header">
           <div class="ds-chat-header-id">
             <div class="ds-chat-header-avatar">
-              <img src="{{ asset('asset/chatbot_icon.png') }}" alt="WebRanker Assistant" class="ds-chat-header-avatar-img">
+              <img src="{{ asset('asset/chatbot_icon.png') }}" alt="Rankexa Assistant" class="ds-chat-header-avatar-img">
             </div>
             <div>
-              <h4 class="ds-chat-title">WebRanker Assistant</h4>
+              <h4 class="ds-chat-title">Rankexa Assistant</h4>
               <p class="ds-chat-status"><span class="ds-chat-status-dot"></span> Online · Instant reply</p>
             </div>
           </div>
@@ -655,7 +655,7 @@
               <img src="{{ asset('asset/chatbot_icon.png') }}" alt="Bot">
             </div>
             <div class="ds-chat-bubble ds-chat-bubble--bot">
-              Hello! Welcome to WebRanker. Ask about SEO, web design, Core Web Vitals, or claiming your free 48-hour growth audit.
+              Hello! Welcome to Rankexa. Ask about SEO, web design, Core Web Vitals, or claiming your free 48-hour growth audit.
             </div>
           </div>
         </div>
@@ -669,7 +669,7 @@
       </div>
     </div>
 
-    <!-- <button id="chatToggleBtn" class="ds-chat-launcher" type="button" aria-label="Open WebRanker Assistant"
+    <!-- <button id="chatToggleBtn" class="ds-chat-launcher" type="button" aria-label="Open Rankexa Assistant"
       aria-expanded="false">
       <span class="ds-chat-launcher-float">
         <img src="{{ asset('asset/chatbot_icon.png') }}" alt="Chat">
@@ -734,7 +734,7 @@
           .catch(err => {
             submitBtn.disabled = false;
             submitBtn.innerHTML = '<span>Submit Inquiry &amp; Claim Audit</span> <i class="fas fa-paper-plane ml-2 text-xs"></i>';
-            errorMsg.textContent = 'A network error occurred. Please try again or email growth@webranker.com.';
+            errorMsg.textContent = 'A network error occurred. Please try again or email info@rankexa.in.';
             errorMsg.classList.remove('hidden');
           });
         });
