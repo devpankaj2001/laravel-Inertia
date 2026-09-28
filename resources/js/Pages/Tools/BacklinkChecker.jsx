@@ -85,9 +85,8 @@ export default function BacklinkChecker({ seo }) {
   const [errorMsg, setErrorMsg] = useState('');
   const [result, setResult] = useState(null);
 
-  const handleAudit = async (e) => {
-    e.preventDefault();
-    if (!domain.trim()) {
+  const performAudit = async (targetDomain, targetEmail) => {
+    if (!targetDomain.trim()) {
       setErrorMsg('Please enter a target domain name.');
       return;
     }
@@ -105,8 +104,8 @@ export default function BacklinkChecker({ seo }) {
           'X-Requested-With': 'XMLHttpRequest',
         },
         body: JSON.stringify({
-          domain: domain.trim(),
-          email: email.trim() || undefined,
+          domain: targetDomain.trim(),
+          email: (targetEmail || email).trim() || undefined,
         }),
       });
 
@@ -123,6 +122,22 @@ export default function BacklinkChecker({ seo }) {
     }
   };
 
+  const handleAudit = (e) => {
+    if (e) e.preventDefault();
+    performAudit(domain, email);
+  };
+
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const urlDomain = (params.get('domain') || params.get('q') || '').trim();
+      if (urlDomain) {
+        setDomain(urlDomain);
+        performAudit(urlDomain, email);
+      }
+    }
+  }, []);
+
   return (
     <AppLayout seo={seo}>
       {({ openInquiry, openAudit }) => (
@@ -137,8 +152,11 @@ export default function BacklinkChecker({ seo }) {
                 <span>FREE DOMAIN AUTHORITY &amp; BACKLINK PROFILE AUDITOR</span>
               </div>
 
-              <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight mb-4">
-                Free Backlink &amp;{' '}
+              <h1
+                className="text-3xl sm:text-5xl font-black tracking-tight leading-tight mb-4 !text-white"
+                style={{ color: '#ffffff' }}
+              >
+                <span style={{ color: '#ffffff' }}>Free Backlink &amp; </span>
                 <span className="bg-gradient-to-r from-amber-400 via-orange-400 to-[#ff3b30] bg-clip-text text-transparent">
                   Domain Authority Checker
                 </span>
@@ -223,7 +241,7 @@ export default function BacklinkChecker({ seo }) {
                   <i className="fas fa-link text-amber-500"></i>
                 </div>
               </div>
-              <h3 className="text-xl font-black mb-2">Analyzing Domain Authority &amp; Web Graph...</h3>
+              <h3 className="text-xl font-black mb-2 !text-white" style={{ color: '#ffffff' }}>Analyzing Domain Authority &amp; Web Graph...</h3>
               <p className="text-slate-400 text-xs max-w-md mx-auto">
                 Calculating PageRank, evaluating Dofollow equity ratios, and consulting Groq AI for high-authority link strategies.
               </p>
@@ -237,8 +255,8 @@ export default function BacklinkChecker({ seo }) {
               <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-white/10">
                 <div>
                   <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400">Target Web Entity</span>
-                  <h2 className="text-2xl sm:text-3xl font-black text-white font-mono flex items-center gap-2">
-                    <span>{result.domain}</span>
+                  <h2 className="text-2xl sm:text-3xl font-black text-white font-mono flex items-center gap-2 !text-white" style={{ color: '#ffffff' }}>
+                    <span style={{ color: '#ffffff' }}>{result.domain}</span>
                   </h2>
                 </div>
                 <div className="flex items-center gap-2">
@@ -394,7 +412,7 @@ export default function BacklinkChecker({ seo }) {
               {/* Conversion CTA */}
               <div className="p-8 rounded-3xl bg-gradient-to-b from-[#22201e] to-[#181615] border border-white/10 text-center space-y-4">
                 <span className="text-[11px] font-bold text-[#ff3b30] uppercase tracking-wider">High-Authority Link Velocity</span>
-                <h3 className="text-xl sm:text-2xl font-black">
+                <h3 className="text-xl sm:text-2xl font-black !text-white" style={{ color: '#ffffff' }}>
                   Want 50+ High DA 70+ Dofollow Backlinks for Your Domain?
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto leading-relaxed">

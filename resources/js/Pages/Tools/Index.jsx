@@ -70,8 +70,13 @@ export default function ToolsIndex({ seo, recentKeywords = [], recentAudits = []
                 <span>100% FREE SEO &amp; PERFORMANCE TOOLS • NO SUBSCRIPTION REQUIRED</span>
               </div>
 
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight max-w-4xl mx-auto mb-6">
-                Rank Higher &amp; Scale Organic Traffic with{' '}
+              <h1
+                className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight max-w-4xl mx-auto mb-6 !text-white"
+                style={{ color: '#ffffff' }}
+              >
+                <span className="text-white" style={{ color: '#ffffff' }}>
+                  Rank Higher &amp; Scale Organic Traffic with
+                </span>{' '}
                 <span className="bg-gradient-to-r from-[#ff3b30] via-orange-400 to-red-400 bg-clip-text text-transparent">
                   Rankexa Free Tools
                 </span>
@@ -115,7 +120,10 @@ export default function ToolsIndex({ seo, recentKeywords = [], recentAudits = []
           <section className="py-20 relative">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-16">
-                <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-3">
+                <h2
+                  className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-3 !text-white"
+                  style={{ color: '#ffffff' }}
+                >
                   All-In-One Free Growth &amp; Diagnostic Suite
                 </h2>
                 <p className="text-slate-400 text-sm max-w-xl mx-auto">
@@ -140,7 +148,10 @@ export default function ToolsIndex({ seo, recentKeywords = [], recentAudits = []
                         </span>
                       </div>
 
-                      <h3 className="text-xl font-black text-white mb-2 group-hover:text-[#ff3b30] transition-colors">
+                      <h3
+                        className="text-xl font-black !text-white mb-2 group-hover:text-[#ff3b30] transition-colors"
+                        style={{ color: '#ffffff' }}
+                      >
                         {tool.title}
                       </h3>
                       <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6">
@@ -185,55 +196,6 @@ export default function ToolsIndex({ seo, recentKeywords = [], recentAudits = []
             </div>
           </section>
 
-          {/* Comparison vs Paid SEO Subscriptions */}
-          <section className="py-16 bg-[#121110] border-y border-white/10">
-            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center mb-12">
-                <span className="text-[11px] font-bold text-[#ff3b30] uppercase tracking-wider">Zero SaaS Markups</span>
-                <h2 className="text-2xl sm:text-3xl font-black mt-1">Why Pay $120/Month for Traditional SEO Tools?</h2>
-              </div>
-
-              <div className="overflow-x-auto">
-                <table className="w-full text-left text-xs border-collapse">
-                  <thead>
-                    <tr className="border-b border-white/10 text-slate-400 font-mono uppercase tracking-wider">
-                      <th className="py-4 px-4">Feature / Capability</th>
-                      <th className="py-4 px-4 text-[#ff3b30] font-black">Rankexa Free Suite</th>
-                      <th className="py-4 px-4 text-slate-500">Paid SEO Tools (Ahrefs/SEMrush)</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-white/5 text-slate-300">
-                    <tr>
-                      <td className="py-3.5 px-4 font-semibold text-white">Monthly Subscription Cost</td>
-                      <td className="py-3.5 px-4 font-black text-emerald-400">$0.00 / Free Forever</td>
-                      <td className="py-3.5 px-4 text-slate-500">$99.00 - $139.00 / Month</td>
-                    </tr>
-                    <tr>
-                      <td className="py-3.5 px-4 font-semibold text-white">Credit Card Required</td>
-                      <td className="py-3.5 px-4 text-emerald-400 font-semibold"><i className="fas fa-times-circle mr-1"></i> No Credit Card</td>
-                      <td className="py-3.5 px-4 text-slate-500">Mandatory for trial</td>
-                    </tr>
-                    <tr>
-                      <td className="py-3.5 px-4 font-semibold text-white">Real Google Mobile CWV Speed</td>
-                      <td className="py-3.5 px-4 text-emerald-400 font-semibold"><i className="fas fa-check-circle mr-1"></i> Included (FCP, LCP, CLS)</td>
-                      <td className="py-3.5 px-4 text-slate-500">Often third-party simulated</td>
-                    </tr>
-                    <tr>
-                      <td className="py-3.5 px-4 font-semibold text-white">AI Tactical Roadmap &amp; Action Plan</td>
-                      <td className="py-3.5 px-4 text-emerald-400 font-semibold"><i className="fas fa-check-circle mr-1"></i> Groq Llama 3.3 Powered</td>
-                      <td className="py-3.5 px-4 text-slate-500">Generic raw graphs</td>
-                    </tr>
-                    <tr>
-                      <td className="py-3.5 px-4 font-semibold text-white">Direct Engineering &amp; Fix Support</td>
-                      <td className="py-3.5 px-4 text-emerald-400 font-semibold"><i className="fas fa-check-circle mr-1"></i> 1-Click Consult with Principal Devs</td>
-                      <td className="py-3.5 px-4 text-slate-500">No implementation support</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </section>
-
           {/* CTA Lead Card */}
           <section className="py-20 relative overflow-hidden">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
@@ -241,7 +203,10 @@ export default function ToolsIndex({ seo, recentKeywords = [], recentAudits = []
                 <div className="w-14 h-14 rounded-2xl bg-[#ff3b30]/10 text-[#ff3b30] flex items-center justify-center text-2xl mx-auto mb-6 border border-[#ff3b30]/30">
                   <i className="fas fa-chart-line"></i>
                 </div>
-                <h3 className="text-2xl sm:text-4xl font-black mb-4">
+                <h3
+                  className="text-2xl sm:text-4xl font-black mb-4 !text-white"
+                  style={{ color: '#ffffff' }}
+                >
                   Need Page 1 Google Rankings or a High-Speed Redesign?
                 </h3>
                 <p className="text-slate-300 text-sm max-w-xl mx-auto mb-8 leading-relaxed">

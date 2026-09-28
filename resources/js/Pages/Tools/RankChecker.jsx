@@ -20,9 +20,8 @@ export default function RankChecker({ seo }) {
     { code: 'au', name: 'Australia (google.com.au)', flag: '🇦🇺' },
   ];
 
-  const handleSearch = async (e) => {
-    e.preventDefault();
-    if (!domain.trim() || !keyword.trim()) {
+  const performSearch = async (targetDomain, targetKeyword, targetCountry, targetEmail) => {
+    if (!targetDomain.trim() || !targetKeyword.trim()) {
       setErrorMsg('Please enter both your Target Domain and Target Keyword.');
       return;
     }
@@ -40,10 +39,10 @@ export default function RankChecker({ seo }) {
           'X-Requested-With': 'XMLHttpRequest',
         },
         body: JSON.stringify({
-          domain: domain.trim(),
-          keyword: keyword.trim(),
-          country,
-          email: email.trim() || undefined,
+          domain: targetDomain.trim(),
+          keyword: targetKeyword.trim(),
+          country: targetCountry || country,
+          email: (targetEmail || email).trim() || undefined,
         }),
       });
 
@@ -60,6 +59,40 @@ export default function RankChecker({ seo }) {
     }
   };
 
+  const handleSearch = (e) => {
+    if (e) e.preventDefault();
+    performSearch(domain, keyword, country, email);
+  };
+
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const urlDomain = (params.get('domain') || '').trim();
+      const urlKeyword = (params.get('keyword') || '').trim();
+      const urlQ = (params.get('q') || '').trim();
+      const urlCountry = (params.get('country') || '').trim();
+
+      let d = urlDomain;
+      let k = urlKeyword;
+
+      if (urlQ) {
+        if (!d && urlQ.includes('.') && !urlQ.includes(' ')) {
+          d = urlQ;
+        } else if (!k) {
+          k = urlQ;
+        }
+      }
+
+      if (d) setDomain(d);
+      if (k) setKeyword(k);
+      if (urlCountry) setCountry(urlCountry);
+
+      if (d && k) {
+        performSearch(d, k, urlCountry || country, email);
+      }
+    }
+  }, []);
+
   return (
     <AppLayout seo={seo}>
       {({ openInquiry, openAudit }) => (
@@ -74,8 +107,11 @@ export default function RankChecker({ seo }) {
                 <span>REAL-TIME GOOGLE SERP POSITION CHECKER • 100% FREE</span>
               </div>
 
-              <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight mb-4">
-                Free Google Keyword{' '}
+              <h1
+                className="text-3xl sm:text-5xl font-black tracking-tight leading-tight mb-4 !text-white"
+                style={{ color: '#ffffff' }}
+              >
+                <span style={{ color: '#ffffff' }}>Free Google Keyword </span>
                 <span className="bg-gradient-to-r from-[#ff3b30] via-orange-400 to-red-400 bg-clip-text text-transparent">
                   Ranking Checker
                 </span>
@@ -214,8 +250,8 @@ export default function RankChecker({ seo }) {
                       <span>•</span>
                       <span>Keyword: "{result.keyword}"</span>
                     </div>
-                    <h2 className="text-2xl sm:text-3xl font-black text-white flex items-center gap-3">
-                      <span>{result.domain}</span>
+                    <h2 className="text-2xl sm:text-3xl font-black text-white flex items-center gap-3 !text-white" style={{ color: '#ffffff' }}>
+                      <span style={{ color: '#ffffff' }}>{result.domain}</span>
                     </h2>
                   </div>
 
@@ -308,9 +344,9 @@ export default function RankChecker({ seo }) {
               {/* Top 3 Competitors Benchmark */}
               {result.competitors && result.competitors.length > 0 && (
                 <div className="p-6 rounded-3xl bg-[#1e1c1a] border border-white/10">
-                  <h3 className="text-base font-extrabold text-white mb-4 flex items-center gap-2">
+                  <h3 className="text-base font-extrabold text-white mb-4 flex items-center gap-2 !text-white" style={{ color: '#ffffff' }}>
                     <i className="fas fa-trophy text-amber-400"></i>
-                    <span>Top 3 Competitors Ranking in SERP</span>
+                    <span style={{ color: '#ffffff' }}>Top 3 Competitors Ranking in SERP</span>
                   </h3>
                   <div className="space-y-3">
                     {result.competitors.map((comp, idx) => (
@@ -368,7 +404,7 @@ export default function RankChecker({ seo }) {
               {/* Lead Conversion CTA Card */}
               <div className="p-8 rounded-3xl bg-gradient-to-b from-[#22201e] to-[#181615] border border-white/10 text-center space-y-4">
                 <span className="text-[11px] font-bold text-[#ff3b30] uppercase tracking-wider">Target Page 1 Top 3 Positions</span>
-                <h3 className="text-xl sm:text-2xl font-black">
+                <h3 className="text-xl sm:text-2xl font-black !text-white" style={{ color: '#ffffff' }}>
                   Want Rankexa's SEO Engineers to Drive Your Keyword to #1?
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto leading-relaxed">
