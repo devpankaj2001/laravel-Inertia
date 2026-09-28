@@ -263,6 +263,27 @@ export default function Footer({ onOpenInquiry, onOpenAudit }) {
               <span>Robots.txt</span>
             </a>
             <Link
+              href="/tools"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-[#e6dfd3] hover:text-[#ff3b30] font-semibold transition-colors"
+            >
+              <i className="fas fa-toolbox text-[#ff3b30] text-[10px]"></i>
+              <span>Free SEO Tools Hub</span>
+            </Link>
+            <Link
+              href="/tools/google-ranking-checker"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-[#e6dfd3] hover:text-[#ff3b30] font-semibold transition-colors"
+            >
+              <i className="fas fa-search text-[#ff3b30] text-[10px]"></i>
+              <span>Google Rank Checker</span>
+            </Link>
+            <Link
+              href="/tools/backlink-checker"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-[#e6dfd3] hover:text-[#ff3b30] font-semibold transition-colors"
+            >
+              <i className="fas fa-link text-[#ff3b30] text-[10px]"></i>
+              <span>Backlink Auditor</span>
+            </Link>
+            <Link
               href="/blogs"
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-[#e6dfd3] hover:text-[#ff3b30] font-semibold transition-colors"
             >

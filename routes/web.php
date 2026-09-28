@@ -18,6 +18,7 @@ use App\Http\Controllers\IndustryPageController;
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\LinkRequestController;
 use App\Http\Controllers\SeoController;
+use App\Http\Controllers\SEOToolsController;
 use App\Http\Controllers\ServicePageController;
 use Illuminate\Support\Facades\Route;
 
@@ -91,6 +92,13 @@ Route::get('/api/ai/history/{sessionId}', [AIChatController::class, 'history'])-
 Route::post('/api/audit/run', [AuditController::class, 'runAudit'])->name('api.audit.run');
 Route::get('/api/audit/{id}', [AuditController::class, 'show'])->name('api.audit.show');
 
+// Free SEO & Growth Tools Suite (Rank Checker & Backlink Checker)
+Route::get('/tools', [SEOToolsController::class, 'index'])->name('tools.index');
+Route::get('/tools/google-ranking-checker', [SEOToolsController::class, 'rankChecker'])->name('tools.rank_checker');
+Route::post('/api/tools/check-ranking', [SEOToolsController::class, 'apiCheckRanking'])->name('api.tools.check_ranking');
+Route::get('/tools/backlink-checker', [SEOToolsController::class, 'backlinkChecker'])->name('tools.backlink_checker');
+Route::post('/api/tools/check-backlinks', [SEOToolsController::class, 'apiCheckBacklinks'])->name('api.tools.check_backlinks');
+
 // SEO Sitemaps & Search Engine Directives
 Route::get('/sitemap.xml', [SeoController::class, 'sitemap'])->name('seo.sitemap');
 Route::get('/robots.txt', [SeoController::class, 'robots'])->name('seo.robots');
@@ -139,6 +147,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::get('/audits', [AuditController::class, 'adminIndex'])->name('audits.index');
     Route::post('/audits/{audit}/rescan', [AuditController::class, 'adminRescan'])->name('audits.rescan');
     Route::delete('/audits/{audit}', [AuditController::class, 'adminDestroy'])->name('audits.destroy');
+
+    // Free SEO Tools Activity Logs
+    Route::get('/tools-activity', [SEOToolsController::class, 'adminToolsActivity'])->name('tools.activity');
 
     // Services & Dynamic Categories Management
     Route::get('/services', [ServiceAdminController::class, 'index'])->name('services.index');

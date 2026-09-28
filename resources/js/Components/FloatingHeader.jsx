@@ -262,6 +262,15 @@ export default function FloatingHeader({ onOpenInquiry, onOpenAudit }) {
               Blogs
             </Link>
 
+            {/* Free SEO Tools Suite */}
+            <Link
+              href="/tools"
+              className={`nav-link-item hover:text-[#111827] transition-colors flex items-center gap-1.5 ${url.startsWith('/tools') ? 'text-[#ff3b30] font-bold' : ''}`}
+            >
+              <span>Free Tools</span>
+              <span className="text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-red-500/10 text-[#ff3b30] border border-red-500/20">New</span>
+            </Link>
+
             {/* Contact */}
             <Link
               href="/contact"
@@ -377,6 +386,10 @@ export default function FloatingHeader({ onOpenInquiry, onOpenAudit }) {
               </a>
               <Link href="/blogs" onClick={() => setMobileMenuOpen(false)} className="mobile-nav-link hover:text-[#ff3b30]">
                 Insights &amp; Blogs
+              </Link>
+              <Link href="/tools" onClick={() => setMobileMenuOpen(false)} className="mobile-nav-link hover:text-[#ff3b30] flex items-center justify-between">
+                <span>Free SEO &amp; Growth Tools</span>
+                <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-red-500/20 text-[#ff3b30]">New</span>
               </Link>
               <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="mobile-nav-link hover:text-[#ff3b30]">
                 Contact Us

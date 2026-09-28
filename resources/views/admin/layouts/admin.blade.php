@@ -369,9 +369,9 @@
         <div class="h-16 flex items-center justify-between px-6 border-b border-slate-800">
           <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-2 font-extrabold text-xl text-white">
             <span class="w-8 h-8 rounded-lg bg-[#ff3b30] flex items-center justify-center text-white text-xs font-black tracking-tight shadow-md shadow-red-500/20">
-              WR
+              RX
             </span>
-            <span>Web<span class="text-[#ff3b30]">Ranker</span> <span class="text-xs uppercase px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 font-mono">Admin</span></span>
+            <span>Rank<span class="text-[#ff3b30]">exa</span> <span class="text-xs uppercase px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 font-mono">Admin</span></span>
           </a>
         </div>
 
@@ -529,6 +529,22 @@
             </div>
             @if($totalAuditsCount > 0)
               <span class="px-2 py-0.5 rounded-full text-xs bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30">{{ $totalAuditsCount }}</span>
+            @endif
+          </a>
+
+          <!-- Free SEO Tools Activity (Keyword & Backlinks) -->
+          @php
+            $isToolsActive = request()->routeIs('admin.tools.activity');
+            $totalToolsCount = \App\Models\SeoKeywordRanking::count() + \App\Models\SeoBacklinkAudit::count();
+          @endphp
+          <a href="{{ route('admin.tools.activity') }}"
+             class="flex items-center justify-between px-3.5 py-2.5 rounded-xl transition-colors {{ $isToolsActive ? 'bg-[#ff3b30] text-white shadow-lg shadow-red-500/20' : 'text-slate-400 hover:text-white hover:bg-slate-800/60' }}">
+            <div class="flex items-center gap-3">
+              <i class="fas fa-chart-pie w-4 text-center text-orange-400"></i>
+              <span>SEO Tools Activity</span>
+            </div>
+            @if($totalToolsCount > 0)
+              <span class="px-2 py-0.5 rounded-full text-xs bg-orange-500/20 text-orange-300 font-bold border border-orange-500/30">{{ $totalToolsCount }}</span>
             @endif
           </a>
         </nav>

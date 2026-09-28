@@ -382,13 +382,12 @@ ${(rm.schema_fixes || []).map((f, i) => `${i + 1}. ${f}`).join('\n')}`;
                 return (
                   <div
                     key={idx}
-                    className={`p-3 rounded-2xl border transition-all ${
-                      isDone
+                    className={`p-3 rounded-2xl border transition-all ${isDone
                         ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300'
                         : isCurrent
-                        ? 'bg-[#ff3b30]/10 border-[#ff3b30]/40 text-white shadow-lg'
-                        : 'bg-white/5 border-white/5 text-slate-500 opacity-50'
-                    }`}
+                          ? 'bg-[#ff3b30]/10 border-[#ff3b30]/40 text-white shadow-lg'
+                          : 'bg-white/5 border-white/5 text-slate-500 opacity-50'
+                      }`}
                   >
                     <div className="flex items-center gap-3">
                       <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0">
@@ -474,11 +473,10 @@ ${(rm.schema_fixes || []).map((f, i) => `${i + 1}. ${f}`).join('\n')}`;
                 </button>
 
                 <span
-                  className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider border ${
-                    auditData.metrics.cwv_status === 'PASS'
+                  className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider border ${auditData.metrics.cwv_status === 'PASS'
                       ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
                       : 'bg-amber-500/10 text-amber-400 border-amber-500/30'
-                  }`}
+                    }`}
                 >
                   CWV: {auditData.metrics.cwv_status}
                 </span>
@@ -529,7 +527,6 @@ ${(rm.schema_fixes || []).map((f, i) => `${i + 1}. ${f}`).join('\n')}`;
             {/* Core Web Vitals Key Metrics Strip with Threshold Badges */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
               {/* FCP */}
-              @php @endphp
               <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 text-center relative flex flex-col justify-between">
                 <div>
                   <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">FCP (Paint)</div>
@@ -606,11 +603,10 @@ ${(rm.schema_fixes || []).map((f, i) => `${i + 1}. ${f}`).join('\n')}`;
                 <button
                   type="button"
                   onClick={() => setActiveTab('speed')}
-                  className={`flex-1 min-w-[100px] py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
-                    activeTab === 'speed'
+                  className={`flex-1 min-w-[100px] py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${activeTab === 'speed'
                       ? 'bg-[#ff3b30] text-white shadow-md'
                       : 'text-slate-400 hover:text-white'
-                  }`}
+                    }`}
                 >
                   <i className="fas fa-bolt text-[11px]"></i>
                   <span>Speed Fixes</span>
@@ -619,11 +615,10 @@ ${(rm.schema_fixes || []).map((f, i) => `${i + 1}. ${f}`).join('\n')}`;
                 <button
                   type="button"
                   onClick={() => setActiveTab('keywords')}
-                  className={`flex-1 min-w-[100px] py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
-                    activeTab === 'keywords'
+                  className={`flex-1 min-w-[100px] py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${activeTab === 'keywords'
                       ? 'bg-[#ff3b30] text-white shadow-md'
                       : 'text-slate-400 hover:text-white'
-                  }`}
+                    }`}
                 >
                   <i className="fas fa-bullseye text-[11px]"></i>
                   <span>Keywords</span>
@@ -632,11 +627,10 @@ ${(rm.schema_fixes || []).map((f, i) => `${i + 1}. ${f}`).join('\n')}`;
                 <button
                   type="button"
                   onClick={() => setActiveTab('schema')}
-                  className={`flex-1 min-w-[100px] py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
-                    activeTab === 'schema'
+                  className={`flex-1 min-w-[100px] py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${activeTab === 'schema'
                       ? 'bg-[#ff3b30] text-white shadow-md'
                       : 'text-slate-400 hover:text-white'
-                  }`}
+                    }`}
                 >
                   <i className="fas fa-shield-alt text-[11px]"></i>
                   <span>Schema &amp; SEO</span>
@@ -645,11 +639,10 @@ ${(rm.schema_fixes || []).map((f, i) => `${i + 1}. ${f}`).join('\n')}`;
                 <button
                   type="button"
                   onClick={() => setActiveTab('checklist')}
-                  className={`flex-1 min-w-[100px] py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
-                    activeTab === 'checklist'
+                  className={`flex-1 min-w-[100px] py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${activeTab === 'checklist'
                       ? 'bg-[#ff3b30] text-white shadow-md'
                       : 'text-slate-400 hover:text-white'
-                  }`}
+                    }`}
                 >
                   <i className="fas fa-clipboard-check text-[11px]"></i>
                   <span>Checklist</span>
@@ -713,16 +706,14 @@ ${(rm.schema_fixes || []).map((f, i) => `${i + 1}. ${f}`).join('\n')}`;
                       auditData.metrics.checklist.map((chk, idx) => (
                         <div
                           key={idx}
-                          className={`p-3 rounded-2xl border flex items-start gap-3 transition-colors ${
-                            chk.passed
+                          className={`p-3 rounded-2xl border flex items-start gap-3 transition-colors ${chk.passed
                               ? 'bg-emerald-500/5 border-emerald-500/20 text-emerald-200'
                               : 'bg-red-500/5 border-red-500/20 text-red-200'
-                          }`}
+                            }`}
                         >
                           <div
-                            className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] shrink-0 mt-0.5 ${
-                              chk.passed ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/20 text-red-400'
-                            }`}
+                            className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] shrink-0 mt-0.5 ${chk.passed ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/20 text-red-400'
+                              }`}
                           >
                             <i className={`fas ${chk.passed ? 'fa-check' : 'fa-triangle-exclamation'}`}></i>
                           </div>
@@ -730,11 +721,10 @@ ${(rm.schema_fixes || []).map((f, i) => `${i + 1}. ${f}`).join('\n')}`;
                             <div className="flex items-center justify-between gap-2">
                               <span className="font-bold text-white text-xs">{chk.name}</span>
                               <span
-                                className={`text-[9px] px-2 py-0.5 rounded-full uppercase tracking-wider font-extrabold ${
-                                  chk.passed
+                                className={`text-[9px] px-2 py-0.5 rounded-full uppercase tracking-wider font-extrabold ${chk.passed
                                     ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
                                     : 'bg-red-500/20 text-red-400 border border-red-500/30'
-                                }`}
+                                  }`}
                               >
                                 {chk.passed ? 'PASS' : 'ACTION REQUIRED'}
                               </span>

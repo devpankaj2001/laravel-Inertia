@@ -1,93 +1,123 @@
 {
-  "_AppLayout-D0ZezAQA.js": {
-    "file": "assets/AppLayout-D0ZezAQA.js",
+  "_AppLayout-JuxDiYBq.js": {
+    "file": "assets/AppLayout-JuxDiYBq.js",
     "name": "AppLayout",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
   "resources/js/Pages/Blogs/Index.jsx": {
-    "file": "assets/Index-g4XB3kPY.js",
+    "file": "assets/Index-DJDL-b_d.js",
     "name": "Index",
     "src": "resources/js/Pages/Blogs/Index.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AppLayout-D0ZezAQA.js"
+      "_AppLayout-JuxDiYBq.js"
     ]
   },
   "resources/js/Pages/Blogs/Show.jsx": {
-    "file": "assets/Show-BlQ22LyS.js",
+    "file": "assets/Show-DUwSX51z.js",
     "name": "Show",
     "src": "resources/js/Pages/Blogs/Show.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AppLayout-D0ZezAQA.js"
+      "_AppLayout-JuxDiYBq.js"
     ]
   },
   "resources/js/Pages/Contact.jsx": {
-    "file": "assets/Contact-C8N6Nh_7.js",
+    "file": "assets/Contact-C-DIpJOk.js",
     "name": "Contact",
     "src": "resources/js/Pages/Contact.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AppLayout-D0ZezAQA.js"
+      "_AppLayout-JuxDiYBq.js"
     ]
   },
   "resources/js/Pages/Home.jsx": {
-    "file": "assets/Home-D1EJYDtB.js",
+    "file": "assets/Home-D1Cg2wAL.js",
     "name": "Home",
     "src": "resources/js/Pages/Home.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AppLayout-D0ZezAQA.js"
+      "_AppLayout-JuxDiYBq.js"
     ]
   },
   "resources/js/Pages/Industries/Index.jsx": {
-    "file": "assets/Index--NCvPaFF.js",
+    "file": "assets/Index-BKId11bI.js",
     "name": "Index",
     "src": "resources/js/Pages/Industries/Index.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AppLayout-D0ZezAQA.js"
+      "_AppLayout-JuxDiYBq.js"
     ]
   },
   "resources/js/Pages/Industries/Show.jsx": {
-    "file": "assets/Show-8SOOlNOu.js",
+    "file": "assets/Show-EGhEBbU_.js",
     "name": "Show",
     "src": "resources/js/Pages/Industries/Show.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AppLayout-D0ZezAQA.js"
+      "_AppLayout-JuxDiYBq.js"
     ]
   },
   "resources/js/Pages/Services/Index.jsx": {
-    "file": "assets/Index-CB2m001u.js",
+    "file": "assets/Index-C0PD0SFn.js",
     "name": "Index",
     "src": "resources/js/Pages/Services/Index.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AppLayout-D0ZezAQA.js"
+      "_AppLayout-JuxDiYBq.js"
     ]
   },
   "resources/js/Pages/Services/Show.jsx": {
-    "file": "assets/Show-Snlv6KDD.js",
+    "file": "assets/Show-DY8f6qz_.js",
     "name": "Show",
     "src": "resources/js/Pages/Services/Show.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AppLayout-D0ZezAQA.js"
+      "_AppLayout-JuxDiYBq.js"
+    ]
+  },
+  "resources/js/Pages/Tools/BacklinkChecker.jsx": {
+    "file": "assets/BacklinkChecker-PICq1Gzg.js",
+    "name": "BacklinkChecker",
+    "src": "resources/js/Pages/Tools/BacklinkChecker.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_AppLayout-JuxDiYBq.js"
+    ]
+  },
+  "resources/js/Pages/Tools/Index.jsx": {
+    "file": "assets/Index-CYde_f0N.js",
+    "name": "Index",
+    "src": "resources/js/Pages/Tools/Index.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_AppLayout-JuxDiYBq.js"
+    ]
+  },
+  "resources/js/Pages/Tools/RankChecker.jsx": {
+    "file": "assets/RankChecker-CP61F-cJ.js",
+    "name": "RankChecker",
+    "src": "resources/js/Pages/Tools/RankChecker.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_AppLayout-JuxDiYBq.js"
     ]
   },
   "resources/js/app.jsx": {
-    "file": "assets/app-BKpZpoJl.js",
+    "file": "assets/app-BOSJx29f.js",
     "name": "app",
     "src": "resources/js/app.jsx",
     "isEntry": true,
@@ -99,7 +129,10 @@
       "resources/js/Pages/Industries/Index.jsx",
       "resources/js/Pages/Industries/Show.jsx",
       "resources/js/Pages/Services/Index.jsx",
-      "resources/js/Pages/Services/Show.jsx"
+      "resources/js/Pages/Services/Show.jsx",
+      "resources/js/Pages/Tools/BacklinkChecker.jsx",
+      "resources/js/Pages/Tools/Index.jsx",
+      "resources/js/Pages/Tools/RankChecker.jsx"
     ],
     "css": [
       "assets/app-tn0RQdqM.css"
