@@ -137,6 +137,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 
     // Free AI SEO & Performance Audits Management
     Route::get('/audits', [AuditController::class, 'adminIndex'])->name('audits.index');
+    Route::post('/audits/{audit}/rescan', [AuditController::class, 'adminRescan'])->name('audits.rescan');
     Route::delete('/audits/{audit}', [AuditController::class, 'adminDestroy'])->name('audits.destroy');
 
     // Services & Dynamic Categories Management

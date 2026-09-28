@@ -83,7 +83,49 @@ class AuditController extends Controller
 
         $audits = $query->paginate(15)->withQueryString();
 
-        return view('admin.audits.index', compact('audits'));
+        $stats = [
+            'total' => AiAudit::count(),
+            'avg_speed' => (int) round(AiAudit::avg('speed_score') ?? 0),
+            'avg_seo' => (int) round(AiAudit::avg('seo_score') ?? 0),
+            'with_phone' => AiAudit::whereNotNull('phone')->where('phone', '!=', '')->count(),
+        ];
+
+        return view('admin.audits.index', compact('audits', 'stats'));
+    }
+
+    /**
+     * Admin re-scan an existing audit record.
+     */
+    public function adminRescan(AiAudit $audit, SEOAuditorService $auditorService, Request $request)
+    {
+        try {
+            $result = $auditorService->auditDomain(
+                $audit->domain_url,
+                $audit->email,
+                $audit->phone,
+                $request
+            );
+
+            // If a new audit was created by service, we can delete the old one or update existing
+            // Let's update the existing audit record and remove duplicate created
+            if (isset($result['audit_id']) && $result['audit_id'] !== $audit->id) {
+                $newAudit = AiAudit::find($result['audit_id']);
+                if ($newAudit) {
+                    $audit->update([
+                        'speed_score' => $newAudit->speed_score,
+                        'seo_score' => $newAudit->seo_score,
+                        'performance_metrics' => $newAudit->performance_metrics,
+                        'ai_roadmap' => $newAudit->ai_roadmap,
+                        'status' => 'completed',
+                    ]);
+                    $newAudit->delete();
+                }
+            }
+
+            return redirect()->back()->with('success', "Fresh diagnostic scan completed for {$audit->domain_url}!");
+        } catch (\Throwable $e) {
+            return redirect()->back()->with('error', "Re-scan failed: " . $e->getMessage());
+        }
     }
 
     /**

@@ -1,5 +1,84 @@
 import React, { useState, useEffect, useRef } from 'react';
 
+/**
+ * Animated SVG Circular Gauge Component for high-tech visual score presentation
+ */
+function CircularGauge({ score, size = 100, strokeWidth = 8, label, sublabel }) {
+  const radius = (size - strokeWidth * 2) / 2;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference - (Math.min(100, Math.max(0, score)) / 100) * circumference;
+
+  let strokeColor = '#10b981'; // emerald
+  let glowColor = 'rgba(16, 185, 129, 0.35)';
+  let textColor = 'text-emerald-400';
+
+  if (score < 50) {
+    strokeColor = '#ff3b30'; // red
+    glowColor = 'rgba(255, 59, 48, 0.35)';
+    textColor = 'text-[#ff3b30]';
+  } else if (score < 85) {
+    strokeColor = '#f59e0b'; // amber
+    glowColor = 'rgba(245, 158, 11, 0.35)';
+    textColor = 'text-amber-400';
+  }
+
+  return (
+    <div className="flex flex-col items-center">
+      <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
+        <svg
+          width={size}
+          height={size}
+          className="transform -rotate-90"
+          style={{ filter: `drop-shadow(0 0 10px ${glowColor})` }}
+        >
+          {/* Background Track */}
+          <circle
+            cx={size / 2}
+            cy={size / 2}
+            r={radius}
+            stroke="currentColor"
+            strokeWidth={strokeWidth}
+            className="text-white/10"
+            fill="transparent"
+          />
+          {/* Animated Value Stroke */}
+          <circle
+            cx={size / 2}
+            cy={size / 2}
+            r={radius}
+            stroke={strokeColor}
+            strokeWidth={strokeWidth}
+            strokeDasharray={circumference}
+            strokeDashoffset={strokeDashoffset}
+            strokeLinecap="round"
+            fill="transparent"
+            className="transition-all duration-1000 ease-out"
+          />
+        </svg>
+
+        {/* Center Score Text */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+          <span className={`text-2xl sm:text-3xl font-black font-mono leading-none tracking-tight ${textColor}`}>
+            {score}
+          </span>
+          <span className="text-[10px] text-slate-400 font-medium">/ 100</span>
+        </div>
+      </div>
+
+      {label && (
+        <span className="text-[11px] font-extrabold text-slate-300 uppercase tracking-wider mt-2.5 text-center">
+          {label}
+        </span>
+      )}
+      {sublabel && (
+        <span className="text-[10px] text-slate-400 font-medium text-center mt-0.5">
+          {sublabel}
+        </span>
+      )}
+    </div>
+  );
+}
+
 export default function FreeAuditModal({ isOpen, onClose, onOpenInquiry }) {
   const [domain, setDomain] = useState('');
   const [email, setEmail] = useState('');
@@ -8,7 +87,8 @@ export default function FreeAuditModal({ isOpen, onClose, onOpenInquiry }) {
   const [scanStep, setScanStep] = useState(0);
   const [auditData, setAuditData] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
-  const [activeTab, setActiveTab] = useState('speed'); // 'speed' | 'keywords' | 'schema'
+  const [activeTab, setActiveTab] = useState('speed'); // 'speed' | 'keywords' | 'schema' | 'checklist'
+  const [copiedSummary, setCopiedSummary] = useState(false);
   const timerRef = useRef(null);
 
   // Lock body scroll when modal is open
@@ -30,11 +110,12 @@ export default function FreeAuditModal({ isOpen, onClose, onOpenInquiry }) {
     setScanStep(0);
     setAuditData(null);
     setErrorMessage('');
+    setCopiedSummary(false);
     if (timerRef.current) clearInterval(timerRef.current);
   };
 
   const steps = [
-    { title: 'Connecting to Google Mobile Lighthouse...', sub: 'Fetching Core Web Vitals (FCP, LCP, CLS)' },
+    { title: 'Connecting to Google Mobile Lighthouse...', sub: 'Fetching Core Web Vitals (FCP, LCP, CLS, TTFB)' },
     { title: 'Auditing SEO Architecture & Schema...', sub: 'Inspecting JSON-LD, meta tags, and robots directives' },
     { title: 'Synthesizing 48-Hour AI Growth Roadmap...', sub: 'Groq / Gemini AI generating ranking strategies' },
   ];
@@ -86,16 +167,69 @@ export default function FreeAuditModal({ isOpen, onClose, onOpenInquiry }) {
     }
   };
 
-  const getScoreColor = (score) => {
-    if (score >= 85) return 'text-emerald-500 border-emerald-500';
-    if (score >= 50) return 'text-amber-500 border-amber-500';
-    return 'text-[#ff3b30] border-[#ff3b30]';
+  // Helper for CWV status colors
+  const getCwvStatusPill = (val, type) => {
+    // Return color and badge
+    if (type === 'fcp') {
+      const num = parseFloat(val);
+      if (num <= 1.8) return { label: 'Optimal', bg: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30' };
+      if (num <= 3.0) return { label: 'Needs Work', bg: 'bg-amber-500/15 text-amber-400 border-amber-500/30' };
+      return { label: 'Slow', bg: 'bg-red-500/15 text-red-400 border-red-500/30' };
+    }
+    if (type === 'lcp') {
+      const num = parseFloat(val);
+      if (num <= 2.5) return { label: 'Optimal', bg: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30' };
+      if (num <= 4.0) return { label: 'Needs Work', bg: 'bg-amber-500/15 text-amber-400 border-amber-500/30' };
+      return { label: 'High Latency', bg: 'bg-red-500/15 text-red-400 border-red-500/30' };
+    }
+    if (type === 'cls') {
+      const num = parseFloat(val);
+      if (num <= 0.1) return { label: 'Stable', bg: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30' };
+      if (num <= 0.25) return { label: 'Shifting', bg: 'bg-amber-500/15 text-amber-400 border-amber-500/30' };
+      return { label: 'Unstable', bg: 'bg-red-500/15 text-red-400 border-red-500/30' };
+    }
+    if (type === 'ttfb') {
+      const num = parseInt(val, 10);
+      if (num <= 250) return { label: 'Fast TTFB', bg: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30' };
+      if (num <= 600) return { label: 'Average', bg: 'bg-amber-500/15 text-amber-400 border-amber-500/30' };
+      return { label: 'Server Latency', bg: 'bg-red-500/15 text-red-400 border-red-500/30' };
+    }
+    return { label: 'Normal', bg: 'bg-slate-800 text-slate-300 border-slate-700' };
   };
 
-  const getScoreBg = (score) => {
-    if (score >= 85) return 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20';
-    if (score >= 50) return 'bg-amber-500/10 text-amber-600 border-amber-500/20';
-    return 'bg-red-500/10 text-[#ff3b30] border-red-500/20';
+  // Copy Summary to Clipboard
+  const handleCopySummary = () => {
+    if (!auditData) return;
+    const m = auditData.metrics || {};
+    const rm = auditData.roadmap || {};
+    const text = `🚀 Website Diagnostic Report
+Domain: ${auditData.domain}
+Performance Score: ${auditData.speed_score}/100
+Technical SEO Score: ${auditData.seo_score}/100
+Core Web Vitals:
+- FCP: ${m.fcp || 'N/A'}
+- LCP: ${m.lcp || 'N/A'}
+- CLS: ${m.cls || 'N/A'}
+- Server TTFB: ${m.ttfb || 'N/A'}
+
+AI Technical Assessment:
+${rm.executive_summary || 'N/A'}
+
+Recommended Speed Fixes:
+${(rm.speed_fixes || []).map((f, i) => `${i + 1}. ${f}`).join('\n')}
+
+Recommended SEO & Schema Fixes:
+${(rm.schema_fixes || []).map((f, i) => `${i + 1}. ${f}`).join('\n')}`;
+
+    navigator.clipboard.writeText(text).then(() => {
+      setCopiedSummary(true);
+      setTimeout(() => setCopiedSummary(false), 2500);
+    });
+  };
+
+  // Trigger Print / PDF
+  const handlePrint = () => {
+    window.print();
   };
 
   if (!isOpen) return null;
@@ -289,7 +423,7 @@ export default function FreeAuditModal({ isOpen, onClose, onOpenInquiry }) {
             <button
               type="button"
               onClick={() => setStatus('idle')}
-              className="px-6 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider transition-colors"
+              className="px-6 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer"
             >
               Try Another Domain
             </button>
@@ -299,11 +433,11 @@ export default function FreeAuditModal({ isOpen, onClose, onOpenInquiry }) {
         {/* ================= STATE 4: COMPLETED SCORECARD & ROADMAP ================= */}
         {status === 'completed' && auditData && (
           <div className="space-y-6">
-            {/* Top Bar: Target Domain & Source */}
-            <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-white/10">
+            {/* Top Bar: Target Domain & Source + Utility Buttons */}
+            <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-white/10">
               <div>
-                <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400">Diagnostic Target</span>
-                <h3 className="text-xl font-black text-white font-mono flex items-center gap-2">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400">Diagnostic Target</span>
+                <h3 className="text-lg sm:text-xl font-black text-white font-mono flex items-center gap-2">
                   <span>{auditData.domain}</span>
                   <a
                     href={auditData.url}
@@ -317,96 +451,162 @@ export default function FreeAuditModal({ isOpen, onClose, onOpenInquiry }) {
                 </h3>
               </div>
 
-              <div className="text-right">
+              <div className="flex items-center gap-2">
+                {/* 1-Click Copy Summary Button */}
+                <button
+                  type="button"
+                  onClick={handleCopySummary}
+                  className="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-slate-300 hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer"
+                  title="Copy formatted audit summary to clipboard"
+                >
+                  <i className={`fas ${copiedSummary ? 'fa-check text-emerald-400' : 'fa-copy'}`}></i>
+                  <span>{copiedSummary ? 'Copied!' : 'Copy Summary'}</span>
+                </button>
+
+                {/* Print / PDF Button */}
+                <button
+                  type="button"
+                  onClick={handlePrint}
+                  className="px-2.5 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-slate-300 hover:text-white transition-colors cursor-pointer"
+                  title="Print or Save as PDF"
+                >
+                  <i className="fas fa-print"></i>
+                </button>
+
                 <span
-                  className={`inline-block px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider border ${
+                  className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider border ${
                     auditData.metrics.cwv_status === 'PASS'
                       ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
                       : 'bg-amber-500/10 text-amber-400 border-amber-500/30'
                   }`}
                 >
-                  Core Web Vitals: {auditData.metrics.cwv_status}
+                  CWV: {auditData.metrics.cwv_status}
                 </span>
               </div>
             </div>
 
-            {/* Scorecard Hero: Speed & SEO Radial / Box Dials */}
-            <div className="grid grid-cols-2 gap-4">
-              {/* Speed Score */}
-              <div className="p-4 sm:p-5 rounded-3xl bg-white/5 border border-white/10 text-center relative overflow-hidden">
-                <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">Performance Score</div>
-                <div className="flex items-center justify-center">
-                  <div
-                    className={`w-20 h-20 rounded-full border-4 flex flex-col items-center justify-center font-black ${getScoreColor(
-                      auditData.speed_score
-                    )}`}
-                  >
-                    <span className="text-2xl sm:text-3xl leading-none">{auditData.speed_score}</span>
-                    <span className="text-[10px] text-slate-400 font-normal">/ 100</span>
-                  </div>
-                </div>
-                <div className="mt-2 text-xs font-bold text-slate-300">
-                  {auditData.speed_score >= 85 ? 'Fast (Sub-second)' : auditData.speed_score >= 50 ? 'Average (Needs Fixes)' : 'Slow Latency'}
-                </div>
-              </div>
+            {/* Scorecard Hero: Advanced Animated SVG Radial Gauges */}
+            <div className="p-5 rounded-3xl bg-white/[0.03] border border-white/10 relative overflow-hidden">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 items-center justify-items-center">
+                {/* Gauge 1: Performance Score */}
+                <CircularGauge
+                  score={auditData.speed_score}
+                  size={105}
+                  strokeWidth={8}
+                  label="Performance"
+                  sublabel={auditData.speed_score >= 85 ? 'Fast (Optimal)' : auditData.speed_score >= 50 ? 'Needs Fixes' : 'Slow Latency'}
+                />
 
-              {/* SEO Score */}
-              <div className="p-4 sm:p-5 rounded-3xl bg-white/5 border border-white/10 text-center relative overflow-hidden">
-                <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">Technical SEO Score</div>
-                <div className="flex items-center justify-center">
-                  <div
-                    className={`w-20 h-20 rounded-full border-4 flex flex-col items-center justify-center font-black ${getScoreColor(
-                      auditData.seo_score
-                    )}`}
-                  >
-                    <span className="text-2xl sm:text-3xl leading-none">{auditData.seo_score}</span>
-                    <span className="text-[10px] text-slate-400 font-normal">/ 100</span>
-                  </div>
-                </div>
-                <div className="mt-2 text-xs font-bold text-slate-300">
-                  {auditData.seo_score >= 85 ? 'Optimized' : 'Structural Gaps'}
-                </div>
+                {/* Gauge 2: Technical SEO Score */}
+                <CircularGauge
+                  score={auditData.seo_score}
+                  size={105}
+                  strokeWidth={8}
+                  label="Technical SEO"
+                  sublabel={auditData.seo_score >= 85 ? 'Optimized' : 'Structural Gaps'}
+                />
+
+                {/* Gauge 3: Best Practices Score */}
+                <CircularGauge
+                  score={auditData.best_practices_score || auditData.metrics?.best_practices_score || 90}
+                  size={95}
+                  strokeWidth={7}
+                  label="Best Practices"
+                  sublabel="Security & Standards"
+                />
+
+                {/* Gauge 4: Accessibility / Mobile Score */}
+                <CircularGauge
+                  score={auditData.accessibility_score || auditData.metrics?.accessibility_score || 88}
+                  size={95}
+                  strokeWidth={7}
+                  label="Mobile & A11y"
+                  sublabel="Responsive Health"
+                />
               </div>
             </div>
 
-            {/* Core Web Vitals Key Metrics Strip */}
+            {/* Core Web Vitals Key Metrics Strip with Threshold Badges */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-              <div className="p-3 rounded-2xl bg-white/5 border border-white/10 text-center">
-                <div className="text-[10px] font-bold text-slate-400 uppercase">FCP (Paint)</div>
-                <div className="text-sm sm:text-base font-black text-white font-mono mt-0.5">{auditData.metrics.fcp}</div>
+              {/* FCP */}
+              @php @endphp
+              <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 text-center relative flex flex-col justify-between">
+                <div>
+                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">FCP (Paint)</div>
+                  <div className="text-base sm:text-lg font-black text-white font-mono mt-0.5">{auditData.metrics.fcp}</div>
+                </div>
+                <div className="mt-2 flex flex-col items-center gap-1">
+                  <span className={`text-[9px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider border ${getCwvStatusPill(auditData.metrics.fcp, 'fcp').bg}`}>
+                    {getCwvStatusPill(auditData.metrics.fcp, 'fcp').label}
+                  </span>
+                  <span className="text-[9px] text-slate-500">Target: ≤ 1.8s</span>
+                </div>
               </div>
-              <div className="p-3 rounded-2xl bg-white/5 border border-white/10 text-center">
-                <div className="text-[10px] font-bold text-slate-400 uppercase">LCP (Hero)</div>
-                <div className="text-sm sm:text-base font-black text-white font-mono mt-0.5">{auditData.metrics.lcp}</div>
+
+              {/* LCP */}
+              <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 text-center relative flex flex-col justify-between">
+                <div>
+                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">LCP (Hero)</div>
+                  <div className="text-base sm:text-lg font-black text-white font-mono mt-0.5">{auditData.metrics.lcp}</div>
+                </div>
+                <div className="mt-2 flex flex-col items-center gap-1">
+                  <span className={`text-[9px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider border ${getCwvStatusPill(auditData.metrics.lcp, 'lcp').bg}`}>
+                    {getCwvStatusPill(auditData.metrics.lcp, 'lcp').label}
+                  </span>
+                  <span className="text-[9px] text-slate-500">Target: ≤ 2.5s</span>
+                </div>
               </div>
-              <div className="p-3 rounded-2xl bg-white/5 border border-white/10 text-center">
-                <div className="text-[10px] font-bold text-slate-400 uppercase">CLS (Shift)</div>
-                <div className="text-sm sm:text-base font-black text-white font-mono mt-0.5">{auditData.metrics.cls}</div>
+
+              {/* CLS */}
+              <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 text-center relative flex flex-col justify-between">
+                <div>
+                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">CLS (Shift)</div>
+                  <div className="text-base sm:text-lg font-black text-white font-mono mt-0.5">{auditData.metrics.cls}</div>
+                </div>
+                <div className="mt-2 flex flex-col items-center gap-1">
+                  <span className={`text-[9px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider border ${getCwvStatusPill(auditData.metrics.cls, 'cls').bg}`}>
+                    {getCwvStatusPill(auditData.metrics.cls, 'cls').label}
+                  </span>
+                  <span className="text-[9px] text-slate-500">Target: ≤ 0.10</span>
+                </div>
               </div>
-              <div className="p-3 rounded-2xl bg-white/5 border border-white/10 text-center">
-                <div className="text-[10px] font-bold text-slate-400 uppercase">Server TTFB</div>
-                <div className="text-sm sm:text-base font-black text-white font-mono mt-0.5">{auditData.metrics.ttfb}</div>
+
+              {/* TTFB */}
+              <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 text-center relative flex flex-col justify-between">
+                <div>
+                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Server TTFB</div>
+                  <div className="text-base sm:text-lg font-black text-white font-mono mt-0.5">{auditData.metrics.ttfb}</div>
+                </div>
+                <div className="mt-2 flex flex-col items-center gap-1">
+                  <span className={`text-[9px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider border ${getCwvStatusPill(auditData.metrics.ttfb, 'ttfb').bg}`}>
+                    {getCwvStatusPill(auditData.metrics.ttfb, 'ttfb').label}
+                  </span>
+                  <span className="text-[9px] text-slate-500">Target: ≤ 200ms</span>
+                </div>
               </div>
             </div>
 
             {/* AI Executive Assessment Summary */}
             {auditData.roadmap?.executive_summary && (
-              <div className="p-4 rounded-2xl bg-white/5 border border-white/10 text-xs sm:text-sm text-slate-200 leading-relaxed">
-                <div className="flex items-center gap-2 font-bold text-[#ff3b30] uppercase text-[11px] tracking-wider mb-1">
-                  <i className="fas fa-robot"></i>
-                  <span>AI Executive Technical Assessment</span>
+              <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-[#ff3b30]/10 via-white/5 to-white/5 border border-[#ff3b30]/30 text-xs sm:text-sm text-slate-200 leading-relaxed shadow-lg">
+                <div className="flex items-center justify-between mb-1.5">
+                  <div className="flex items-center gap-2 font-black text-[#ff3b30] uppercase text-[11px] tracking-wider">
+                    <i className="fas fa-robot text-sm"></i>
+                    <span>AI Executive Technical Assessment</span>
+                  </div>
+                  <span className="text-[10px] text-slate-400 hidden sm:inline-block font-mono">Qwen 2.5 AI Engine</span>
                 </div>
-                {auditData.roadmap.executive_summary}
+                <p className="text-slate-200 leading-relaxed">{auditData.roadmap.executive_summary}</p>
               </div>
             )}
 
             {/* 48-Hour Growth & SEO Roadmap Tabs */}
             <div>
-              <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-white/5 border border-white/10 mb-3">
+              <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-white/5 border border-white/10 mb-3 overflow-x-auto">
                 <button
                   type="button"
                   onClick={() => setActiveTab('speed')}
-                  className={`flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
+                  className={`flex-1 min-w-[100px] py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
                     activeTab === 'speed'
                       ? 'bg-[#ff3b30] text-white shadow-md'
                       : 'text-slate-400 hover:text-white'
@@ -419,7 +619,7 @@ export default function FreeAuditModal({ isOpen, onClose, onOpenInquiry }) {
                 <button
                   type="button"
                   onClick={() => setActiveTab('keywords')}
-                  className={`flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
+                  className={`flex-1 min-w-[100px] py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
                     activeTab === 'keywords'
                       ? 'bg-[#ff3b30] text-white shadow-md'
                       : 'text-slate-400 hover:text-white'
@@ -432,7 +632,7 @@ export default function FreeAuditModal({ isOpen, onClose, onOpenInquiry }) {
                 <button
                   type="button"
                   onClick={() => setActiveTab('schema')}
-                  className={`flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
+                  className={`flex-1 min-w-[100px] py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
                     activeTab === 'schema'
                       ? 'bg-[#ff3b30] text-white shadow-md'
                       : 'text-slate-400 hover:text-white'
@@ -441,47 +641,110 @@ export default function FreeAuditModal({ isOpen, onClose, onOpenInquiry }) {
                   <i className="fas fa-shield-alt text-[11px]"></i>
                   <span>Schema &amp; SEO</span>
                 </button>
+
+                <button
+                  type="button"
+                  onClick={() => setActiveTab('checklist')}
+                  className={`flex-1 min-w-[100px] py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
+                    activeTab === 'checklist'
+                      ? 'bg-[#ff3b30] text-white shadow-md'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  <i className="fas fa-clipboard-check text-[11px]"></i>
+                  <span>Checklist</span>
+                </button>
               </div>
 
-              {/* Tab Content */}
-              <div className="p-4 rounded-2xl bg-white/5 border border-white/10 text-xs leading-relaxed space-y-2.5">
+              {/* Tab Content Box */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-white/5 border border-white/10 text-xs leading-relaxed">
                 {activeTab === 'speed' && (
-                  <ul className="space-y-2">
+                  <ul className="space-y-3">
                     {(auditData.roadmap?.speed_fixes || []).map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5 text-slate-200">
-                        <span className="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">
+                      <li key={idx} className="flex items-start gap-3 text-slate-200">
+                        <span className="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5 border border-emerald-500/30">
                           {idx + 1}
                         </span>
-                        <span>{item}</span>
+                        <div className="flex-1">
+                          <span className="text-slate-200">{item}</span>
+                        </div>
                       </li>
                     ))}
                   </ul>
                 )}
 
                 {activeTab === 'keywords' && (
-                  <ul className="space-y-2">
+                  <ul className="space-y-3">
                     {(auditData.roadmap?.keyword_opportunities || []).map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5 text-slate-200">
-                        <span className="w-5 h-5 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">
+                      <li key={idx} className="flex items-start gap-3 text-slate-200">
+                        <span className="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5 border border-amber-500/30">
                           {idx + 1}
                         </span>
-                        <span>{item}</span>
+                        <div className="flex-1">
+                          <span className="text-slate-200">{item}</span>
+                        </div>
                       </li>
                     ))}
                   </ul>
                 )}
 
                 {activeTab === 'schema' && (
-                  <ul className="space-y-2">
+                  <ul className="space-y-3">
                     {(auditData.roadmap?.schema_fixes || []).map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5 text-slate-200">
-                        <span className="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">
+                      <li key={idx} className="flex items-start gap-3 text-slate-200">
+                        <span className="w-6 h-6 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5 border border-indigo-500/30">
                           {idx + 1}
                         </span>
-                        <span>{item}</span>
+                        <div className="flex-1">
+                          <span className="text-slate-200">{item}</span>
+                        </div>
                       </li>
                     ))}
                   </ul>
+                )}
+
+                {activeTab === 'checklist' && (
+                  <div className="space-y-2.5">
+                    {(auditData.metrics?.checklist || []).length === 0 ? (
+                      <div className="text-slate-400 text-center py-2">
+                        Core technical guidelines verified.
+                      </div>
+                    ) : (
+                      auditData.metrics.checklist.map((chk, idx) => (
+                        <div
+                          key={idx}
+                          className={`p-3 rounded-2xl border flex items-start gap-3 transition-colors ${
+                            chk.passed
+                              ? 'bg-emerald-500/5 border-emerald-500/20 text-emerald-200'
+                              : 'bg-red-500/5 border-red-500/20 text-red-200'
+                          }`}
+                        >
+                          <div
+                            className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] shrink-0 mt-0.5 ${
+                              chk.passed ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/20 text-red-400'
+                            }`}
+                          >
+                            <i className={`fas ${chk.passed ? 'fa-check' : 'fa-triangle-exclamation'}`}></i>
+                          </div>
+                          <div className="flex-1">
+                            <div className="flex items-center justify-between gap-2">
+                              <span className="font-bold text-white text-xs">{chk.name}</span>
+                              <span
+                                className={`text-[9px] px-2 py-0.5 rounded-full uppercase tracking-wider font-extrabold ${
+                                  chk.passed
+                                    ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                                    : 'bg-red-500/20 text-red-400 border border-red-500/30'
+                                }`}
+                              >
+                                {chk.passed ? 'PASS' : 'ACTION REQUIRED'}
+                              </span>
+                            </div>
+                            <p className="text-[11px] text-slate-300 mt-0.5 leading-relaxed">{chk.description}</p>
+                          </div>
+                        </div>
+                      ))
+                    )}
+                  </div>
                 )}
               </div>
             </div>
@@ -492,9 +755,11 @@ export default function FreeAuditModal({ isOpen, onClose, onOpenInquiry }) {
                 type="button"
                 onClick={() => {
                   onClose();
-                  if (onOpenInquiry) onOpenInquiry();
+                  if (onOpenInquiry) {
+                    onOpenInquiry();
+                  }
                 }}
-                className="w-full sm:flex-1 py-3.5 px-5 rounded-2xl bg-[#ff3b30] hover:bg-[#d6281f] text-white font-extrabold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-red-500/25 cursor-pointer"
+                className="w-full sm:flex-1 py-4 px-5 rounded-2xl bg-[#ff3b30] hover:bg-[#d6281f] text-white font-extrabold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-xl hover:shadow-red-500/25 cursor-pointer"
               >
                 <i className="fas fa-handshake"></i>
                 <span>Claim 48-Hour Implementation</span>
@@ -503,7 +768,7 @@ export default function FreeAuditModal({ isOpen, onClose, onOpenInquiry }) {
               <button
                 type="button"
                 onClick={resetState}
-                className="w-full sm:w-auto py-3.5 px-5 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer"
+                className="w-full sm:w-auto py-4 px-5 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer"
               >
                 Scan Another URL
               </button>
