@@ -4401,12 +4401,12 @@ html.dark .ml-play-tab.is-active h4 {
 }
 
 .ds-chat-launcher-glow {
-  background: radial-gradient(circle, rgba(245, 130, 32, 0.38) 0%, rgba(245, 130, 32, 0.08) 46%, transparent 72%);
+  background: radial-gradient(circle, rgba(255, 59, 48, 0.42) 0%, rgba(255, 59, 48, 0.1) 46%, transparent 72%);
   animation: ds-chat-glow 2.8s ease-in-out infinite;
 }
 
 .ds-chat-launcher-ring {
-  border: 1.5px solid rgba(245, 130, 32, 0.35);
+  border: 1.5px solid rgba(255, 59, 48, 0.35);
   animation: ds-chat-ring 3.2s ease-out infinite;
 }
 

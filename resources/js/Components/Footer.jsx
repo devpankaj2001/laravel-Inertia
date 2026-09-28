@@ -58,29 +58,21 @@ export default function Footer({ onOpenInquiry, onOpenAudit }) {
                   <span>You're subscribed! Check your inbox for our latest SEO playbook.</span>
                 </div>
               ) : (
-                <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-3">
+                <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-2.5 w-full">
                   <input
                     type="email"
                     value={newsletterEmail}
                     onChange={(e) => setNewsletterEmail(e.target.value)}
                     required
                     placeholder="Enter your corporate email"
-                    className="flex-1 px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-slate-400 text-sm focus:outline-none focus:border-[#ff3b30]"
+                    className="flex-1 min-w-0 px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-slate-400 text-sm focus:outline-none focus:border-[#ff3b30] transition-colors"
                   />
                   <button
                     type="submit"
-                    className="px-6 py-3 rounded-xl bg-[#ff3b30] hover:bg-[#d6281f] text-white font-bold text-sm transition-all shadow-md hover:shadow-lg whitespace-nowrap cursor-pointer"
+                    className="px-6 py-3 rounded-xl bg-[#ff3b30] hover:bg-[#d6281f] text-white font-bold text-sm transition-all shadow-md hover:shadow-lg whitespace-nowrap cursor-pointer shrink-0"
                   >
                     Subscribe Free
                   </button>
-                  <Link
-                    href="/tools/google-ranking-checker"
-                    className="px-4 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-sm transition-all border border-white/20 whitespace-nowrap flex items-center justify-center gap-1.5"
-                    title="Check your Google keyword position"
-                  >
-                    <i className="fas fa-arrow-trend-up text-[#ff3b30]"></i>
-                    <span>Check Position</span>
-                  </Link>
                 </form>
               )}
             </div>
