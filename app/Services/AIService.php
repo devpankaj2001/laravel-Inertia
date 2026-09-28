@@ -11,14 +11,14 @@ use Illuminate\Support\Facades\Log;
 class AIService
 {
     /**
-     * WebRanker Agency Grounded Knowledge Base (Dynamic RAG Prompt & Expert Guidelines)
+     * Rankexa Agency Grounded Knowledge Base (Dynamic RAG Prompt & Expert Guidelines)
      */
     public static function getSystemPrompt(?string $ragContext = null): string
     {
-        $siteName = config('site.name', 'WebRanker');
-        $siteEmail = config('site.email', 'info@webranker.in');
-        $sitePhone = config('site.phone', '+91 97185 70218');
-        $whatsappUrl = 'https://wa.me/919718570218?text=Hi%20WebRanker%20Team%2C%20I%20would%20like%20to%20discuss%20a%20project%20and%20get%20service%20details.';
+        $siteName = config('site.name', 'Rankexa');
+        $siteEmail = config('site.email', 'info@rankexa.in');
+        $sitePhone = config('site.phone', '+91 94147 90938');
+        $whatsappUrl = 'https://wa.me/919414790938?text=Hi%20Rankexa%20Team%2C%20I%20would%20like%20to%20discuss%20a%20project%20and%20get%20service%20details.';
 
         $retrievedKnowledge = $ragContext ?: RAGService::retrieveContext('')['formatted_context'];
 
@@ -191,7 +191,7 @@ PROMPT;
 
                     return [
                         'reply' => $leadReply,
-                        'provider' => 'webranker-lead-engine',
+                        'provider' => 'rankexa-lead-engine',
                         'quick_replies' => [
                             ['label' => 'Chat on WhatsApp', 'action' => 'whatsapp'],
                             ['label' => 'Schedule Consultation', 'action' => 'consult'],
@@ -213,7 +213,7 @@ PROMPT;
 
             return [
                 'reply' => $reply,
-                'provider' => 'webranker-guardrail',
+                'provider' => 'rankexa-guardrail',
                 'quick_replies' => self::generateQuickReplies($userMessage),
                 'lead_captured' => $leadCaptured,
                 'session_id' => $sessionId,
@@ -227,7 +227,7 @@ PROMPT;
 
             return [
                 'reply' => $reply,
-                'provider' => 'webranker-guardrail',
+                'provider' => 'rankexa-guardrail',
                 'quick_replies' => [
                     ['label' => 'Our Core Services', 'action' => 'message'],
                     ['label' => 'Custom Web Development', 'action' => 'message'],
@@ -249,7 +249,7 @@ PROMPT;
         $provider = env('AI_PROVIDER', 'groq');
 
         $reply = null;
-        $activeProvider = 'webranker-expert-engine';
+        $activeProvider = 'rankexa-expert-engine';
 
         // 5. Try Groq Cloud (100% Free Tier) with Grounded RAG Prompt
         if ($provider === 'groq' && !empty($groqKey)) {
@@ -293,7 +293,7 @@ PROMPT;
         // 4. Fallback: Local Expert Engine (Ensures 100% uptime with zero keys required)
         if (empty($reply)) {
             $reply = self::generateLocalExpertReply($userMessage);
-            $activeProvider = 'webranker-expert-engine';
+            $activeProvider = 'rankexa-expert-engine';
         }
 
         // Clean any accidental HTML tags from LLM response (<br> to newlines, remove tags)
@@ -384,7 +384,7 @@ PROMPT;
             $beforeEmail = trim($beforeEmail, " ,:-\t\n\r");
             if (preg_match('/(?:^|[\n\r])([A-Z][a-z]{1,20}\s+[A-Z][a-z]{1,20})\b/u', $beforeEmail, $nMatches)) {
                 $words = explode(' ', trim($nMatches[1]));
-                $ignored = ['hello', 'team', 'webranker', 'project', 'want', 'need', 'please', 'thanks', 'contact'];
+                $ignored = ['hello', 'team', 'rankexa', 'webranker', 'project', 'want', 'need', 'please', 'thanks', 'contact'];
                 if (!in_array(strtolower($words[0]), $ignored)) {
                     $detectedName = ucwords(strtolower(trim($nMatches[1])));
                 }
@@ -423,12 +423,12 @@ PROMPT;
 
             $inquiryData = [
                 'name' => $clientDisplayName,
-                'email' => $conversation->lead_email ?: ($inquiry?->email ?: 'lead-' . substr($conversation->session_id, 0, 8) . '@webranker.in'),
+                'email' => $conversation->lead_email ?: ($inquiry?->email ?: 'lead-' . substr($conversation->session_id, 0, 8) . '@rankexa.in'),
                 'phone' => $conversation->lead_phone ?: ($inquiry?->phone ?? null),
                 'company' => $inquiry?->company ?: 'Captured via AI Chatbot',
                 'service_interest' => $serviceInterest,
                 'budget' => $inquiry?->budget ?: 'Discussed via AI Chat',
-                'message' => 'Prospect engaged with WebRanker AI Assistant. Latest message: ' . substr($message, 0, 300),
+                'message' => 'Prospect engaged with Rankexa AI Assistant. Latest message: ' . substr($message, 0, 300),
                 'source_url' => url()->current(),
                 'ip_address' => $effectiveIp,
                 'country' => $effectiveCountry,
@@ -561,9 +561,9 @@ PROMPT;
         }
 
         $lower = strtolower(trim($input));
-        $sitePhone = config('site.phone', '+91 97185 70218');
-        $siteEmail = config('site.email', 'info@webranker.in');
-        $whatsappUrl = 'https://wa.me/919718570218?text=Hi%20WebRanker%20Team%2C%20I%20would%20like%20to%20discuss%20project%20pricing%20and%20scope.';
+        $sitePhone = config('site.phone', '+91 94147 90938');
+        $siteEmail = config('site.email', 'info@rankexa.in');
+        $whatsappUrl = 'https://wa.me/919414790938?text=Hi%20Rankexa%20Team%2C%20I%20would%20like%20to%20discuss%20project%20pricing%20and%20scope.';
 
         // 1. Inquiries about Pricing, Cost, Budget, Packages, Quotes
         if (preg_match('/(price|cost|quote|budget|rate|package|fee|pricing|charges|how much|kitna charge|kitne ka)/i', $lower)) {
@@ -571,7 +571,7 @@ PROMPT;
                 ? "\n\nAapke project requirements ke mutabiq exact architecture roadmap aur customized proposal ke liye, kya aap apna **Name** aur **Email address** share kar sakte hain?"
                 : "\n\nTo help our engineering leadership prepare a customized architecture scope and proposal for you, could you please share your **Name** and **Email address**?";
 
-            return "At **WebRanker**, every project and marketing campaign is custom-scoped to match your exact business goals, architecture, and competitive landscape. We do not use rigid, one-size-fits-all pricing packages.\n\nTo get a customized proposal and transparent scope for your project, please connect with our leadership team directly:\n\n• **WhatsApp Direct:** {$sitePhone}\n• **Official Email:** {$siteEmail}\n• **Phone:** {$sitePhone}\n\nOr click **Schedule Consultation** below to book a complimentary strategy session with our Principal Engineer!" . $ask;
+            return "At **Rankexa**, every project and marketing campaign is custom-scoped to match your exact business goals, architecture, and competitive landscape. We do not use rigid, one-size-fits-all pricing packages.\n\nTo get a customized proposal and transparent scope for your project, please connect with our leadership team directly:\n\n• **WhatsApp Direct:** {$sitePhone}\n• **Official Email:** {$siteEmail}\n• **Phone:** {$sitePhone}\n\nOr click **Schedule Consultation** below to book a complimentary strategy session with our Principal Engineer!" . $ask;
         }
 
         // 2. Custom CRM / SaaS / Employee Management / Booking System
@@ -611,12 +611,12 @@ PROMPT;
 
         // 8. Comprehensive SEO Services
         if (preg_match('/(seo|rank|ranking|google|organic|traffic|backlink|keyword|serp)/i', $lower)) {
-            return "**WebRanker Comprehensive SEO Services:**\n\nWe engineer sustainable organic search visibility through technical precision and topical authority:\n\n• **Technical SEO:** Crawl budget optimization, server TTFB, schema markup, XML sitemaps, robots.txt, and canonical URLs.\n• **On-Page SEO:** In-depth keyword research, content optimization, heading structure, and meta titles/descriptions.\n• **Page Speed & Core Web Vitals:** Mobile SEO, image optimization, CSS/JS minification, and caching.\n• **Analytics & Reporting:** Google Search Console setup, Google Analytics 4 integration, and regular performance reporting.\n\n*Note: We never guarantee a #1 Google ranking as search algorithms evaluate hundreds of factors, but we apply proven, white-hat frameworks engineered for continuous organic growth.*\n\nCould you please share your **Name**, **Email address**, and website URL so our SEO specialists can run a complimentary keyword gap analysis?";
+            return "**Rankexa Comprehensive SEO Services:**\n\nWe engineer sustainable organic search visibility through technical precision and topical authority:\n\n• **Technical SEO:** Crawl budget optimization, server TTFB, schema markup, XML sitemaps, robots.txt, and canonical URLs.\n• **On-Page SEO:** In-depth keyword research, content optimization, heading structure, and meta titles/descriptions.\n• **Page Speed & Core Web Vitals:** Mobile SEO, image optimization, CSS/JS minification, and caching.\n• **Analytics & Reporting:** Google Search Console setup, Google Analytics 4 integration, and regular performance reporting.\n\n*Note: We never guarantee a #1 Google ranking as search algorithms evaluate hundreds of factors, but we apply proven, white-hat frameworks engineered for continuous organic growth.*\n\nCould you please share your **Name**, **Email address**, and website URL so our SEO specialists can run a complimentary keyword gap analysis?";
         }
 
         // 9. PPC / Paid Advertising
         if (preg_match('/(ppc|ads|adwords|google ads|meta ads|campaign)/i', $lower)) {
-            return "**WebRanker PPC & Performance Marketing:**\n\nWe design and manage high-ROI paid search and social campaigns engineered for qualified lead generation:\n\n• **High-Intent Search Ads:** Google Search campaigns targeting decision-maker search queries.\n• **Conversion Landing Pages:** Custom high-speed landing pages with friction-free lead capture forms.\n• **Conversion Tracking:** Server-side tracking via Google Tag Manager and GA4 for 100% data fidelity.\n• **Negative Keyword Management & A/B Testing:** Continuous bid optimization and budget efficiency.\n\nCould you please share your **Name** and **Email address** so our marketing strategist can outline a tailored campaign plan?";
+            return "**Rankexa PPC & Performance Marketing:**\n\nWe design and manage high-ROI paid search and social campaigns engineered for qualified lead generation:\n\n• **High-Intent Search Ads:** Google Search campaigns targeting decision-maker search queries.\n• **Conversion Landing Pages:** Custom high-speed landing pages with friction-free lead capture forms.\n• **Conversion Tracking:** Server-side tracking via Google Tag Manager and GA4 for 100% data fidelity.\n• **Negative Keyword Management & A/B Testing:** Continuous bid optimization and budget efficiency.\n\nCould you please share your **Name** and **Email address** so our marketing strategist can outline a tailored campaign plan?";
         }
 
         // 10. Custom Web Development & Architecture
@@ -626,12 +626,12 @@ PROMPT;
                 ? "\n\nAapke project ke liye customized technical roadmap aur architecture scope share karne ke liye, kya aap apna **Name** aur **Email address** share kar sakte hain?"
                 : "\n\nTo help our engineering leadership prepare a customized architecture roadmap and proposal for your business, could you please share your **Name** and **Email address**?";
 
-            return "**WebRanker Custom Web Development:**\n\nWe engineer bespoke, high-performance web applications tailored to your exact business workflow:\n\n• **Full-Stack Engineering:** Python/FastAPI, Node.js, and Laravel on the backend paired with React.js or Next.js on the frontend.\n• **Sub-Second Performance:** Server-side rendering (SSR), edge caching, and zero-blocking JavaScript.\n• **Scalable Architectures:** High-concurrency database design (PostgreSQL/MySQL), Redis caching, and robust queuing.\n• **Custom Solutions:** Enterprise SaaS platforms, client portals, marketplace systems, and bespoke REST APIs.\n\nAre you planning a new platform from scratch or upgrading an existing system?" . $ask;
+            return "**Rankexa Custom Web Development:**\n\nWe engineer bespoke, high-performance web applications tailored to your exact business workflow:\n\n• **Full-Stack Engineering:** Python/FastAPI, Node.js, and Laravel on the backend paired with React.js or Next.js on the frontend.\n• **Sub-Second Performance:** Server-side rendering (SSR), edge caching, and zero-blocking JavaScript.\n• **Scalable Architectures:** High-concurrency database design (PostgreSQL/MySQL), Redis caching, and robust queuing.\n• **Custom Solutions:** Enterprise SaaS platforms, client portals, marketplace systems, and bespoke REST APIs.\n\nAre you planning a new platform from scratch or upgrading an existing system?" . $ask;
         }
 
         // 11. Mobile App Engineering
         if (preg_match('/(mobile|app|flutter|ios|android|react native)/i', $lower)) {
-            return "**WebRanker Mobile App Engineering:**\n\nWe engineer beautiful, high-performance native and cross-platform mobile apps:\n\n• **Technologies:** Flutter, React Native, iOS (Swift), and Android (Kotlin).\n• **Enterprise Capabilities:** Real-time offline synchronization, sub-100ms API response latency, and biometric security.\n• **End-to-End Delivery:** From bespoke Figma UI design to App Store and Google Play deployment.\n\nCould you please share your **Name** and **Email address** so our mobile tech lead can share a technical scope for your app?";
+            return "**Rankexa Mobile App Engineering:**\n\nWe engineer beautiful, high-performance native and cross-platform mobile apps:\n\n• **Technologies:** Flutter, React Native, iOS (Swift), and Android (Kotlin).\n• **Enterprise Capabilities:** Real-time offline synchronization, sub-100ms API response latency, and biometric security.\n• **End-to-End Delivery:** From bespoke Figma UI design to App Store and Google Play deployment.\n\nCould you please share your **Name** and **Email address** so our mobile tech lead can share a technical scope for your app?";
         }
 
         // 12. Free Audit & Performance Scans
@@ -645,7 +645,7 @@ PROMPT;
         }
 
         // Default Intelligent Greeting & Overview
-        return "Thank you for reaching out to **WebRanker**! We are a professional software engineering and SEO consulting agency specializing in:\n\n• **High-Performance Web Development** (Laravel, Python/FastAPI, Node.js, Next.js, React)\n• **Custom CRMs, SaaS & Enterprise Applications**\n• **Third-Party APIs & Payment Gateway Integrations**\n• **Technical & On-Page SEO Services**\n• **E-Commerce & Website Redesigns**\n• **Mobile App Engineering** (Flutter, iOS, Android)\n\nTo help our technical leadership understand your requirements and share a tailored roadmap, could you share your **Name**, **Email address**, and what project you are planning?";
+        return "Thank you for reaching out to **Rankexa**! We are a professional software engineering and SEO consulting agency specializing in:\n\n• **High-Performance Web Development** (Laravel, Python/FastAPI, Node.js, Next.js, React)\n• **Custom CRMs, SaaS & Enterprise Applications**\n• **Third-Party APIs & Payment Gateway Integrations**\n• **Technical & On-Page SEO Services**\n• **E-Commerce & Website Redesigns**\n• **Mobile App Engineering** (Flutter, iOS, Android)\n\nTo help our technical leadership understand your requirements and share a tailored roadmap, could you share your **Name**, **Email address**, and what project you are planning?";
     }
 
     /**

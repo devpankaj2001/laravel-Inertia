@@ -142,7 +142,7 @@
                 $waText = "Hi! We analyzed {$cleanDomain} with our AI Performance & SEO Engine. Your Speed Score is {$perf}/100 and SEO is {$seo}/100. We identified specific fixes for LCP ({$cwv['lcp'] ?? 'N/A'}) and schema markup that can improve your organic Google rankings within 48 hours. Would you like us to implement these?";
                 $waLink = $phoneClean ? "https://wa.me/{$phoneClean}?text=" . urlencode($waText) : null;
                 $mailSubject = "Website Performance & SEO Diagnostic for {$cleanDomain}";
-                $mailBody = "Hi,\n\nWe conducted a real-time Core Web Vitals & SEO audit for {$cleanDomain}.\n\nScorecard:\n• Performance Score: {$perf}/100\n• Technical SEO Score: {$seo}/100\n• Largest Contentful Paint (LCP): " . ($cwv['lcp'] ?? 'N/A') . "\n• Server TTFB: " . ($cwv['ttfb'] ?? 'N/A') . "\n\nWe have prepared a complete 48-Hour Implementation Plan to optimize your website. Let us know if you'd like us to proceed!\n\nBest regards,\nWebRanker Team";
+                $mailBody = "Hi,\n\nWe conducted a real-time Core Web Vitals & SEO audit for {$cleanDomain}.\n\nScorecard:\n• Performance Score: {$perf}/100\n• Technical SEO Score: {$seo}/100\n• Largest Contentful Paint (LCP): " . ($cwv['lcp'] ?? 'N/A') . "\n• Server TTFB: " . ($cwv['ttfb'] ?? 'N/A') . "\n\nWe have prepared a complete 48-Hour Implementation Plan to optimize your website. Let us know if you'd like us to proceed!\n\nBest regards,\nRankexa Team";
                 $mailLink = "mailto:{$audit->email}?subject=" . urlencode($mailSubject) . "&body=" . urlencode($mailBody);
               @endphp
               <tr class="hover:bg-slate-800/40 transition-colors">
@@ -535,7 +535,7 @@ function openRoadmapModal(audit) {
   }
 
   const mailSubject = `Website Audit & Performance Optimization for ${audit.domain_url}`;
-  const mailBody = `Hi,\n\nHere is your website audit scorecard for ${audit.domain_url}:\n\n• Performance: ${perf}/100\n• SEO Score: ${seo}/100\n• LCP: ${metrics.lcp || 'N/A'}\n• Server TTFB: ${metrics.ttfb || 'N/A'}\n\nOur team can deploy all required fixes within 48 hours. Let us know when you'd like to schedule a call.\n\nBest regards,\nWebRanker Team`;
+  const mailBody = `Hi,\n\nHere is your website audit scorecard for ${audit.domain_url}:\n\n• Performance: ${perf}/100\n• SEO Score: ${seo}/100\n• LCP: ${metrics.lcp || 'N/A'}\n• Server TTFB: ${metrics.ttfb || 'N/A'}\n\nOur team can deploy all required fixes within 48 hours. Let us know when you'd like to schedule a call.\n\nBest regards,\nRankexa Team`;
   document.getElementById('modalMailBtn').href = `mailto:${audit.email}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
 
   // Set default tab

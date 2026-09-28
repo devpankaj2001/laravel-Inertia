@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes - WebRanker SEO & Ranking Application
+| Web Routes - Rankexa (Rankexa.in) Application
 |--------------------------------------------------------------------------
 */
 

@@ -11,7 +11,7 @@ export default function LinkRequestModal({ isOpen, onClose, targetPageUrl = '', 
     client_company: '',
     client_website: '',
     target_page_url: targetPageUrl || (typeof window !== 'undefined' ? window.location.href : ''),
-    target_page_title: targetPageTitle || 'WebRanker Page',
+    target_page_title: targetPageTitle || 'Rankexa Page',
     requested_anchor_text: '',
     target_link_url: '',
     link_type: 'link_insertion',
@@ -83,7 +83,7 @@ export default function LinkRequestModal({ isOpen, onClose, targetPageUrl = '', 
               </span>
               <h3 className="text-2xl font-black text-slate-900">Request Link Insertion / Guest Feature</h3>
               <p className="text-xs text-slate-500 mt-1">
-                Collaborate with WebRanker's high-authority domain. All placements are manually reviewed for editorial relevance.
+                Collaborate with Rankexa's high-authority domain (Rankexa.in). All placements are manually reviewed for editorial relevance.
               </p>
             </div>
 

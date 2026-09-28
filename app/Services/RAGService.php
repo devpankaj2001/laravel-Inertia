@@ -52,7 +52,7 @@ class RAGService
     ];
 
     /**
-     * Valid business domain keywords for WebRanker
+     * Valid business domain keywords for Rankexa (Rankexa.in)
      */
     protected const DOMAIN_PATTERNS = [
         '/\b(web|website|web development|frontend|backend|fullstack|php|laravel|react|reactjs|next|nextjs|node|nodejs|python|fastapi|html|css|javascript|vue|angular|wordpress|shopify|magento|ecommerce|e-commerce|store|cart|checkout)\b/i',
@@ -62,7 +62,7 @@ class RAGService
         '/\b(software|custom software|saas|portal|crm|erp|api|apis|rest api|rest apis|webhook|webhooks|payment gateway|stripe|razorpay|paypal|third-party|integration|integrations|database|postgres|postgresql|mysql|redis|cloud|devops|aws|docker)\b/i',
         '/\b(ai|automation|agent|bot|chatbot|llm|workflow|machine learning)\b/i',
         '/\b(ui|ux|design|figma|branding|logo|wireframe|redesign|speed|optimization|maintenance|support|retainer|security|https|ssl|authentication|oauth)\b/i',
-        '/\b(webranker|agency|company|team|services|service|portfolio|project|audit|free audit|consultation|schedule|quote|pricing|price|cost|contact|hire|talk|whatsapp|email|phone|address|office)\b/i',
+        '/\b(rankexa|webranker|agency|company|team|services|service|portfolio|project|audit|free audit|consultation|schedule|quote|pricing|price|cost|contact|hire|talk|whatsapp|email|phone|address|office)\b/i',
         '/\b(healthcare|real estate|fintech|finance|education|edtech|logistics|travel tech|saas|retail|hospital|clinic)\b/i',
     ];
 
@@ -117,15 +117,15 @@ class RAGService
      */
     public static function getOffTopicRefusal(string $query): string
     {
-        $sitePhone = config('site.phone', '+91 97185 70218');
-        $siteEmail = config('site.email', 'info@webranker.in');
+        $sitePhone = config('site.phone', '+91 94147 90938');
+        $siteEmail = config('site.email', 'info@rankexa.in');
 
         // Check if query is primarily in Hindi/Hinglish
         $isHindi = preg_match('/[\x{0900}-\x{097F}]/u', $query) ||
             preg_match('/\b(kya|hai|batao|kaha|kaise|me|mein|par|aur|chahiye|khana|ghumne)\b/i', $query);
 
         if ($isHindi) {
-            return "Main **WebRanker** ka AI Tech & Growth Assistant hoon. Main sirf hamari agency ki digital engineering aur organic search services ke bare me jankari de sakta hoon:\n\n" .
+            return "Main **Rankexa** ka AI Tech & Growth Assistant hoon. Main sirf hamari agency ki digital engineering aur organic search services ke bare me jankari de sakta hoon:\n\n" .
                 "• **High-Performance Web Development** (Laravel, Next.js, React)\n" .
                 "• **Technical SEO & Page #1 Google Ranking**\n" .
                 "• **PPC & Paid Search Performance Marketing** (Google Ads & Meta Ads)\n" .
@@ -134,7 +134,7 @@ class RAGService
                 "Khane, ghoomne ya kisi anya general topic par main jankari nahi de sakta. Agar aapko apni website banwani hai, mobile app develop karna hai ya business grow karna hai, to batayein aap kis project par baat karna chahte hain?";
         }
 
-        return "I am the **WebRanker AI Tech & Growth Strategist**. I specialize exclusively in WebRanker's digital engineering and organic search services:\n\n" .
+        return "I am the **Rankexa AI Tech & Growth Strategist**. I specialize exclusively in Rankexa's digital engineering and organic search services:\n\n" .
             "• **High-Performance Web Development** (Laravel, Next.js, React)\n" .
             "• **Technical SEO & Page #1 Google Ranking Dominance**\n" .
             "• **PPC & Paid Search Performance Marketing** (Google Ads, Meta Ads)\n" .
@@ -148,7 +148,7 @@ class RAGService
      */
     public static function getInvalidQueryResponse(string $query): string
     {
-        return "Aapka sawal poori tarah clear nahi hai. Main **WebRanker** ka AI consultant hoon aur aapki in vishayon me madad kar sakta hoon:\n\n" .
+        return "Aapka sawal poori tarah clear nahi hai. Main **Rankexa** ka AI consultant hoon aur aapki in vishayon me madad kar sakta hoon:\n\n" .
             "• **Custom Web Development:** Nayi high-speed website ya enterprise web app banwane ke liye (Laravel, Next.js, React).\n" .
             "• **Technical SEO & Ranking:** Google ke pehle page par rank karne aur organic traffic badhane ke liye.\n" .
             "• **PPC & Performance Ads:** Google Ads aur Meta Ads se verified ROI leads generate karne ke liye.\n" .
@@ -271,7 +271,7 @@ class RAGService
      */
     protected static function formatRetrievedContext(array $retrieved): string
     {
-        $out = "=== VERIFIED WEBRANKER KNOWLEDGE BASE (GROUNDED RAG DATA) ===\n";
+        $out = "=== VERIFIED RANKEXA KNOWLEDGE BASE (GROUNDED RAG DATA) ===\n";
         $profile = $retrieved['site_profile'];
 
         $out .= "COMPANY: {$profile['name']}\n";
@@ -281,7 +281,7 @@ class RAGService
         $out .= "CORE OFFER: 48-Hour Free Technical SEO & Core Web Vitals Audit, Custom Architecture Scoping.\n\n";
 
         if (!empty($retrieved['services'])) {
-            $out .= "RELEVANT WEBRANKER SERVICES MATCHED FROM DATABASE:\n";
+            $out .= "RELEVANT RANKEXA SERVICES MATCHED FROM DATABASE:\n";
             foreach ($retrieved['services'] as $svc) {
                 $out .= "• [Service: {$svc->title}] (Category: {$svc->category})\n";
                 if (!empty($svc->short_description)) {
@@ -355,7 +355,7 @@ class RAGService
         $profile = self::getSiteProfile();
 
         return <<<TEXT
-=== VERIFIED WEBRANKER AGENCY BASELINE (GROUNDED RAG DATA) ===
+=== VERIFIED RANKEXA AGENCY BASELINE (GROUNDED RAG DATA) ===
 COMPANY: {$profile['name']}
 HEADQUARTERS: {$profile['address']}
 PHONE / WHATSAPP: {$profile['phone']}
@@ -374,14 +374,14 @@ TEXT;
     }
 
     /**
-     * Load WebRanker core profile from DB settings
+     * Load Rankexa core profile from DB settings
      */
     public static function getSiteProfile(): array
     {
         $address = 'Plot no. 51, Shaheed Amit Bhardwaj Marg, Sector 8, Malviya Nagar, Jaipur, Rajasthan 302017';
-        $phone = config('site.phone', '+91 97185 70218');
-        $email = config('site.email', 'info@webranker.in');
-        $name = config('site.name', 'WebRanker');
+        $phone = config('site.phone', '+91 94147 90938');
+        $email = config('site.email', 'info@rankexa.in');
+        $name = config('site.name', 'Rankexa');
 
         try {
             $localBusiness = SiteSetting::where('key', 'schema_local_business')->value('value');

@@ -83,13 +83,13 @@ export default function FloatingHeader({ onOpenInquiry, onOpenAudit }) {
       <header className="floating-pill-header" id="floatingHeader">
         <div className="flex items-center justify-between w-full">
           {/* Brand Logo */}
-          <Link href="/" className="header-brand-wrap" aria-label="WebRanker Homepage">
+          <Link href="/" className="header-brand-wrap" aria-label="Rankexa Homepage">
             <span className="header-brand-icon-box">
-              <span className="header-brand-icon-wr">WR</span>
+              <span className="header-brand-icon-wr">RX</span>
             </span>
             <span className="header-brand-text">
-              <span className="header-brand-text-web">Web</span>
-              <span className="header-brand-text-ranker">Ranker</span>
+              <span className="header-brand-text-web">Rank</span>
+              <span className="header-brand-text-ranker">exa</span>
             </span>
           </Link>
 
@@ -311,7 +311,7 @@ export default function FloatingHeader({ onOpenInquiry, onOpenAudit }) {
           <div>
             <div className="flex items-center justify-between mb-8 pb-4 border-b border-slate-800">
               <span className="font-extrabold text-2xl text-white">
-                Web<span className="text-[#ff3b30]">Ranker</span>
+                Rank<span className="text-[#ff3b30]">exa</span>
               </span>
               <button
                 onClick={() => setMobileMenuOpen(false)}
@@ -395,7 +395,7 @@ export default function FloatingHeader({ onOpenInquiry, onOpenAudit }) {
           </div>
 
           <div className="pt-6 border-t border-slate-800 text-center text-xs text-slate-400">
-            © {new Date().getFullYear()} WebRanker. Engineered for #1 Organic Rankings &amp; Peak Performance.
+            © {new Date().getFullYear()} Rankexa. Engineered for #1 Organic Rankings &amp; Peak Performance.
           </div>
         </div>
       )}

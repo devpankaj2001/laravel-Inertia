@@ -49,7 +49,7 @@ class AIChatController extends Controller
 
             return response()->json([
                 'success' => true,
-                'reply' => "Thank you for reaching out! Our principal architect is available to review your project requirements. You can reach us at " . config('site.email', 'info@webranker.in') . " or click 'Schedule Consultation' below.",
+                'reply' => "Thank you for reaching out! Our principal architect is available to review your project requirements. You can reach us at " . config('site.email', 'info@rankexa.in') . " or click 'Schedule Consultation' below.",
                 'provider' => 'fallback',
                 'quick_replies' => [
                     ['label' => 'Schedule Consultation', 'action' => 'consult'],

@@ -24,7 +24,7 @@ class LeadScoringService
         }
 
         $prompt = <<<EOT
-You are WebRanker's Senior Sales & Technical Strategy Director.
+You are Rankexa's Senior Sales & Technical Strategy Director.
 Analyze this inbound client inquiry and score its commercial intent, urgency, and estimated value.
 
 INQUIRY DETAILS:
@@ -49,7 +49,7 @@ Respond with ONLY valid JSON formatted exactly like this:
   "score": 85,
   "intent": "enterprise",
   "summary": "Client needs custom Next.js & Laravel platform with high-speed performance.",
-  "suggested_reply": "Hi Sarah,\\n\\nThank you for reaching out to WebRanker! We would love to engineer your custom web platform. Our team specializes in sub-second Next.js architectures and robust Laravel APIs designed for scale.\\n\\nAre you free for a quick 15-minute scoping call tomorrow, or would you prefer connecting directly on WhatsApp (+91 97185 70218)?\\n\\nBest regards,\\nWebRanker Strategy Team"
+  "suggested_reply": "Hi Sarah,\\n\\nThank you for reaching out to Rankexa! We would love to engineer your custom web platform. Our team specializes in sub-second Next.js architectures and robust Laravel APIs designed for scale.\\n\\nAre you free for a quick 15-minute scoping call tomorrow, or would you prefer connecting directly on WhatsApp (+91 94147 90938)?\\n\\nBest regards,\\nRankexa Strategy Team"
 }
 EOT;
 
@@ -140,7 +140,7 @@ EOT;
         $clientFirstName = explode(' ', trim($inquiry->name ?? 'there'))[0] ?: 'there';
         $service = $inquiry->service_interest ?: 'Web & Growth Engineering';
 
-        $draftReply = "Hi {$clientFirstName},\n\nThank you for reaching out to WebRanker! We reviewed your inquiry regarding {$service}.\n\nOur engineering team specializes in high-performance Laravel architectures, Next.js systems, and technical SEO designed for organic Google dominance.\n\nWe would love to discuss your scope in detail. Are you available for a brief 15-minute consultation this week? You can also reach our leadership team directly on WhatsApp at +91 97185 70218.\n\nBest regards,\nWebRanker Strategy Team";
+        $draftReply = "Hi {$clientFirstName},\n\nThank you for reaching out to Rankexa! We reviewed your inquiry regarding {$service}.\n\nOur engineering team specializes in high-performance Laravel architectures, Next.js systems, and technical SEO designed for organic Google dominance.\n\nWe would love to discuss your scope in detail. Are you available for a brief 15-minute consultation this week? You can also reach our leadership team directly on WhatsApp at +91 94147 90938.\n\nBest regards,\nRankexa Strategy Team";
 
         $inquiry->update([
             'lead_score' => $score,

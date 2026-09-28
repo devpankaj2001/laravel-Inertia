@@ -480,7 +480,7 @@
       scoreBadge.className = `px-3 py-1 rounded-xl text-sm font-black border ${lead.badge_class}`;
 
       document.getElementById('aiInsightIntentLabel').textContent = lead.intent_label;
-      document.getElementById('aiInsightSummary').textContent = lead.summary || 'Commercial scope analyzed by WebRanker AI.';
+      document.getElementById('aiInsightSummary').textContent = lead.summary || 'Commercial scope analyzed by Rankexa AI.';
       document.getElementById('aiInsightDraftReply').value = lead.suggested_reply || '';
 
       // Email button
@@ -592,7 +592,7 @@
       const emailLink = document.getElementById('chatModalEmailLink');
       emailLink.textContent = lead.email || '—';
       emailLink.href = lead.email ? `mailto:${lead.email}` : '#';
-      document.getElementById('chatModalMailBtn').href = lead.email ? `mailto:${lead.email}?subject=WebRanker%20Proposal%20Discussion` : '#';
+      document.getElementById('chatModalMailBtn').href = lead.email ? `mailto:${lead.email}?subject=Rankexa%20Proposal%20Discussion` : '#';
 
       if (lead.phone && lead.phone !== '—') {
         document.getElementById('chatModalPhoneWrap').classList.remove('hidden');
@@ -603,7 +603,7 @@
           const waBtn = document.getElementById('chatModalWhatsappBtn');
           waBtn.classList.remove('hidden');
           waBtn.classList.add('inline-flex');
-          waBtn.href = `https://wa.me/${cleanPhone}?text=Hi%20${encodeURIComponent(lead.name || '')}%2C%20following%20up%20on%20your%20WebRanker%20inquiry.`;
+          waBtn.href = `https://wa.me/${cleanPhone}?text=Hi%20${encodeURIComponent(lead.name || '')}%2C%20following%20up%20on%20your%20Rankexa%20inquiry.`;
         }
       } else {
         document.getElementById('chatModalPhoneWrap').classList.add('hidden');
@@ -643,7 +643,7 @@
               </div>
               <div class="bg-slate-900 border border-slate-800 rounded-2xl rounded-tl-none p-3.5 max-w-lg text-slate-200 text-xs shadow-md">
                 <div class="flex items-center justify-between gap-4 mb-1 text-[10px] text-[#ff3b30] font-bold">
-                  <span>WebRanker AI Assistant</span>
+                  <span>Rankexa AI Assistant</span>
                   <span class="text-slate-500 font-mono">${msg.time || ''}</span>
                 </div>
                 <div class="leading-relaxed">${formatChatText(msg.content)}</div>

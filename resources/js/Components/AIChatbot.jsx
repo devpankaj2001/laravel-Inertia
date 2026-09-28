@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 
 const WELCOME_MESSAGE = {
   role: 'bot',
-  text: "Hello! I am the **WebRanker AI Web Development & SEO Consultant**.\n\nWe engineer modern, scalable web systems and organic search growth:\n• **Modern Full-Stack Engineering** (Laravel, Python/FastAPI, Node.js, Next.js, React)\n• **Third-Party APIs & Payment Gateways** (Stripe, Razorpay, CRMs, Webhooks)\n• **Technical & On-Page SEO** (Core Web Vitals, Schema, Structured Crawling)\n• **Custom E-Commerce & Website Redesigns**\n• **Mobile App Development** (Flutter, iOS, Android)\n\n*Tell me about your project goals or explore our consulting options below:*",
+  text: "Hello! I am the **Rankexa AI Web Development & SEO Consultant**.\n\nWe engineer modern, scalable web systems and organic search growth:\n• **Modern Full-Stack Engineering** (Laravel, Python/FastAPI, Node.js, Next.js, React)\n• **Third-Party APIs & Payment Gateways** (Stripe, Razorpay, CRMs, Webhooks)\n• **Technical & On-Page SEO** (Core Web Vitals, Schema, Structured Crawling)\n• **Custom E-Commerce & Website Redesigns**\n• **Mobile App Development** (Flutter, iOS, Android)\n\n*Tell me about your project goals or explore our consulting options below:*",
   quick_replies: [
     { label: 'Tech Stack Advice', action: 'message', prompt: 'Which technology should I choose for my project (Laravel, FastAPI, Node.js, React, Next.js, WordPress)? Explain how you evaluate requirements.' },
     { label: 'APIs & Payment Gateways', action: 'message', prompt: 'Can you integrate payment gateways and third-party APIs (Stripe, Razorpay, CRMs, Shipping, Maps)? Give a concise breakdown in bullet points.' },
@@ -217,7 +217,7 @@ export default function AIChatbot({ onOpenInquiry, onOpenAudit }) {
       } else if (provider.includes('guardrail')) {
         setProviderBadge('Grounded Guardrail');
       } else {
-        setProviderBadge('WebRanker AI');
+        setProviderBadge('Rankexa AI');
       }
     }
 
@@ -325,7 +325,7 @@ export default function AIChatbot({ onOpenInquiry, onOpenAudit }) {
       streamBotResponse(replyText, data.quick_replies || [], data.provider);
     } catch (error) {
       console.error('AI chat failed:', error);
-      const fallbackText = "Our senior technology team is available to review your project! You can connect with us directly on WhatsApp (+91 97185 70218), via email at info@webranker.in, or click 'Schedule Consultation' below.";
+      const fallbackText = "Our senior technology team is available to review your project! You can connect with us directly on WhatsApp (+91 94147 90938), via email at info@rankexa.in, or click 'Schedule Consultation' below.";
       streamBotResponse(fallbackText, [
         { label: 'Chat on WhatsApp', action: 'whatsapp' },
         { label: 'Schedule Consultation', action: 'consult' },
@@ -338,7 +338,7 @@ export default function AIChatbot({ onOpenInquiry, onOpenAudit }) {
   const handleQuickAction = (chip) => {
     if (chip.action === 'whatsapp') {
       window.open(
-        'https://wa.me/919718570218?text=Hi%20WebRanker%20Team%2C%20I%20would%20like%20to%20discuss%20a%20project%20and%20get%20service%20details.',
+        'https://wa.me/919414790938?text=Hi%20Rankexa%20Team%2C%20I%20would%20like%20to%20discuss%20a%20project%20and%20get%20service%20details.',
         '_blank'
       );
       return;
@@ -378,15 +378,15 @@ export default function AIChatbot({ onOpenInquiry, onOpenAudit }) {
       } else if (lower.includes('fast') || lower.includes('vitals') || lower.includes('speed')) {
         prompt = 'How do you build a fast, mobile-friendly, and SEO-ready website optimized for Core Web Vitals? Give details in clean bullet points.';
       } else if (lower.includes('seo') || lower.includes('rank') || lower.includes('organic')) {
-        prompt = 'Tell me in detail about WebRanker Technical SEO and Organic Keyword Ranking services. Use concise bullet points, no markdown tables.';
+        prompt = 'Tell me in detail about Rankexa Technical SEO and Organic Keyword Ranking services. Use concise bullet points, no markdown tables.';
       } else if (lower.includes('web') || lower.includes('development') || lower.includes('laravel') || lower.includes('next')) {
-        prompt = 'Tell me in detail about WebRanker Custom Web Development services (Laravel, Next.js, React, Python/FastAPI, Node.js). Use concise bullet points.';
+        prompt = 'Tell me in detail about Rankexa Custom Web Development services (Laravel, Next.js, React, Python/FastAPI, Node.js). Use concise bullet points.';
       } else if (lower.includes('ppc') || lower.includes('ad') || lower.includes('google ads')) {
-        prompt = 'Tell me in detail about WebRanker PPC and Paid Performance Advertising services (Google Ads, Meta Ads). Use concise bullet points, no markdown tables.';
+        prompt = 'Tell me in detail about Rankexa PPC and Paid Performance Advertising services (Google Ads, Meta Ads). Use concise bullet points, no markdown tables.';
       } else if (lower.includes('service')) {
-        prompt = 'Give me a comprehensive breakdown of all core services offered by WebRanker. Use concise bullet points, no markdown tables.';
+        prompt = 'Give me a comprehensive breakdown of all core services offered by Rankexa. Use concise bullet points, no markdown tables.';
       } else if (lower.includes('mobile') || lower.includes('app')) {
-        prompt = 'Tell me in detail about WebRanker Mobile App Engineering services (Flutter, iOS, Android). Use concise bullet points, no markdown tables.';
+        prompt = 'Tell me in detail about Rankexa Mobile App Engineering services (Flutter, iOS, Android). Use concise bullet points, no markdown tables.';
       }
     }
 
@@ -399,7 +399,7 @@ export default function AIChatbot({ onOpenInquiry, onOpenAudit }) {
       clearInterval(streamingTimerRef.current);
       streamingTimerRef.current = null;
     }
-    const newSid = 'wr_' + Date.now() + '_' + Math.random().toString(36).substring(2, 9);
+    const newSid = 'rx_' + Date.now() + '_' + Math.random().toString(36).substring(2, 9);
     setSessionId(newSid);
     setMessages([WELCOME_MESSAGE]);
   };
@@ -433,14 +433,14 @@ export default function AIChatbot({ onOpenInquiry, onOpenAudit }) {
               <div className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-[#ff3b30] to-orange-500 p-0.5 flex items-center justify-center flex-shrink-0 shadow-lg shadow-red-500/20">
                 <img
                   src="/asset/chatbot_icon.png"
-                  alt="WebRanker Assistant"
+                  alt="Rankexa Assistant"
                   className="w-full h-full object-contain rounded-lg p-0.5"
                 />
                 <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-500 border-2 border-[#161514] rounded-full"></span>
               </div>
               <div className="min-w-0">
                 <h4 className="font-bold text-xs tracking-tight text-white truncate m-0 leading-tight">
-                  WebRanker AI
+                  Rankexa AI
                 </h4>
                 <p className="text-[10px] text-slate-400 flex items-center gap-1.5 m-0 mt-0.5 leading-tight">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -454,7 +454,7 @@ export default function AIChatbot({ onOpenInquiry, onOpenAudit }) {
             {/* Header Actions: WhatsApp, Book, Reset, Close */}
             <div className="flex items-center gap-1 flex-shrink-0">
               <a
-                href="https://wa.me/919718570218?text=Hi%20WebRanker%20Team%2C%20I%20would%20like%20to%20discuss%20a%20project."
+                href="https://wa.me/919414790938?text=Hi%20Rankexa%20Team%2C%20I%20would%20like%20to%20discuss%20a%20project."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-7 h-7 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 flex items-center justify-center transition-colors"
@@ -582,12 +582,12 @@ export default function AIChatbot({ onOpenInquiry, onOpenAudit }) {
           {/* Clean Sub-Bar: Direct Trust Links */}
           <div className="px-3.5 py-1.5 bg-[#1a1817] border-t border-white/5 flex items-center justify-between text-[11px] text-slate-400 flex-shrink-0">
             <a
-              href="https://wa.me/919718570218?text=Hi%20WebRanker%20Team%2C%20I%20would%20like%20to%20discuss%20a%20project."
+              href="https://wa.me/919414790938?text=Hi%20Rankexa%20Team%2C%20I%20would%20like%20to%20discuss%20a%20project."
               target="_blank"
               rel="noopener noreferrer"
               className="text-emerald-400 hover:underline flex items-center gap-1 font-medium truncate"
             >
-              <i className="fab fa-whatsapp"></i> WhatsApp: +91 97185 70218
+              <i className="fab fa-whatsapp"></i> WhatsApp: +91 94147 90938
             </a>
             <button
               type="button"
@@ -635,7 +635,7 @@ export default function AIChatbot({ onOpenInquiry, onOpenAudit }) {
         id="chatToggleBtn"
         className="ds-chat-launcher relative cursor-pointer pointer-events-auto group outline-none"
         type="button"
-        aria-label={isOpen ? 'Close WebRanker Assistant' : 'Open WebRanker Assistant'}
+        aria-label={isOpen ? 'Close Rankexa Assistant' : 'Open Rankexa Assistant'}
         onClick={() => setIsOpen(!isOpen)}
       >
         <span className="ds-chat-launcher-glow" aria-hidden="true"></span>
@@ -643,7 +643,7 @@ export default function AIChatbot({ onOpenInquiry, onOpenAudit }) {
         <span className="ds-chat-launcher-float flex items-center justify-center transition-transform group-hover:scale-105">
           <img
             src="/asset/chatbot_icon.png"
-            alt="WebRanker Assistant"
+            alt="Rankexa Assistant"
             className="w-full h-full object-contain drop-shadow-2xl"
           />
         </span>

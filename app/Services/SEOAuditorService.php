@@ -531,7 +531,7 @@ class SEOAuditorService
     protected function generateAIRoadmap(string $host, array $metrics): array
     {
         $prompt = <<<EOT
-You are WebRanker's Chief Technical SEO & Performance Architect.
+You are Rankexa's Chief Technical SEO & Performance Architect.
 Analyze this website diagnostic data and generate an elite, practical 48-Hour Growth & SEO Roadmap.
 
 WEBSITE DOMAIN: {$host}

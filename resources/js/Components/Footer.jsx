@@ -71,10 +71,10 @@ export default function Footer({ onOpenInquiry, onOpenAudit }) {
           <div className="col-span-2">
             <Link href="/" className="inline-flex items-center gap-2 mb-4">
               <span className="w-9 h-9 rounded-xl bg-[#161514] text-white flex items-center justify-center font-black text-sm tracking-wider shadow-sm">
-                WR
+                RX
               </span>
               <span className="text-xl font-black text-[#161514]">
-                Web<span className="text-[#ff3b30]">Ranker</span>
+                Rank<span className="text-[#ff3b30]">exa</span>
               </span>
             </Link>
             <p className="text-sm text-[#6e675f] mb-6 max-w-sm leading-relaxed">
@@ -82,7 +82,7 @@ export default function Footer({ onOpenInquiry, onOpenAudit }) {
             </p>
             <div className="flex items-center gap-3">
               <a
-                href={siteConfig.twitter || 'https://twitter.com/webranker'}
+                href={siteConfig.twitter || 'https://twitter.com/rankexa'}
                 target="_blank"
                 rel="noreferrer"
                 className="w-9 h-9 rounded-full bg-white border border-[#e6dfd3] flex items-center justify-center text-[#161514] hover:bg-[#ff3b30] hover:text-white hover:border-[#ff3b30] transition-colors shadow-2xs"
@@ -91,7 +91,7 @@ export default function Footer({ onOpenInquiry, onOpenAudit }) {
                 <i className="fab fa-x-twitter text-sm"></i>
               </a>
               <a
-                href={siteConfig.linkedin || 'https://linkedin.com/company/webranker'}
+                href={siteConfig.linkedin || 'https://linkedin.com/company/rankexa'}
                 target="_blank"
                 rel="noreferrer"
                 className="w-9 h-9 rounded-full bg-white border border-[#e6dfd3] flex items-center justify-center text-[#161514] hover:bg-[#ff3b30] hover:text-white hover:border-[#ff3b30] transition-colors shadow-2xs"
@@ -100,7 +100,7 @@ export default function Footer({ onOpenInquiry, onOpenAudit }) {
                 <i className="fab fa-linkedin-in text-sm"></i>
               </a>
               <a
-                href={siteConfig.github || 'https://github.com/webranker'}
+                href={siteConfig.github || 'https://github.com/rankexa'}
                 target="_blank"
                 rel="noreferrer"
                 className="w-9 h-9 rounded-full bg-white border border-[#e6dfd3] flex items-center justify-center text-[#161514] hover:bg-[#ff3b30] hover:text-white hover:border-[#ff3b30] transition-colors shadow-2xs"
@@ -197,8 +197,8 @@ export default function Footer({ onOpenInquiry, onOpenAudit }) {
             <div className="space-y-3 text-sm text-[#6e675f]">
               <p className="flex items-start gap-2">
                 <i className="fas fa-envelope text-[#ff3b30] mt-1 text-xs"></i>
-                <a href={`mailto:${siteConfig.email || 'info@webranker.in'}`} className="hover:text-[#161514] font-medium break-all">
-                  {siteConfig.email || 'info@webranker.in'}
+                <a href={`mailto:${siteConfig.email || 'info@rankexa.in'}`} className="hover:text-[#161514] font-medium break-all">
+                  {siteConfig.email || 'info@rankexa.in'}
                 </a>
               </p>
               <p className="flex items-start gap-2">
@@ -283,7 +283,7 @@ export default function Footer({ onOpenInquiry, onOpenAudit }) {
         {/* Bottom Legal & Attribution */}
         <div className="pt-6 border-t border-[#e6dfd3] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#6e675f]">
           <div>
-            © {new Date().getFullYear()} WebRanker Technologies Inc. All Rights Reserved. Engineered with Laravel &amp; Inertia React.
+            © {new Date().getFullYear()} Rankexa Technologies Inc. All Rights Reserved. Engineered with Laravel &amp; Inertia React.
           </div>
 
           <div className="flex items-center gap-5 text-[#7e766e]">

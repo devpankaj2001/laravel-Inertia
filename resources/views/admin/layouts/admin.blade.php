@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>@yield('title', 'Admin Console') | WebRanker Control Center</title>
+  <title>@yield('title', 'Admin Console') | Rankexa Control Center</title>
 
   <!-- Site Title Favicon (WR Monogram) -->
   <link rel="icon" type="image/svg+xml" href="{{ asset('asset/wr-favicon.svg') }}">
@@ -622,7 +622,7 @@
 
       <!-- Admin Footer -->
       <footer class="py-4 px-6 border-t border-slate-800/80 text-xs text-slate-500 text-center">
-        WebRanker Schema &amp; SEO Management Console &middot; Laravel 13 Core
+        Rankexa Schema &amp; SEO Management Console &middot; Laravel 13 Core
       </footer>
     </div>
   </div>

@@ -12,8 +12,8 @@ export default function SeoHead({
   googleVerification,
   bingVerification,
 }) {
-  const fullTitle = title || 'WebRanker | Web & App Development, SEO, Content & Performance Optimization';
-  const metaDesc = description || 'WebRanker is an elite engineering and organic search agency specializing in Web Development, Mobile Apps, Technical SEO, Topical Content, and Site Speed Optimization.';
+  const fullTitle = title || 'Rankexa | Web & App Development, SEO, Content & Performance Optimization';
+  const metaDesc = description || 'Rankexa is an elite engineering and organic search agency specializing in Web Development, Mobile Apps, Technical SEO, Topical Content, and Site Speed Optimization.';
   const metaKw = keywords || 'web development, mobile app development, technical SEO, core web vitals, ecommerce development, AI automation';
   const defaultImage = ogImage || '/asset/logo.svg';
 
@@ -34,7 +34,7 @@ export default function SeoHead({
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={metaDesc} />
       <meta property="og:image" content={defaultImage} />
-      <meta property="og:site_name" content="WebRanker" />
+      <meta property="og:site_name" content="Rankexa" />
       <meta property="og:locale" content="en_US" />
 
       {/* Twitter */}
@@ -43,8 +43,8 @@ export default function SeoHead({
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={metaDesc} />
       <meta name="twitter:image" content={defaultImage} />
-      <meta name="twitter:site" content="@webranker" />
-      <meta name="twitter:creator" content="@webranker" />
+      <meta name="twitter:site" content="@rankexa" />
+      <meta name="twitter:creator" content="@rankexa" />
 
       {/* Structured Data (Schema.org JSON-LD) */}
       {Array.isArray(schemas) && schemas.map((schema, idx) => (

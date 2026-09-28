@@ -6,9 +6,9 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <!-- Dynamic Primary SEO Tags -->
-  <title>{{ $metaTitle ?? 'WebRanker | Web & App Development, SEO, Content & Performance Optimization' }}</title>
-  <meta name="title" content="{{ $metaTitle ?? 'WebRanker | Web & App Development, SEO, Content & Performance Optimization' }}">
-  <meta name="description" content="{{ $metaDescription ?? 'WebRanker is an elite engineering and organic search agency specializing in Web Development, Mobile Apps, Technical SEO, Topical Content, and Site Speed Optimization.' }}">
+  <title>{{ $metaTitle ?? 'Rankexa | Web & App Development, SEO, Content & Performance Optimization' }}</title>
+  <meta name="title" content="{{ $metaTitle ?? 'Rankexa | Web & App Development, SEO, Content & Performance Optimization' }}">
+  <meta name="description" content="{{ $metaDescription ?? 'Rankexa is an elite engineering and organic search agency specializing in Web Development, Mobile Apps, Technical SEO, Topical Content, and Site Speed Optimization.' }}">
   <meta name="keywords" content="{{ $metaKeywords ?? 'web development, mobile app development, technical SEO, core web vitals, ecommerce development, AI automation' }}">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="{{ $canonicalUrl ?? url()->current() }}">
@@ -22,20 +22,20 @@
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ $canonicalUrl ?? url()->current() }}">
-  <meta property="og:title" content="{{ $metaTitle ?? 'WebRanker | Web & App Development, SEO & Performance' }}">
+  <meta property="og:title" content="{{ $metaTitle ?? 'Rankexa | Web & App Development, SEO & Performance' }}">
   <meta property="og:description" content="{{ $metaDescription ?? 'Elite engineering and search optimization agency.' }}">
   <meta property="og:image" content="{{ $ogImage ?? asset('asset/logo.svg') }}">
-  <meta property="og:site_name" content="WebRanker">
+  <meta property="og:site_name" content="Rankexa">
   <meta property="og:locale" content="en_US">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="{{ $canonicalUrl ?? url()->current() }}">
-  <meta name="twitter:title" content="{{ $metaTitle ?? 'WebRanker | Web & App Development, SEO & Performance' }}">
+  <meta name="twitter:title" content="{{ $metaTitle ?? 'Rankexa | Web & App Development, SEO & Performance' }}">
   <meta name="twitter:description" content="{{ $metaDescription ?? 'Elite engineering and search optimization agency.' }}">
   <meta name="twitter:image" content="{{ $ogImage ?? asset('asset/logo.svg') }}">
-  <meta name="twitter:site" content="@webranker">
-  <meta name="twitter:creator" content="@webranker">
+  <meta name="twitter:site" content="@rankexa">
+  <meta name="twitter:creator" content="@rankexa">
 
   <!-- Site Title Favicon (WR Monogram) -->
   <link rel="icon" type="image/svg+xml" href="{{ asset('asset/wr-favicon.svg') }}">
