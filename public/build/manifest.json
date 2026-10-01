@@ -1,18 +1,18 @@
 {
-  "_AppLayout-DdnXK__t.js": {
-    "file": "assets/AppLayout-DdnXK__t.js",
+  "_AppLayout-C8KyVoC_.js": {
+    "file": "assets/AppLayout-C8KyVoC_.js",
     "name": "AppLayout",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_ProjectEstimator-FjyYv18o.js": {
-    "file": "assets/ProjectEstimator-FjyYv18o.js",
+  "_ProjectEstimator-JsgTKpmr.js": {
+    "file": "assets/ProjectEstimator-JsgTKpmr.js",
     "name": "ProjectEstimator",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AppLayout-DdnXK__t.js"
+      "_AppLayout-C8KyVoC_.js"
     ],
     "dynamicImports": [
       "node_modules/html2canvas/dist/html2canvas.esm.js",
@@ -21,14 +21,14 @@
     ]
   },
   "node_modules/canvg/lib/index.es.js": {
-    "file": "assets/index.es-DOL-riI7.js",
+    "file": "assets/index.es-D04TlDQW.js",
     "name": "index.es",
     "src": "node_modules/canvg/lib/index.es.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_ProjectEstimator-FjyYv18o.js",
-      "_AppLayout-DdnXK__t.js"
+      "_ProjectEstimator-JsgTKpmr.js",
+      "_AppLayout-C8KyVoC_.js"
     ]
   },
   "node_modules/dompurify/dist/purify.es.mjs": {
@@ -44,127 +44,127 @@
     "isDynamicEntry": true
   },
   "resources/js/Pages/Blogs/Index.jsx": {
-    "file": "assets/Index-DVophZHd.js",
+    "file": "assets/Index-zNRfWM_9.js",
     "name": "Index",
     "src": "resources/js/Pages/Blogs/Index.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AppLayout-DdnXK__t.js"
+      "_AppLayout-C8KyVoC_.js"
     ]
   },
   "resources/js/Pages/Blogs/Show.jsx": {
-    "file": "assets/Show-CzInlRsR.js",
+    "file": "assets/Show-D84triaH.js",
     "name": "Show",
     "src": "resources/js/Pages/Blogs/Show.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AppLayout-DdnXK__t.js"
+      "_AppLayout-C8KyVoC_.js"
     ]
   },
   "resources/js/Pages/Contact.jsx": {
-    "file": "assets/Contact-O4TFzed0.js",
+    "file": "assets/Contact-BqwlZyjq.js",
     "name": "Contact",
     "src": "resources/js/Pages/Contact.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AppLayout-DdnXK__t.js"
+      "_AppLayout-C8KyVoC_.js"
     ]
   },
   "resources/js/Pages/Home.jsx": {
-    "file": "assets/Home-3G7PntvR.js",
+    "file": "assets/Home-B_X4peEc.js",
     "name": "Home",
     "src": "resources/js/Pages/Home.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AppLayout-DdnXK__t.js"
+      "_AppLayout-C8KyVoC_.js"
     ]
   },
   "resources/js/Pages/Industries/Index.jsx": {
-    "file": "assets/Index-BRYk0HOa.js",
+    "file": "assets/Index-BQlVXdpk.js",
     "name": "Index",
     "src": "resources/js/Pages/Industries/Index.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AppLayout-DdnXK__t.js"
+      "_AppLayout-C8KyVoC_.js"
     ]
   },
   "resources/js/Pages/Industries/Show.jsx": {
-    "file": "assets/Show-Dfh73bHu.js",
+    "file": "assets/Show-DWMK9-sw.js",
     "name": "Show",
     "src": "resources/js/Pages/Industries/Show.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AppLayout-DdnXK__t.js"
+      "_AppLayout-C8KyVoC_.js"
     ]
   },
   "resources/js/Pages/Services/Index.jsx": {
-    "file": "assets/Index-qb327hmb.js",
+    "file": "assets/Index-4pBW2vsn.js",
     "name": "Index",
     "src": "resources/js/Pages/Services/Index.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AppLayout-DdnXK__t.js"
+      "_AppLayout-C8KyVoC_.js"
     ]
   },
   "resources/js/Pages/Services/Show.jsx": {
-    "file": "assets/Show-Db-z1202.js",
+    "file": "assets/Show-DKE0fVS_.js",
     "name": "Show",
     "src": "resources/js/Pages/Services/Show.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AppLayout-DdnXK__t.js"
+      "_AppLayout-C8KyVoC_.js"
     ]
   },
   "resources/js/Pages/Tools/BacklinkChecker.jsx": {
-    "file": "assets/BacklinkChecker-BZ9CQsIa.js",
+    "file": "assets/BacklinkChecker-C1UaI0X8.js",
     "name": "BacklinkChecker",
     "src": "resources/js/Pages/Tools/BacklinkChecker.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AppLayout-DdnXK__t.js"
+      "_AppLayout-C8KyVoC_.js"
     ]
   },
   "resources/js/Pages/Tools/Index.jsx": {
-    "file": "assets/Index-CQyC2_Dv.js",
+    "file": "assets/Index-CVz9pgbz.js",
     "name": "Index",
     "src": "resources/js/Pages/Tools/Index.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AppLayout-DdnXK__t.js"
+      "_AppLayout-C8KyVoC_.js"
     ]
   },
   "resources/js/Pages/Tools/RankChecker.jsx": {
-    "file": "assets/RankChecker-syF_vUYy.js",
+    "file": "assets/RankChecker-_W_TrSkx.js",
     "name": "RankChecker",
     "src": "resources/js/Pages/Tools/RankChecker.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AppLayout-DdnXK__t.js"
+      "_AppLayout-C8KyVoC_.js"
     ]
   },
   "resources/js/Pages/Tools/SchemaGenerator.jsx": {
-    "file": "assets/SchemaGenerator-yrfBiN1S.js",
+    "file": "assets/SchemaGenerator-m7iGiN9P.js",
     "name": "SchemaGenerator",
     "src": "resources/js/Pages/Tools/SchemaGenerator.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AppLayout-DdnXK__t.js"
+      "_AppLayout-C8KyVoC_.js"
     ]
   },
   "resources/js/app.jsx": {
-    "file": "assets/app-C66EUoLY.js",
+    "file": "assets/app-VhP7JOUo.js",
     "name": "app",
     "src": "resources/js/app.jsx",
     "isEntry": true,
@@ -179,7 +179,7 @@
       "resources/js/Pages/Services/Show.jsx",
       "resources/js/Pages/Tools/BacklinkChecker.jsx",
       "resources/js/Pages/Tools/Index.jsx",
-      "_ProjectEstimator-FjyYv18o.js",
+      "_ProjectEstimator-JsgTKpmr.js",
       "resources/js/Pages/Tools/RankChecker.jsx",
       "resources/js/Pages/Tools/SchemaGenerator.jsx"
     ],

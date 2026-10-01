@@ -111,7 +111,7 @@ export default function FloatingHeader({ onOpenInquiry, onOpenAudit }) {
           </Link>
 
           {/* Desktop Navigation Menu */}
-          <nav className="hidden lg:flex items-center gap-7 xl:gap-8 text-[14.5px] font-medium text-[#374151]" aria-label="Primary">
+          <nav className="hidden lg:flex items-center gap-1.5 xl:gap-3.5 text-[14px] xl:text-[14.5px] font-medium text-[#374151]" aria-label="Primary">
             {/* Services Dropdown */}
             <div
               className={`nav-dropdown nav-dropdown--mega ${servicesOpen ? 'is-active' : ''}`}
@@ -267,14 +267,14 @@ export default function FloatingHeader({ onOpenInquiry, onOpenAudit }) {
             </div>
 
             {/* Certification */}
-            <a href="/#certifications" className="nav-link-item hover:text-[#111827] transition-colors">
+            <a href="/#certifications" className="nav-link-item hover:text-[#111827] transition-colors whitespace-nowrap">
               Certification
             </a>
 
             {/* Blogs */}
             <Link
               href="/blogs"
-              className={`nav-link-item hover:text-[#111827] transition-colors ${url.startsWith('/blog') ? 'text-[#ff3b30] font-bold' : ''}`}
+              className={`nav-link-item hover:text-[#111827] transition-colors whitespace-nowrap ${url.startsWith('/blog') ? 'text-[#ff3b30] font-bold' : ''}`}
             >
               Blogs
             </Link>
@@ -282,25 +282,25 @@ export default function FloatingHeader({ onOpenInquiry, onOpenAudit }) {
             {/* Free SEO Tools Suite */}
             <Link
               href="/tools"
-              className={`nav-link-item hover:text-[#111827] transition-colors flex items-center gap-1.5 ${url.startsWith('/tools') ? 'text-[#ff3b30] font-bold' : ''}`}
+              className={`nav-link-item hover:text-[#111827] transition-colors whitespace-nowrap inline-flex items-center gap-1.5 ${url.startsWith('/tools') ? 'text-[#ff3b30] font-bold' : ''}`}
             >
-              <span>Free Tools</span>
-              <span className="text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-red-500/10 text-[#ff3b30] border border-red-500/20">Free</span>
+              <span className="whitespace-nowrap">Free Tools</span>
+              <span className="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded-full bg-red-500/10 text-[#ff3b30] border border-red-500/20 leading-none shrink-0">Free</span>
             </Link>
 
             {/* Project Cost Calculator & Proposal */}
             <Link
               href="/calculator"
-              className={`nav-link-item hover:text-[#111827] transition-colors flex items-center gap-1.5 ${url.startsWith('/calculator') ? 'text-[#ff3b30] font-bold' : ''}`}
+              className={`nav-link-item hover:text-[#111827] transition-colors whitespace-nowrap inline-flex items-center gap-1.5 ${url.startsWith('/calculator') ? 'text-[#ff3b30] font-bold' : ''}`}
             >
-              <span>Pricing</span>
-              <span className="text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-amber-500/10 text-amber-600 border border-amber-500/20">Quote</span>
+              <span className="whitespace-nowrap">Pricing</span>
+              <span className="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded-full bg-amber-500/10 text-amber-600 border border-amber-500/20 leading-none shrink-0">Quote</span>
             </Link>
 
             {/* Contact */}
             <Link
               href="/contact"
-              className={`nav-link-item hover:text-[#111827] transition-colors ${url.startsWith('/contact') ? 'text-[#ff3b30] font-bold' : ''}`}
+              className={`nav-link-item hover:text-[#111827] transition-colors whitespace-nowrap ${url.startsWith('/contact') ? 'text-[#ff3b30] font-bold' : ''}`}
             >
               Contact
             </Link>
