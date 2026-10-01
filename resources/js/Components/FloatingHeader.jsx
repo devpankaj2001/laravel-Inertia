@@ -44,6 +44,23 @@ export default function FloatingHeader({ onOpenInquiry, onOpenAudit }) {
     setIndustriesOpen(false);
   }, [url]);
 
+  // Lock body scroll and handle Escape key when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.classList.add('mobile-nav-open');
+      const handleKeyDown = (e) => {
+        if (e.key === 'Escape') setMobileMenuOpen(false);
+      };
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+        window.removeEventListener('keydown', handleKeyDown);
+        document.body.classList.remove('mobile-nav-open');
+      };
+    } else {
+      document.body.classList.remove('mobile-nav-open');
+    }
+  }, [mobileMenuOpen]);
+
   // Handle Free Audit button click -> Open interactive auditor modal
   const handleFreeAuditClick = (e) => {
     if (e) e.preventDefault();
@@ -268,7 +285,16 @@ export default function FloatingHeader({ onOpenInquiry, onOpenAudit }) {
               className={`nav-link-item hover:text-[#111827] transition-colors flex items-center gap-1.5 ${url.startsWith('/tools') ? 'text-[#ff3b30] font-bold' : ''}`}
             >
               <span>Free Tools</span>
-              <span className="text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-red-500/10 text-[#ff3b30] border border-red-500/20">New</span>
+              <span className="text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-red-500/10 text-[#ff3b30] border border-red-500/20">Free</span>
+            </Link>
+
+            {/* Project Cost Calculator & Proposal */}
+            <Link
+              href="/calculator"
+              className={`nav-link-item hover:text-[#111827] transition-colors flex items-center gap-1.5 ${url.startsWith('/calculator') ? 'text-[#ff3b30] font-bold' : ''}`}
+            >
+              <span>Pricing</span>
+              <span className="text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-amber-500/10 text-amber-600 border border-amber-500/20">Quote</span>
             </Link>
 
             {/* Contact */}
@@ -301,11 +327,15 @@ export default function FloatingHeader({ onOpenInquiry, onOpenAudit }) {
           {/* Mobile Hamburger Button */}
           <div className="flex items-center gap-2 lg:hidden">
             <button
-              onClick={() => setMobileMenuOpen(true)}
-              className="text-slate-800 text-xl focus:outline-none p-1.5 rounded-full hover:bg-slate-100"
+              id="mobileMenuBtn"
+              type="button"
+              onClick={() => setMobileMenuOpen((prev) => !prev)}
+              className="text-slate-800 text-xl focus:outline-none p-1.5 rounded-full hover:bg-slate-100 cursor-pointer transition-colors"
               aria-label="Toggle navigation"
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobileNavMenu"
             >
-              <i className="fas fa-bars"></i>
+              <i className={mobileMenuOpen ? 'fas fa-times' : 'fas fa-bars'}></i>
             </button>
           </div>
         </div>
@@ -314,8 +344,9 @@ export default function FloatingHeader({ onOpenInquiry, onOpenAudit }) {
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
         <div
-          className="fixed inset-0 bg-slate-950/95 backdrop-blur-md z-[10002] flex flex-col justify-between p-8 text-white transition-all overflow-y-auto"
           id="mobileNavMenu"
+          className="fixed inset-0 bg-slate-950/95 backdrop-blur-md z-[10002] flex flex-col justify-between p-8 text-white transition-all overflow-y-auto is-open"
+          style={{ display: 'flex' }}
         >
           <div>
             <div className="flex items-center justify-between mb-8 pb-4 border-b border-slate-800">
@@ -323,8 +354,10 @@ export default function FloatingHeader({ onOpenInquiry, onOpenAudit }) {
                 Rank<span className="text-[#ff3b30]">exa</span>
               </span>
               <button
+                id="mobileMenuClose"
+                type="button"
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-slate-400 hover:text-white text-2xl"
+                className="text-slate-400 hover:text-white text-2xl cursor-pointer"
                 aria-label="Close menu"
               >
                 <i className="fas fa-times"></i>
@@ -344,6 +377,7 @@ export default function FloatingHeader({ onOpenInquiry, onOpenAudit }) {
                         <Link
                           key={svc.slug}
                           href={`/services/${svc.slug}`}
+                          onClick={() => setMobileMenuOpen(false)}
                           className="mobile-nav-sublink block text-sm text-slate-300 hover:text-white py-1"
                         >
                           {svc.title}
@@ -353,6 +387,7 @@ export default function FloatingHeader({ onOpenInquiry, onOpenAudit }) {
                   ))}
                   <Link
                     href="/services"
+                    onClick={() => setMobileMenuOpen(false)}
                     className="mobile-nav-sublink block text-xs font-bold text-[#ff3b30] pt-2"
                   >
                     Explore All Services Catalog →
@@ -363,16 +398,32 @@ export default function FloatingHeader({ onOpenInquiry, onOpenAudit }) {
               <details className="mobile-nav-group">
                 <summary className="mobile-nav-link cursor-pointer py-1">Industries</summary>
                 <div className="mobile-nav-sub pl-4 pt-2 space-y-1">
-                  <Link href="/industries" className="mobile-nav-sublink block text-sm text-slate-300 hover:text-white py-1">
+                  <Link
+                    href="/industries"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="mobile-nav-sublink block text-sm text-slate-300 hover:text-white py-1"
+                  >
                     All Industry Verticals (25+)
                   </Link>
-                  <Link href="/industries/ecommerce-retail" className="mobile-nav-sublink block text-sm text-slate-300 hover:text-white py-1">
+                  <Link
+                    href="/industries/ecommerce-retail"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="mobile-nav-sublink block text-sm text-slate-300 hover:text-white py-1"
+                  >
                     E-commerce &amp; Retail
                   </Link>
-                  <Link href="/industries/fintech-banking" className="mobile-nav-sublink block text-sm text-slate-300 hover:text-white py-1">
+                  <Link
+                    href="/industries/fintech-banking"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="mobile-nav-sublink block text-sm text-slate-300 hover:text-white py-1"
+                  >
                     FinTech &amp; Banking
                   </Link>
-                  <Link href="/industries/healthcare-medtech" className="mobile-nav-sublink block text-sm text-slate-300 hover:text-white py-1">
+                  <Link
+                    href="/industries/healthcare-medtech"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="mobile-nav-sublink block text-sm text-slate-300 hover:text-white py-1"
+                  >
                     Healthcare &amp; MedTech
                   </Link>
                 </div>
@@ -387,9 +438,13 @@ export default function FloatingHeader({ onOpenInquiry, onOpenAudit }) {
               <Link href="/blogs" onClick={() => setMobileMenuOpen(false)} className="mobile-nav-link hover:text-[#ff3b30]">
                 Insights &amp; Blogs
               </Link>
+              <Link href="/calculator" onClick={() => setMobileMenuOpen(false)} className="mobile-nav-link hover:text-[#ff3b30] flex items-center justify-between">
+                <span>Project Cost Estimator &amp; Proposal</span>
+                <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-amber-500/20 text-amber-400">Quote</span>
+              </Link>
               <Link href="/tools" onClick={() => setMobileMenuOpen(false)} className="mobile-nav-link hover:text-[#ff3b30] flex items-center justify-between">
                 <span>Free SEO &amp; Growth Tools</span>
-                <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-red-500/20 text-[#ff3b30]">New</span>
+                <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-red-500/20 text-[#ff3b30]">Free</span>
               </Link>
               <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="mobile-nav-link hover:text-[#ff3b30]">
                 Contact Us
@@ -400,7 +455,7 @@ export default function FloatingHeader({ onOpenInquiry, onOpenAudit }) {
               <button
                 type="button"
                 onClick={handleFreeAuditClick}
-                className="mobile-nav-link mobile-nav-cta text-left text-[#ff3b30] font-bold"
+                className="mobile-nav-link mobile-nav-cta text-left text-[#ff3b30] font-bold cursor-pointer"
               >
                 Claim Free Audit →
               </button>

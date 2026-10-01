@@ -5,11 +5,35 @@ import AppLayout from '@/Layouts/AppLayout';
 export default function ToolsIndex({ seo, recentKeywords = [], recentAudits = [] }) {
   const tools = [
     {
+      id: 'calculator',
+      title: 'Website & Web App Project Cost Estimator',
+      badge: 'Instant PDF Quotation',
+      icon: 'fa-calculator',
+      color: 'from-red-500 to-rose-600',
+      description: 'Configure your custom scope (Corporate site, SaaS, E-Commerce, Portals), select architecture modules, and download a transparent, branded vector PDF proposal instantly.',
+      metrics: ['INR (₹) & USD ($) Pricing Engine', 'Milestone Payment Schedule', 'Instant Vector PDF Proposal', 'Core Web Vitals & IP Guarantee'],
+      link: '/calculator',
+      ctaText: 'Calculate Project Cost',
+      isAuditModal: false,
+    },
+    {
+      id: 'schema-generator',
+      title: 'Google SERP Simulator & Schema Generator',
+      badge: 'Live Rich Results',
+      icon: 'fa-code',
+      color: 'from-blue-500 to-indigo-500',
+      description: 'Simulate Google desktop and mobile search snippets with pixel-perfect accuracy. Generate clean Schema JSON-LD for FAQ, Local Business, Articles, and Products.',
+      metrics: ['Desktop & Mobile SERP Preview', '580px Title Pixel Width Counter', '1-Click Schema JSON-LD Generator', 'Direct Google Rich Results Test'],
+      link: '/tools/schema-generator',
+      ctaText: 'Simulate SERP & Schema',
+      isAuditModal: false,
+    },
+    {
       id: 'rank-checker',
       title: 'Google Keyword Ranking Checker',
       badge: 'Live SERP Position',
       icon: 'fa-search',
-      color: 'from-red-500 to-orange-500',
+      color: 'from-orange-500 to-amber-500',
       description: 'Check your exact Google search position, inspect top 3 ranking competitors, and get an AI-generated ranking roadmap to jump to Page 1.',
       metrics: ['Exact SERP Rank (#1 - #50)', 'Page 1 vs Page 2 Indicator', 'Top 3 Competitor URLs', 'AI Keyword Difficulty & Tips'],
       link: '/tools/google-ranking-checker',
@@ -21,7 +45,7 @@ export default function ToolsIndex({ seo, recentKeywords = [], recentAudits = []
       title: 'Backlink & Domain Authority Checker',
       badge: 'PageRank & Link Equity',
       icon: 'fa-link',
-      color: 'from-amber-500 to-red-500',
+      color: 'from-amber-500 to-yellow-500',
       description: 'Analyze Domain Authority (0-100), PageRank score, Dofollow vs Nofollow ratio, and unlock 5 AI high-impact backlink acquisition strategies.',
       metrics: ['Domain Authority (0-100)', 'Dofollow / Nofollow Ratio', 'Toxic Link Risk Meter', '5 High DA Link Opportunities'],
       link: '/tools/backlink-checker',
@@ -40,18 +64,6 @@ export default function ToolsIndex({ seo, recentKeywords = [], recentAudits = []
       ctaText: 'Launch Live Audit',
       isAuditModal: true,
     },
-    {
-      id: 'serp-preview',
-      title: 'Google SERP Snippet Simulator',
-      badge: 'CTR Optimization',
-      icon: 'fa-desktop',
-      color: 'from-blue-500 to-indigo-500',
-      description: 'Simulate how your meta title and description appear in Google Desktop and Mobile search results to maximize click-through rate (CTR).',
-      metrics: ['Mobile & Desktop Preview', 'Character & Pixel Counters', 'SERP Truncation Warning', 'Rich Snippet Simulation'],
-      link: '/tools/google-ranking-checker',
-      ctaText: 'Simulate SERP Snippet',
-      isAuditModal: false,
-    },
   ];
 
   return (
@@ -67,7 +79,7 @@ export default function ToolsIndex({ seo, recentKeywords = [], recentAudits = []
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-slate-300 mb-6 backdrop-blur-sm">
                 <span className="w-2 h-2 rounded-full bg-[#ff3b30] animate-pulse"></span>
-                <span>100% FREE SEO &amp; PERFORMANCE TOOLS • NO SUBSCRIPTION REQUIRED</span>
+                <span>100% FREE SEO &amp; ARCHITECTURE TOOLS • NO SUBSCRIPTION REQUIRED</span>
               </div>
 
               <h1
@@ -75,7 +87,7 @@ export default function ToolsIndex({ seo, recentKeywords = [], recentAudits = []
                 style={{ color: '#ffffff' }}
               >
                 <span className="text-white" style={{ color: '#ffffff' }}>
-                  Rank Higher &amp; Scale Organic Traffic with
+                  Rank Higher &amp; Scale Faster with
                 </span>{' '}
                 <span className="bg-gradient-to-r from-[#ff3b30] via-orange-400 to-red-400 bg-clip-text text-transparent">
                   Rankexa Free Tools
@@ -83,35 +95,42 @@ export default function ToolsIndex({ seo, recentKeywords = [], recentAudits = []
               </h1>
 
               <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed mb-10">
-                Enterprise-grade search intelligence to check real-time Google keyword rankings, audit domain authority, inspect backlink equity, and diagnose Core Web Vitals speed.
+                Enterprise-grade search intelligence to check real-time Google keyword rankings, calculate custom project costs, simulate SERP CTR snippets, and audit Core Web Vitals speed.
               </p>
 
               {/* Quick Actions Bar */}
               <div className="flex flex-wrap items-center justify-center gap-3">
                 <Link
-                  href="/tools/google-ranking-checker"
+                  href="/calculator"
                   className="px-6 py-3.5 rounded-xl bg-[#ff3b30] hover:bg-[#e03126] text-white font-bold text-xs uppercase tracking-wider flex items-center gap-2 transition-all shadow-lg shadow-red-500/20 active:scale-95"
                 >
+                  <i className="fas fa-calculator"></i>
+                  <span>Cost Estimator &amp; Proposal</span>
+                </Link>
+
+                <Link
+                  href="/tools/schema-generator"
+                  className="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs uppercase tracking-wider flex items-center gap-2 transition-all border border-white/10 active:scale-95"
+                >
+                  <i className="fas fa-code"></i>
+                  <span>SERP Simulator &amp; Schema</span>
+                </Link>
+
+                <Link
+                  href="/tools/google-ranking-checker"
+                  className="px-6 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200 font-bold text-xs uppercase tracking-wider flex items-center gap-2 transition-all border border-white/10 active:scale-95"
+                >
                   <i className="fas fa-search"></i>
-                  <span>Check Google Keyword Rank</span>
+                  <span>Google Keyword Rank</span>
                 </Link>
 
                 <Link
                   href="/tools/backlink-checker"
-                  className="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs uppercase tracking-wider flex items-center gap-2 transition-all border border-white/10 active:scale-95"
+                  className="px-6 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200 font-bold text-xs uppercase tracking-wider flex items-center gap-2 transition-all border border-white/10 active:scale-95"
                 >
                   <i className="fas fa-link"></i>
-                  <span>Audit Backlinks &amp; DA</span>
+                  <span>Backlinks &amp; DA</span>
                 </Link>
-
-                <button
-                  type="button"
-                  onClick={openAudit}
-                  className="px-6 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 text-emerald-400 font-bold text-xs uppercase tracking-wider flex items-center gap-2 transition-all border border-emerald-500/25 active:scale-95"
-                >
-                  <i className="fas fa-bolt"></i>
-                  <span>Run Live Speed Audit</span>
-                </button>
               </div>
             </div>
           </section>

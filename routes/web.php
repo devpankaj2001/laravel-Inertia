@@ -92,8 +92,22 @@ Route::get('/api/ai/history/{sessionId}', [AIChatController::class, 'history'])-
 Route::post('/api/audit/run', [AuditController::class, 'runAudit'])->name('api.audit.run');
 Route::get('/api/audit/{id}', [AuditController::class, 'show'])->name('api.audit.show');
 
-// Free SEO & Growth Tools Suite (Rank Checker & Backlink Checker)
+// Free SEO & Growth Tools Suite (Rank Checker, Backlink Checker, Schema Generator, Cost Estimator)
 Route::get('/tools', [SEOToolsController::class, 'index'])->name('tools.index');
+Route::get('/calculator', [SEOToolsController::class, 'calculator'])->name('calculator');
+Route::get('/project-estimator', function () {
+    return redirect()->route('calculator');
+});
+Route::get('/tools/project-estimator', function () {
+    return redirect()->route('calculator');
+});
+Route::post('/api/tools/save-estimate', [SEOToolsController::class, 'apiSaveEstimate'])->name('api.tools.save_estimate');
+
+Route::get('/tools/schema-generator', [SEOToolsController::class, 'schemaGenerator'])->name('tools.schema_generator');
+Route::get('/tools/serp-preview', function () {
+    return redirect()->route('tools.schema_generator', ['tab' => 'serp']);
+});
+
 Route::get('/tools/google-ranking-checker', [SEOToolsController::class, 'rankChecker'])->name('tools.rank_checker');
 Route::post('/api/tools/check-ranking', [SEOToolsController::class, 'apiCheckRanking'])->name('api.tools.check_ranking');
 Route::get('/tools/backlink-checker', [SEOToolsController::class, 'backlinkChecker'])->name('tools.backlink_checker');

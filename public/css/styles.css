@@ -984,8 +984,11 @@ a.mobile-nav-link:not(.mobile-nav-cta) {
   outline: none;
 }
 
-#mobileNavMenu {
+#mobileNavMenu:not(.is-open) {
   display: none !important;
+}
+
+#mobileNavMenu {
   position: fixed;
   inset: 0;
   z-index: 10002;

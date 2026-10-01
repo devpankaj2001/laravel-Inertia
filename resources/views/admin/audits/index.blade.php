@@ -137,9 +137,10 @@
                 $roadmap = $audit->ai_roadmap ?? [];
                 $cleanDomain = parse_url($audit->domain_url, PHP_URL_HOST) ?: $audit->domain_url;
                 $phoneClean = preg_replace('/[^0-9]/', '', $audit->phone ?? '');
+                $lcpVal = $cwv['lcp'] ?? 'N/A';
                 
                 // WhatsApp personalized outreach template
-                $waText = "Hi! We analyzed {$cleanDomain} with our AI Performance & SEO Engine. Your Speed Score is {$perf}/100 and SEO is {$seo}/100. We identified specific fixes for LCP ({$cwv['lcp'] ?? 'N/A'}) and schema markup that can improve your organic Google rankings within 48 hours. Would you like us to implement these?";
+                $waText = "Hi! We analyzed {$cleanDomain} with our AI Performance & SEO Engine. Your Speed Score is {$perf}/100 and SEO is {$seo}/100. We identified specific fixes for LCP ({$lcpVal}) and schema markup that can improve your organic Google rankings within 48 hours. Would you like us to implement these?";
                 $waLink = $phoneClean ? "https://wa.me/{$phoneClean}?text=" . urlencode($waText) : null;
                 $mailSubject = "Website Performance & SEO Diagnostic for {$cleanDomain}";
                 $mailBody = "Hi,\n\nWe conducted a real-time Core Web Vitals & SEO audit for {$cleanDomain}.\n\nScorecard:\n• Performance Score: {$perf}/100\n• Technical SEO Score: {$seo}/100\n• Largest Contentful Paint (LCP): " . ($cwv['lcp'] ?? 'N/A') . "\n• Server TTFB: " . ($cwv['ttfb'] ?? 'N/A') . "\n\nWe have prepared a complete 48-Hour Implementation Plan to optimize your website. Let us know if you'd like us to proceed!\n\nBest regards,\nRankexa Team";
